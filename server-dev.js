@@ -1,9 +1,3 @@
-#!/bin/env node
-
-baseurl = "http://www.gugamarket.com";
-ip = process.env.OPENSHIFT_NODEJS_IP;
-port = process.env.OPENSHIFT_NODEJS_PORT;
-
 var http = require('http');
 
 var finalhandler = require('finalhandler');
@@ -16,4 +10,4 @@ var server = http.createServer(function(req, res){
   serve(req, res, done)
 });
 
-server.listen(port,ip);
+server.listen(8000);

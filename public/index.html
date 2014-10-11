@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Google News</title>
+
+    <!-- WinJS references -->
+
+    <link href="/vendor/winjs/css/ui-dark.css" rel="stylesheet" />
+    <script src="/vendor/winjs/js/WinJS.js"></script>
+    <script src="/vendor/winjs/js/base.js"></script>
+    <script src="/vendor/winjs/js/ui.js"></script>
+    <script src="/vendor/winjs/js/en-US/ui.strings.js"></script>
+
+    <!-- UrzaGatherer references -->
+    <link href="/css/default.css" rel="stylesheet">
+    <link href="/css/pivot.css" rel="stylesheet">
+    <script src="/js/default.js"></script>
+     <script src="/json-data/feeds.js"></script>
+    <script src="/js/pivot.js"></script>
+</head>
+<body id="contentTarget">
+
+
+
+	<div class="fullScreen">
+
+	    <!-- app header and backbutton-->
+	    <div id="appHeader">
+	        <button data-win-control="WinJS.UI.BackButton"></button>
+	        <h1>Google News</h1>
+	    </div>
+
+	    <!-- Template for ListView in section 2 -->
+	    <!--
+	    <div class="smallListIconTextTemplate" data-win-control="WinJS.Binding.Template">
+	        <div class="smallListIconTextItem">	
+	            <img src="#" class="smallListIconTextItem-Image" data-win-bind="src: picture" />
+	            <div class="smallListIconTextItem-Detail">
+	                <h4 data-win-bind="textContent: title"></h4>
+	                <h6 data-win-bind="textContent: text"></h6>
+	            </div>
+	        </div>
+	    </div>
+	    -->
+
+
+
+
+
+				<!-- Start PIVOT... -->
+				<div class="mailItemTemplate" data-win-control="WinJS.Binding.Template">
+				    <div class="mailItem mailItemIndex">
+				        <div class="hitTarget win-interactive"></div>
+				        <h2 class="title" data-win-bind="innerHTML: name"></h2>
+				    </div>
+				</div>
+
+
+				<div id="pivotScenario3" class="wide" data-win-control="WinJS.UI.Pivot" data-win-options="{ title: '', selectedIndex: 1 }">
+
+				    <div class="listviewpivotitem" data-win-control="WinJS.UI.PivotItem" data-win-options="{ 'header': 'Asia', managedLV: true }">
+				        <div data-win-control="WinJS.UI.ListView" data-win-options="{ itemDataSource: Asia.dataSource, layout: { type: WinJS.UI.ListLayout }, itemTemplate: select('.mailItemTemplate'), selectionMode: 'none' }"></div>
+				    </div>
+
+				    <div class="listviewpivotitem" data-win-control="WinJS.UI.PivotItem" data-win-options="{ 'header': 'Europe &amp; Africa', managedLV: true }">
+				        <div data-win-control="WinJS.UI.ListView" data-win-options="{ itemDataSource: Europe.dataSource, layout: { type: WinJS.UI.ListLayout }, itemTemplate: select('.mailItemTemplate'), selectionMode: 'none' }"></div>
+				    </div>
+
+				    <div class="listviewpivotitem" data-win-control="WinJS.UI.PivotItem" data-win-options="{ 'header': 'North &amp; South America',appBarClosedDisplayMode: 'minimal', managedLV: true }">
+				        <div data-win-control="WinJS.UI.ListView" data-win-options="{ itemDataSource: North.dataSource, layout: { type: WinJS.UI.ListLayout }, itemTemplate: select('.mailItemTemplate'), selectionMode: 'none' }"></div>
+				    </div>
+
+				    </div>
+
+	        <!-- 
+	        <div id="list" class="section2" data-win-control="WinJS.UI.HubSection" data-win-options="{header: 'ListView', isHeaderStatic: true}">
+	            <div id="listView"
+	                 class="win-selectionstylefilled"
+	                 data-win-control="WinJS.UI.ListView"
+	                 data-win-options="{
+	                    itemDataSource: select('.pagecontrol').winControl.myData.dataSource,
+	                    itemTemplate: select('.smallListIconTextTemplate'),
+	                    selectionMode: 'none',
+	                    layout: { type: WinJS.UI.ListLayout},
+	                    tapBehavior: 'none',
+	                    swipeBehavior: 'none'
+	                }">
+	            </div>
+	            			-->
+
+	        </div>
+
+
+</body>
+</html>
+

@@ -1,0 +1,54 @@
+body {
+    background-image: url('../background.svg')
+}
+
+a {
+    color: #ccff00;
+}
+
+a:hover {
+    background-color: transparent;
+}
+
+
+.fullScreen {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/*width of each section*/
+.section1.win-hub-section {
+    width: 780px;
+    overflow: hidden;
+}
+
+
+/*App Header Styles*/
+#appHeader {
+    position: absolute;
+    z-index: 1;
+    top: 10px;
+    left: 50px;
+}
+
+#appHeader .win-navigation-backbutton {
+    margin-right: 20px;
+}
+
+#appHeader h1 {
+    display: inline;
+}
+
+/*styles when app is in the portrait mode*/
+@media all and (min-height: 1280px) {
+
+}
+
+/*styles for larger screens*/
+@media (min-width: 1920px) {
+  
+}
+
