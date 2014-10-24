@@ -32,7 +32,7 @@ html.win-hoverable .win-pivot button.win-pivot-header:hover {
 /*ITEM*/
 .win-pivot-item {
     top:1px;
-    padding-bottom:45px;
+    padding-bottom:55px;
 }
 .win-pivot-item .win-pivot-item-content {
     padding:0px;
@@ -51,6 +51,7 @@ html.win-hoverable .win-pivot button.win-pivot-header:hover {
 
 #pivotScenario3 .win-listview .win-item {
     margin: 10px;
+    margin-bottom:0px;
     /* width: calc(100% - 20px); */
 }
 

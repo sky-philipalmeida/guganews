@@ -1,4 +1,5 @@
 var resources = {
+"Powered":[{name:"news.google.com"}],	
 "Asia":
 	[
 		{"url":"http://news.google.com/news?ned=au","name":"Australia"},

@@ -14,12 +14,7 @@ var myData = new WinJS.Binding.List([
     { title: "Pothole Cover", text: "Gray", picture: "/pages/hub/images/circle_list3.jpg" }
 ]);
 */
-WinJS.UI.Pages.define("/index.html", {
-ready:function(){
 
-
-}
-});
 
 function processResults(topic,result){
 
@@ -44,7 +39,7 @@ function processResults(topic,result){
                 item.contentSnippet=item.contentSnippet.substr(s+item.author.length);
 
             var img=/.*src=\"(.*?)\".*/.exec(item.content);
-            item.img= (img && typeof img[1]!=='undefined')?img[1]:"";
+            item.img= (img && typeof img[1]!=='undefined')?img[1]:"images/windows/Square70x70Logo.scale-180.png";
 
             item.publishedDate = getelapsedtime(item.publishedDate);
             return item;
@@ -57,7 +52,6 @@ function processResults(topic,result){
 
 WinJS.UI.Pages.define("/list.html", {
     init:function(){
-
     },
     ready: function (element, options) {
 
