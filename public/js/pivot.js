@@ -51,7 +51,7 @@ WinJS.UI.processAll().then(function () {
             
             WinJS.Utilities.setInnerHTML(
                 WinJS.Utilities.query("#appHeaderTitle")[0]
-                , 'Google News <b>'+local+'</b>');
+                , 'Guganews <b>'+local+'</b>');
 
             
         }

@@ -1,9 +1,20 @@
-body {
-    background-image: url('../background.svg')
+html, body {
+    /* background-image: url('../background.svg') */
+    background-color:#61ba7f;
+    color: #333;
 }
 
+h1 {
+    font-size: 20pt;
+}
+
+/*BUTTONS*/
+.win-backbutton, .win-back {
+    /*border-color: #333;
+    color: #333;*/
+}
 a {
-    color: #ccff00;
+    color: #61ba7f;
 }
 
 a:hover {
@@ -28,10 +39,10 @@ a:hover {
 
 /*App Header Styles*/
 #appHeader {
-    position: absolute;
     z-index: 1;
-    top: 10px;
-    left: 50px;
+    top: 0px;
+    left: 0px;
+    width: 100%;
 }
 
 #appHeader .win-navigation-backbutton {
@@ -39,7 +50,10 @@ a:hover {
 }
 
 #appHeader h1 {
-    display: inline;
+    color: #FFF;
+    top: 5pt;
+    left:40pt;
+    position : absolute;
 }
 
 /*styles when app is in the portrait mode*/
