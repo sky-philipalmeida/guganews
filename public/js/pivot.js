@@ -25,10 +25,12 @@
     // data.push({ author: "Smith Jones", titleColor: "rgba(212, 14, 136, 1)", title: "Happend every time", previewText: "I always end up going to the ...", time: "7:12a" });
     window.North = { dataSource: new WinJS.Binding.List(data).dataSource };
     
+
 })();
 
 
 WinJS.UI.processAll().then(function () {
+
 
 
  WinJS.Navigation.addEventListener("navigating", function (e) {
@@ -53,7 +55,6 @@ WinJS.UI.processAll().then(function () {
                 WinJS.Utilities.query("#appHeaderTitle")[0]
                 , 'Guganews <b>'+local+'</b>');
 
-            
         }
 
 
@@ -85,8 +86,8 @@ WinJS.UI.processAll().then(function () {
                                 // console.log(invoke.detail.itemPromise._value.data)
                                 var clicked = invoke.detail.itemPromise._value.data;
                                 // window.location=clicked.link;
-                                window.open(clicked.link, "_blank", "fullscreen=yes,height=600,width=800,scrollbars=yes,resizable=no");
-
+                                // window.open(clicked.link, "_blank", "fullscreen=yes,height=600,width=800,scrollbars=yes,resizable=no");
+                                transitionBetweenContent(invoke,clicked.id,clicked.id2);
                                 }, false);
                 }
 
@@ -162,5 +163,33 @@ function getNews(invoke){
         }
     );
   */  
+}
+
+function transitionBetweenContent(invoke,id,id2) {
+
+    console.log(invoke)
+    
+    var incoming;
+    var outgoing;
+    var output1=document.querySelectorAll('[name="'+id+'"]')[0];
+    var output2=document.querySelectorAll('[name="'+id2+'"]')[0];
+    
+    // Assign incoming and outgoing
+    if (output2.style.display === "none") {
+        incoming = output2;
+        outgoing = output1;
+    } else {
+        // return;
+        incoming = output1;
+        outgoing = output2;
+    }
+
+    // Run the exitContent animation and then the enterContent animation
+    // Use the recommended offset by leaving the offset argument empty to get the best performance
+    WinJS.UI.Animation.exitContent(output, null).done(function () {
+        outgoing.style.display = "none";
+        incoming.style.display = "block";
+        return WinJS.UI.Animation.enterContent(output, null);
+    });
 }
 

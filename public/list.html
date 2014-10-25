@@ -51,19 +51,33 @@ m - specifies the health topic
 				<!-- Start PIVOT... -->
 				<div class="mailItemTemplate" data-win-control="WinJS.Binding.Template">
 					
-						<div class="mailItemContainer"> 
-							<div class="mailImageContainer">
-								<img align="absbottom" src="#" class="mailItemImage" data-win-bind="src: img" />
+
+				<div class="box">
+				    <div id="output">
+				        <div data-win-bind="name: id">
+
+							<div class="mailItemContainer"> 
+								<div class="mailImageContainer">
+									<img align="absbottom" src="#" class="mailItemImage" data-win-bind="src: img" />
+								</div>
+							    <div class="mailItem">
+							    	
+							        <div class="hitTarget win-interactive"></div>
+							        <h5 class="date" data-win-bind="innerHTML: publishedDate"></h5>	 
+							        <h2 class="author" data-win-bind="innerHTML: author"></h2>	    
+							        <h2 class="title" data-win-bind="innerHTML: title"></h2>
+							        <h5 class="previewText win-pivot-slide2" data-win-bind="innerHTML: contentSnippet"></h5>
+							    </div>
 							</div>
-						    <div class="mailItem">
-						    	
-						        <div class="hitTarget win-interactive"></div>
-						        <h5 class="date" data-win-bind="innerHTML: publishedDate"></h5>	 
-						        <h2 class="author" data-win-bind="innerHTML: author"></h2>	    
-						        <h2 class="title" data-win-bind="innerHTML: title"></h2>
-						        <h5 class="previewText win-pivot-slide2" data-win-bind="innerHTML: contentSnippet"></h5>
-						    </div>
-						</div>
+
+				        </div>
+				        <div style="display:none;" data-win-bind="name: id2">
+					        <div class="more" data-win-bind="innerHTML: content">
+					        </div>
+				        </div>
+				    </div>
+				</div>
+
 				</div>
 
 

@@ -17,7 +17,7 @@ var myData = new WinJS.Binding.List([
 
 
 function processResults(topic,result){
-
+    var id=0;
     data = result.feed.entries.map(
         function(item){
 
@@ -34,6 +34,9 @@ function processResults(topic,result){
 
             item.author = item.title.substr(jornal+3).trim();
             item.title = item.title.substr(0,jornal).trim();
+            item.id=topic+"_" +(++id);
+            item.id2=topic+"_2_" +id;
+            
 
             var s = item.contentSnippet.lastIndexOf(item.author);
                 item.contentSnippet=item.contentSnippet.substr(s+item.author.length);
@@ -75,8 +78,8 @@ function getelapsedtime(datestring){
     //create current date
     var now = new Date();
     var d2 = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),  now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds());
-    console.log(d1);
-    console.log(d2);
+    /*console.log(d1);
+    console.log(d2);*/
     //get date times (ms)
     var d1Time = (d1.getTime());
     var d2Time = (d2.getTime());
