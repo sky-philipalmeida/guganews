@@ -61,6 +61,7 @@ a:hover {
     position :absolute;
     right:5px;
     bottom:5px;
+    font-size:6pt;
 }
 /*styles when app is in the portrait mode*/
 @media all and (min-height: 1280px) {

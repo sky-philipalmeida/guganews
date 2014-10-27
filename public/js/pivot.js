@@ -78,17 +78,33 @@ WinJS.UI.processAll().then(function () {
 
                 if (e.detail.location=="/list.html"){
 
+                    WinJS.Utilities.query("a")
+                        .listen("click",
+                            function(e){
+                                e.preventDefault();
+                            })
+
                     WinJS.Utilities.query(".listviewpivotitem")
                         .listen(
                             "iteminvoked", 
                             function(invoke){ 
-
+                                var index  = invoke.detail.itemIndex;
                                 // console.log(invoke.detail.itemPromise._value.data)
                                 var clicked = invoke.detail.itemPromise._value.data;
+                                // console.log(invoke);
                                 // window.location=clicked.link;
                                 // window.open(clicked.link, "_blank", "fullscreen=yes,height=600,width=800,scrollbars=yes,resizable=no");
-                                transitionBetweenContent(invoke,clicked.id,clicked.id2);
-                                }, false);
+                                transitionBetweenContent(
+                                        invoke
+                                        ,clicked.id
+                                        ,clicked.id2
+                                        ,function(){
+                                            var list=document.getElementById("pivotScenario3").winControl._currentItem._contentElement.firstElementChild.winControl;
+                                            // console.log("Ensure visible");
+                                            list.ensureVisible(index)
+                                        }
+                                );
+                            }, false);
                 }
 
             });
@@ -165,10 +181,10 @@ function getNews(invoke){
   */  
 }
 
-function transitionBetweenContent(invoke,id,id2) {
+var lastopen_in = 0;
+var lastopen_out = 0;
+function transitionBetweenContent(invoke,id,id2,cb) {
 
-    console.log(invoke)
-    
     var incoming;
     var outgoing;
     var output1=document.querySelectorAll('[name="'+id+'"]')[0];
@@ -189,7 +205,13 @@ function transitionBetweenContent(invoke,id,id2) {
     WinJS.UI.Animation.exitContent(output, null).done(function () {
         outgoing.style.display = "none";
         incoming.style.display = "block";
-        return WinJS.UI.Animation.enterContent(output, null);
+        if (lastopen_in) { 
+            lastopen_in.style.display="none"; 
+            lastopen_out.style.display="block";
+        }
+        lastopen_in = incoming;
+        lastopen_out = outgoing;
+        return WinJS.UI.Animation.enterContent(output).done(cb);
     });
 }
 

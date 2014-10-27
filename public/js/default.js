@@ -21,7 +21,7 @@ function processResults(topic,result){
     data = result.feed.entries.map(
         function(item){
 
-            console.log(item);
+            // console.log(item);
 
             var jornal = item.title.lastIndexOf(' - ');
             switch(item.title.substr(jornal+3).trim()){
@@ -58,9 +58,11 @@ WinJS.UI.Pages.define("/list.html", {
     },
     ready: function (element, options) {
 
+        /*
         back.addEventListener("click", function () {
             WinJS.Navigation.navigate("/index.html");
         });
+        */
 
     }
 });
