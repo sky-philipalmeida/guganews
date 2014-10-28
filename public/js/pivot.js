@@ -44,7 +44,6 @@ WinJS.UI.processAll().then(function () {
     WinJS.UI.Pages.render(e.detail.location, elem)
     .then(function () {
 
-
         if (e.detail.location=="/list.html"){
 
 
@@ -62,68 +61,60 @@ WinJS.UI.processAll().then(function () {
 
         enterPage.done(
             function(){
-                // console.log(datta);
-                if (e.detail.location=="/index.html"){
 
-                    WinJS.Utilities.query(".listviewpivotitem")
-                    .listen("iteminvoked", 
-                        function(invoke){ 
+            WinJS.Utilities.query("a")
+                .listen("click",
+                    function(e){
+                            // console.log(this);
+                            e.returnValue =false;
+                            e.preventDefault();
+                            e.stopPropagation();
+                            
+                           window.open(this.href,'Guganews');
+                    });
+                    // console.log(datta);
+                    if (e.detail.location=="/index.html"){
 
-                                // console.log(invoke.detail.itemPromise._value.data);
-                                // WinJS.Navigation.navigate("/list.html");
-                                getNews(invoke);
+                        WinJS.Utilities.query(".listviewpivotitem")
+                        .listen("iteminvoked", 
+                            function(invoke){ 
 
-                            }, false);
-                }
+                                    // console.log(invoke.detail.itemPromise._value.data);
+                                    // WinJS.Navigation.navigate("/list.html");
+                                    getNews(invoke);
 
-                if (e.detail.location=="/list.html"){
+                                }, false);
+                    }
 
-                    WinJS.Utilities.query("a")
-                    .listen("click",
-                        function(e){
-                                // console.log(this);
-                                e.returnValue =false;
-                                e.preventDefault();
-                                
-                                WinJS.UI.executeTransition(this,
-                                {
-                                    property: "background-color",
-                                    delay: 0,
-                                    duration: 800,
-                                    timing: "linear",
-                                    from: "transparent",
-                                    to: "#EEE"
-                                });
-                               window.open(this.href,'Guganews');
-                           });
+                    if (e.detail.location=="/list.html"){
 
-                    WinJS.Utilities.query(".listviewpivotitem")
-                    .listen(
-                        "iteminvoked", 
-                        function(invoke){ 
-                                //console.log(this);
-                                var index  = invoke.detail.itemIndex;
-                                // console.log(invoke.detail.itemPromise._value.data)
-                                var clicked = invoke.detail.itemPromise._value.data;
-                                // console.log(invoke);
-                                // window.location=clicked.link;
-                                // window.open(clicked.link, "_blank", "fullscreen=yes,height=600,width=800,scrollbars=yes,resizable=no");
-                                transitionBetweenContent(
-                                    invoke
-                                    ,clicked.id
-                                    ,clicked.id2
-                                    ,function(){
-                                        var list=document.getElementById("pivotScenario3").winControl._currentItem._contentElement.firstElementChild.winControl;
-                                            // console.log("Ensure visible");
-                                            list.ensureVisible(index)
-                                        }
-                                        );
-                            }, false);
-}
+                        WinJS.Utilities.query(".listviewpivotitem")
+                        .listen(
+                            "iteminvoked", 
+                            function(invoke){ 
+                                    //console.log(this);
+                                    var index  = invoke.detail.itemIndex;
+                                    // console.log(invoke.detail.itemPromise._value.data)
+                                    var clicked = invoke.detail.itemPromise._value.data;
+                                    // console.log(invoke);
+                                    // window.location=clicked.link;
+                                    // window.open(clicked.link, "_blank", "fullscreen=yes,height=600,width=800,scrollbars=yes,resizable=no");
+                                    transitionBetweenContent(
+                                        invoke
+                                        ,clicked.id
+                                        ,clicked.id2
+                                        ,function(){
+                                            var list=document.getElementById("pivotScenario3").winControl._currentItem._contentElement.firstElementChild.winControl;
+                                                // console.log("Ensure visible");
+                                                list.ensureVisible(index)
+                                            }
+                                            );
+                                }, false);
+                    }
 
-});
+            });
 
-});
+    });
 
 });
 
@@ -271,15 +262,16 @@ function transitionBetweenContent(invoke,id,id2,cb) {
     } 
 
     actout=outgoing;actin=incoming;
-                                WinJS.UI.executeTransition(incoming,
-                                {
-                                    property: "background-color",
-                                    delay: 0,
-                                    duration: 400,
-                                    timing: "linear",
-                                    from: "#fff",
-                                    to: "#EEE"
-                                });
+
+    WinJS.UI.executeTransition(incoming,
+    {
+        property: "background-color",
+        delay: 0,
+        duration: 400,
+        timing: "linear",
+        from: "#fff",
+        to: "#EEE"
+    });
 
     WinJS.UI.executeTransition(outgoing,
     {
