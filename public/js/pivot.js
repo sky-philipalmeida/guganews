@@ -1,5 +1,6 @@
 (function () {
 
+
     /*
     var data = [];
     for (var i = 0; i < 100; i++) {
@@ -33,19 +34,19 @@ WinJS.UI.processAll().then(function () {
 
 
 
- WinJS.Navigation.addEventListener("navigating", function (e) {
+   WinJS.Navigation.addEventListener("navigating", function (e) {
 
     var elem = document.getElementById("contentTarget");
 
     // WinJS.UI.Animation.exitPage(elem.children).then(function () {
 
-    WinJS.Utilities.empty(elem);
+        WinJS.Utilities.empty(elem);
 
     // console.log(e.detail.location);
 
     WinJS.UI.Pages.render(e.detail.location, elem)
     .then(function () {
-            
+
 
         if (e.detail.location=="/list.html"){
 
@@ -54,6 +55,7 @@ WinJS.UI.processAll().then(function () {
             WinJS.Utilities.setInnerHTML(
                 WinJS.Utilities.query("#appHeaderTitle")[0]
                 , 'Guganews <b>'+local+'</b>');
+
 
         }
 
@@ -66,8 +68,8 @@ WinJS.UI.processAll().then(function () {
                 if (e.detail.location=="/index.html"){
 
                     WinJS.Utilities.query(".listviewpivotitem")
-                        .listen("iteminvoked", 
-                            function(invoke){ 
+                    .listen("iteminvoked", 
+                        function(invoke){ 
 
                                 // console.log(invoke.detail.itemPromise._value.data);
                                 // WinJS.Navigation.navigate("/list.html");
@@ -79,15 +81,29 @@ WinJS.UI.processAll().then(function () {
                 if (e.detail.location=="/list.html"){
 
                     WinJS.Utilities.query("a")
-                        .listen("click",
-                            function(e){
+                    .listen("click",
+                        function(e){
+                                // console.log(this);
+                                e.returnValue =false;
                                 e.preventDefault();
-                            })
+                                
+                                WinJS.UI.executeTransition(this,
+                                {
+                                    property: "background-color",
+                                    delay: 0,
+                                    duration: 800,
+                                    timing: "linear",
+                                    from: "transparent",
+                                    to: "#EEE"
+                                });
+                               window.open(this.href,'Guganews');
+                           });
 
                     WinJS.Utilities.query(".listviewpivotitem")
-                        .listen(
-                            "iteminvoked", 
-                            function(invoke){ 
+                    .listen(
+                        "iteminvoked", 
+                        function(invoke){ 
+                                //console.log(this);
                                 var index  = invoke.detail.itemIndex;
                                 // console.log(invoke.detail.itemPromise._value.data)
                                 var clicked = invoke.detail.itemPromise._value.data;
@@ -95,32 +111,32 @@ WinJS.UI.processAll().then(function () {
                                 // window.location=clicked.link;
                                 // window.open(clicked.link, "_blank", "fullscreen=yes,height=600,width=800,scrollbars=yes,resizable=no");
                                 transitionBetweenContent(
-                                        invoke
-                                        ,clicked.id
-                                        ,clicked.id2
-                                        ,function(){
-                                            var list=document.getElementById("pivotScenario3").winControl._currentItem._contentElement.firstElementChild.winControl;
+                                    invoke
+                                    ,clicked.id
+                                    ,clicked.id2
+                                    ,function(){
+                                        var list=document.getElementById("pivotScenario3").winControl._currentItem._contentElement.firstElementChild.winControl;
                                             // console.log("Ensure visible");
                                             list.ensureVisible(index)
                                         }
-                                );
+                                        );
                             }, false);
-                }
+}
 
-            });
-    
-        });
+});
 
-    });
+});
 
-    WinJS.Utilities.query(".listviewpivotitem")
-    .listen(
-        "iteminvoked", 
-        function(invoke){ 
+});
 
-            getNews(invoke);
+WinJS.Utilities.query(".listviewpivotitem")
+.listen(
+    "iteminvoked", 
+    function(invoke){ 
 
-        }, false
+        getNews(invoke);
+
+    }, false
     ); 
 });
 
@@ -178,11 +194,11 @@ function getNews(invoke){
 
         }
     );
-  */  
+*/  
 }
 
-var lastopen_in = 0;
-var lastopen_out = 0;
+var actout=0;
+var actin=0;
 function transitionBetweenContent(invoke,id,id2,cb) {
 
     var incoming;
@@ -190,28 +206,64 @@ function transitionBetweenContent(invoke,id,id2,cb) {
     var output1=document.querySelectorAll('[name="'+id+'"]')[0];
     var output2=document.querySelectorAll('[name="'+id2+'"]')[0];
     
+
     // Assign incoming and outgoing
     if (output2.style.display === "none") {
         incoming = output2;
         outgoing = output1;
     } else {
-        // return;
         incoming = output1;
         outgoing = output2;
     }
+    if (actin){
+        if(actin==outgoing){
+            return;
 
-    // Run the exitContent animation and then the enterContent animation
-    // Use the recommended offset by leaving the offset argument empty to get the best performance
-    WinJS.UI.Animation.exitContent(output, null).done(function () {
+        } else {
+            actout.style.display = "block";
+            actin.style.display = "none";
+            actout.style.opacity = 1;
+            actin.style.opacity = 0;
+        }
+    } 
+
+    actout=outgoing;actin=incoming;
+
+    WinJS.UI.executeTransition(outgoing,
+    {
+        property: "opacity",
+        delay: 0,
+        duration: 0,
+        timing: "linear",
+        from: 1,
+        to: 0
+    }).done(function(){
         outgoing.style.display = "none";
         incoming.style.display = "block";
-        if (lastopen_in) { 
-            lastopen_in.style.display="none"; 
-            lastopen_out.style.display="block";
-        }
-        lastopen_in = incoming;
-        lastopen_out = outgoing;
-        return WinJS.UI.Animation.enterContent(output).done(cb);
+        WinJS.UI.executeTransition(incoming,
+        {
+            property: "opacity",
+            delay: 0,
+            duration: 250,
+            timing: "linear",
+            from: 0,
+            to: 1
+        }).done(function(){
+            cb();
+        });
     });
+
+    return;
+    // Run the exitContent animation and then the enterContent animation
+    // Use the recommended offset by leaving the offset argument empty to get the best performance
+   /* WinJS.UI.Animation.exitContent(output, null).done(function () {
+
+
+        return WinJS.UI.Animation.enterContent(output).done(function(){
+                    outgoing.style.display = "none";
+        incoming.style.display = "block";
+            cb();
+        });
+});*/
 }
 
