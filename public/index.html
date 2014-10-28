@@ -3,25 +3,33 @@
 <head>
     <meta charset="utf-8">
     <title>Guganews</title>
-
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- WinJS references -->
 
     <link href="/vendor/winjs/css/ui-dark.css" rel="stylesheet" />
     <script src="/vendor/winjs/js/WinJS.js"></script>
-    <script src="/vendor/winjs/js/base.js"></script>
-    <script src="/vendor/winjs/js/ui.js"></script>
-    <script src="/vendor/winjs/js/en-US/ui.strings.js"></script>
 
     <!-- UrzaGatherer references -->
     <link href="/css/default.css" rel="stylesheet">
     <link href="/css/pivot.css" rel="stylesheet">
+    <script src="/js/spin.min.js"></script>
     <script src="/js/default.js"></script>
      <script src="/json-data/feeds.js"></script>
     <script src="/js/pivot.js"></script>
 </head>
 <body id="contentTarget">
 
-
+	<div class="box">
+	    <div data-win-control="WinJS.UI.ContentDialog" data-win-options="{
+	             title: 'Network failure',
+	             primaryCommandText: 'Try again'
+	        }">
+	        Please check your internet connection and try again.
+	        <div style="height: 50px; width: 1px;"></div>
+	    </div>
+	</div>
+		
+	<div id="progress"></div>
 
 	<div class="fullScreen">
 

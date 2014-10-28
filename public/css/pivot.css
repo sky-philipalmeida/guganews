@@ -10,7 +10,7 @@
 /*HEADERS*/
 .win-pivot .win-pivot-headers {
     height: 32px    ;
-    z-index:999999999;
+    z-index:999;
     background-color: #61ba7f;
 }
 /*VIEWPORT*/
@@ -153,7 +153,9 @@ font[color="#6f6f6f"],
     flex: 1 auto;
     text-align: right
 }
-/* MORE */
+/* MORE 
+**********************************
+*/
 .morehiddenblock {
     display:none;
 }
@@ -175,6 +177,12 @@ div[style="padding-top: 0.8em;"] {
 }
 .more a {
     margin-right:5px !important;
+    font-weight: 100;
     font-size:14pt;
     cursor:pointer;
+}
+
+.more a b {
+    font-size:18pt;
+    font-weight: 100;
 }

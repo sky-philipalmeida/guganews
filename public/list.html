@@ -11,9 +11,10 @@
 </head>
 <body id="contentTarget">
 
-
+	<div id="progress"></div>
 
 	<div class="fullScreen">
+
 
 	    <!-- app header and backbutton-->
 	    <div id="appHeader">
@@ -54,6 +55,11 @@ m - specifies the health topic
 
 				<div class="box">
 				    <div id="output">
+
+				        <div class="morehiddenblock" style="display:none;" data-win-bind="name: id2">
+					        <div class="more" data-win-bind="innerHTML: content">
+					        </div>
+				        </div>
 				        <div data-win-bind="name: id">
 
 							<div class="mailItemContainer"> 
@@ -70,10 +76,6 @@ m - specifies the health topic
 							    </div>
 							</div>
 
-				        </div>
-				        <div class="morehiddenblock" style="display:none;" data-win-bind="name: id2">
-					        <div class="more" data-win-bind="innerHTML: content">
-					        </div>
 				        </div>
 				    </div>
 				</div>

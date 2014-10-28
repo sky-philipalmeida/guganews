@@ -29,10 +29,7 @@
 
 })();
 
-
 WinJS.UI.processAll().then(function () {
-
-
 
    WinJS.Navigation.addEventListener("navigating", function (e) {
 
@@ -49,6 +46,7 @@ WinJS.UI.processAll().then(function () {
 
 
         if (e.detail.location=="/list.html"){
+
 
             var local = e.detail.state;
             
@@ -142,6 +140,8 @@ WinJS.Utilities.query(".listviewpivotitem")
 
 function getNews(invoke){
 
+    var spinner = spin();
+
     console.log("Getting news!");
         // console.log(invoke.detail.itemPromise._value.data);
         // 
@@ -172,9 +172,22 @@ function getNews(invoke){
 
         var head= document.getElementsByTagName('head')[0];
         var script= document.createElement('script');
+        var error= false;
 
         var topic = item;
         script.type= 'text/javascript';
+        script.onerror = function(){
+            if (error) return;
+            error=true;
+            var contentDialog = document.querySelector(".win-contentdialog").winControl;
+            contentDialog._dom.commands[0].addEventListener(
+                'click'
+                ,function(){
+                 window.location.reload();
+            });
+            contentDialog.show();
+            return;
+        }
 
         script.src= "http://ajax.googleapis.com/ajax/services/feed/load?context="+topic+"&callback=processResults&num=-1&v=1.0&q=https%3A%2F%2Fnews.google.com%2Fnews%2Ffeeds%3Fpz%3D1%26cf%3Dall%26ned%3D"+ned+"%26hl%3D"+hl+"%26topic%3D"+topic+"%26output%3Drss";
         //console.log(script.src);
@@ -182,7 +195,11 @@ function getNews(invoke){
         head.appendChild(script);
         if(item=='h') script.onload=function(){
             var name  = invoke.detail.itemPromise._value.data.name;
-            WinJS.Navigation.navigate("/list.html",name);
+            WinJS.Navigation.navigate("/list.html",name).done(
+                function(){
+                    spinner.stop();
+                }
+            );
         };
 
     });
@@ -195,6 +212,30 @@ function getNews(invoke){
         }
     );
 */  
+}
+
+function spin(){
+    var opts = {
+            lines: 8, // The number of lines to draw
+            length: 0, // The length of each line
+            width: 15, // The line thickness
+            radius: 31, // The radius of the inner circle
+            corners: 1, // Corner roundness (0..1)
+            rotate: 0, // The rotation offset
+            direction: 1, // 1: clockwise, -1: counterclockwi
+            color: '#61ba7f', // #rgb or #rrggbb or array of col
+            speed: 1, // Rounds per second
+            trail: 50, // Afterglow percentage
+            shadow: false, // Whether to render a shadow
+            hwaccel: true, // Whether to use hardware acceler
+            className: 'spinner', // The CSS class to assign
+            zIndex: 999, // The z-index (defaults to 20000000
+            top: '50%', // Top position relative to parent
+            left: '50%' // Left position relative to parent
+        };
+        var target = document.getElementById('progress');
+        var spinner = new Spinner(opts).spin(target);
+        return spinner;
 }
 
 var actout=0;
@@ -224,10 +265,21 @@ function transitionBetweenContent(invoke,id,id2,cb) {
             actin.style.display = "none";
             actout.style.opacity = 1;
             actin.style.opacity = 0;
+            actin.style.backgroundColor="#fff";
+            actout.style.backgroundColor="#fff";
         }
     } 
 
     actout=outgoing;actin=incoming;
+                                WinJS.UI.executeTransition(incoming,
+                                {
+                                    property: "background-color",
+                                    delay: 0,
+                                    duration: 400,
+                                    timing: "linear",
+                                    from: "#fff",
+                                    to: "#EEE"
+                                });
 
     WinJS.UI.executeTransition(outgoing,
     {
@@ -238,6 +290,7 @@ function transitionBetweenContent(invoke,id,id2,cb) {
         from: 1,
         to: 0
     }).done(function(){
+
         outgoing.style.display = "none";
         incoming.style.display = "block";
         WinJS.UI.executeTransition(incoming,
@@ -249,6 +302,8 @@ function transitionBetweenContent(invoke,id,id2,cb) {
             from: 0,
             to: 1
         }).done(function(){
+                                
+
             cb();
         });
     });
