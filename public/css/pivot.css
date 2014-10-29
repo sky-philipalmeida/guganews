@@ -11,7 +11,13 @@
 .win-pivot .win-pivot-headers {
     height: 32px    ;
     z-index:999;
-    background-color: #61ba7f;
+    background-color:#fff;
+    padding-top:5px;
+    box-shadow: 2px 2px 2px #eee;
+}
+.win-pivot button.win-pivot-header, .win-pivot button.win-pivot-header:focus, .win-pivot button.win-pivot-header.win-pivot-header:hover:active
+{
+    color:#333;
 }
 /*VIEWPORT*/
 .win-pivot .win-pivot-viewport {
@@ -99,6 +105,7 @@ html.win-hoverable .win-pivot button.win-pivot-header:hover {
 
 .mailItem {
     padding-left:10px;
+    padding-right:10px;
     flex:1;
     /*opacity:0.7;
     filter: alpha(opacity=70);*/
@@ -169,6 +176,7 @@ div[style="padding-top: 0.8em;"] {
     display: none;
 }
 .more * {
+    white-space: normal;
     line-height:30px;
     padding:0px !important;
     margin:0px !important;

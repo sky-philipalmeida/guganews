@@ -1,6 +1,6 @@
 html, body {
     /* background-image: url('../background.svg') */
-    background-color:#61ba7f;
+    background-color:#fff;
     color: #333;
 }
 
@@ -47,8 +47,10 @@ a:hover {
 #appHeader {
     z-index: 1;
     top: 0px;
+    bottom:10px;
     left: 0px;
     width: 100%;
+        background-color: #61ba7f;
 }
 
 #appHeader .win-navigation-backbutton {
