@@ -174,6 +174,7 @@ function getNews(invoke){
             contentDialog._dom.commands[0].addEventListener(
                 'click'
                 ,function(){
+                    spinner.stop();return;
                  window.location.reload();
             });
             contentDialog.show();

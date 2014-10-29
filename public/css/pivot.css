@@ -166,6 +166,12 @@ font[color="#6f6f6f"],
 .morehiddenblock {
     display:none;
 }
+.morehiddenblock .date{
+    font-weight: 100;
+    padding-left: 95px;
+    padding-top:10px;
+    position:absolute;
+}
 font[color="#6f6f6f"] {
     margin-right:10px !important;
 }
