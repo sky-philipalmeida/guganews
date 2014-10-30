@@ -28,6 +28,7 @@
     
 
 })();
+
 currentItem=-1;
 WinJS.UI.processAll().then(function () {
 
@@ -37,11 +38,7 @@ WinJS.UI.processAll().then(function () {
 
     var elem = document.getElementById("contentTarget");
 
-    // WinJS.UI.Animation.exitPage(elem.children).then(function () {
-
-        WinJS.Utilities.empty(elem);
-
-    // console.log(e.detail.location);
+    WinJS.Utilities.empty(elem);
 
     WinJS.UI.Pages.render(e.detail.location, elem)
     .then(function () {
@@ -87,6 +84,8 @@ WinJS.UI.processAll().then(function () {
                 }
 
                 if (e.detail.location=="/list.html"){
+
+                    updateBar();
 
                     WinJS.Utilities.query(".listviewpivotitem")
                     .listen(
@@ -265,102 +264,48 @@ function spin(){
             actin.style.display = "none";
             actout.style.opacity = 1;
             actin.style.opacity = 0;
-            // actin.style.backgroundColor="#fff";
-            // actout.style.backgroundColor="#fff";
         }
     } 
 
     actout=outgoing;actin=incoming;
 
-/*
-    WinJS.UI.executeTransition(incoming,
-    {
-        property: "background-color",
-        delay: 0,
-        duration: 400,
-        timing: "linear",
-        from: "#fff",
-        to: "#E3F3E8"
-    });
-*/
-WinJS.UI.executeTransition(outgoing,
-{
-    property: "opacity",
-    delay: 0,
-    duration: 0,
-    timing: "linear",
-    from: 1,
-    to: 0
-}).done(function(){
-
-    outgoing.style.display = "none";
-    incoming.style.display = "block";
-    WinJS.UI.executeTransition(incoming,
+    WinJS.UI.executeTransition(outgoing,
     {
         property: "opacity",
         delay: 0,
-        duration: 250,
+        duration: 0,
         timing: "linear",
-        from: 0,
-        to: 1
+        from: 1,
+        to: 0
     }).done(function(){
 
+    outgoing.style.display = "none";
+    incoming.style.display = "block";
 
-        cb();
-    });
-});
+    WinJS.UI.executeTransition(
+            incoming,
+        {
+            property: "opacity",
+            delay: 0,
+            duration: 250,
+            timing: "linear",
+            from: 0,
+            to: 1
+        }).done(function(){
 
-return;
-    // Run the exitContent animation and then the enterContent animation
-    // Use the recommended offset by leaving the offset argument empty to get the best performance
-   /* WinJS.UI.Animation.exitContent(output, null).done(function () {
 
-
-        return WinJS.UI.Animation.enterContent(output).done(function(){
-                    outgoing.style.display = "none";
-        incoming.style.display = "block";
             cb();
         });
-});*/
+    });
+
+    return;
+
 }
 
-updatesecint=0
-function updatesec(){
-    if(!updatesecint){
-        setTimeout(updatesec,2500);
-        return;
-    }
-        // var list = updatesecint;
-        clearTimeout(intf);
+function updateBar(){
 
-        var intf=function(){
-            /*
-            var l=0;
+    var appBar = document.getElementById("createAppBar").winControl;
+    appBar.getCommandById("cmdAdd").addEventListener("click", 
+    function(){ getNews(false,true);  }, false);
 
-            list.forEach(
-                function(item){
-
-                    if (currentItem==l) {l++; return;}
-
-                    var val = list.getAt(l)
-                                        //console.log(val.title);
-                                        val.publishedDate
-                                        =getelapsedtime(
-                                            val.publishedDateOrigin);       
-
-                                        list.setAt(l,val);
-
-                                        l++;
-                                    }
-                                    );
-*/
-updatesec();
-};
-
-setTimeout(intf,2500);
-
-
-return ;
 }
-
-updatesec();

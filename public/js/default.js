@@ -44,8 +44,8 @@ function processResults(topic,result){
             var img=/.*src=\"(.*?)\".*/.exec(item.content);
             item.img= (img && typeof img[1]!=='undefined')?img[1]:"images/windows/Square70x70Logo.scale-180.png";
 
-            item.publishedDateOrigin = item.publishedDate;
-            item.publishedDate = new Date(item.publishedDate) + " <b>" + getelapsedtime(item.publishedDateOrigin) + "</b>";
+            item.publishedDate = new Date(item.publishedDate);
+            
             return item;
 
         }
@@ -61,6 +61,8 @@ WinJS.UI.Pages.define("/list.html", {
     },
     ready: function (element, options) {
 
+
+    
         /*
         back.addEventListener("click", function () {
             WinJS.Navigation.navigate("/index.html");
@@ -72,71 +74,3 @@ WinJS.UI.Pages.define("/list.html", {
 
 
 WinJS.Navigation.navigate("/index.html");
-
-
-function getelapsedtime(datestring){
-
-    // create date in UTC
-    //create custom test date
-    var dlocaltime = new Date(datestring);
-    var d1 = new Date(dlocaltime.getUTCFullYear(),dlocaltime.getUTCMonth(), dlocaltime.getUTCDate(), dlocaltime.getUTCHours(),dlocaltime.getUTCMinutes(),dlocaltime.getUTCSeconds());
-    //create current date
-    var now = new Date();
-    var d2 = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),  now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds());
-    /*console.log(d1);
-    console.log(d2);*/
-    //get date times (ms)
-    var d1Time = (d1.getTime());
-    var d2Time = (d2.getTime());
-     
-     
-    //calculate the difference in date times
-    var diff = d2 - d1;
-    //create a new date using the time differences (starts at Jan 1, 1970)
-    var dDiff = new Date();
-    dDiff.setTime(diff);
-    //chop off 1970 and get year, month, day, and hour
-    var years = dDiff.getUTCFullYear() - 1970;
-    var months = dDiff.getUTCMonth();
-    var days = dDiff.getUTCDate()-1; // the date of new Date(0) begin with 1 
-    var hours = dDiff.getUTCHours();
-    var minutes = dDiff.getUTCMinutes();
-    var seconds = dDiff.getUTCSeconds();
-    /*console.log("Years:"+years);
-    console.log("months:"+months);
-    console.log("days:"+days);
-    console.log("hours:"+hours);
-    console.log("minutes:"+minutes);
-    console.log("seconds:"+seconds);*/
-
-    var out = 'Published at ';
-    var sminutes = '';
-    var shours = '';
-
-    if ( minutes == 1 ) {
-
-        sminutes = minutes;
-
-    } else {
-
-        sminutes = minutes;
-
-    }
-
-    if ( hours == 1 ) {
-
-        shours = hours;
-
-    } else {
-
-        shours = hours;
-
-    }
-
-    if (hours==0) {
-        return out + sminutes + 'm';
-    } else {
-        return out + shours + 'h and ' + sminutes+"m";
-    }
-
-}
