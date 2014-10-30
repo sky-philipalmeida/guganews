@@ -33,7 +33,7 @@ WinJS.UI.processAll().then(function () {
 
 
 
-   WinJS.Navigation.addEventListener("navigating", function (e) {
+ WinJS.Navigation.addEventListener("navigating", function (e) {
 
     var elem = document.getElementById("contentTarget");
 
@@ -64,7 +64,7 @@ WinJS.UI.processAll().then(function () {
         enterPage.done(
             function(){
 
-            WinJS.Utilities.query("a")
+                WinJS.Utilities.query("a")
                 .listen("click",
                     function(e){
                             // console.log(this);
@@ -72,8 +72,8 @@ WinJS.UI.processAll().then(function () {
                             e.preventDefault();
                             e.stopPropagation();
                             
-                           window.open(this.href,'Guganews');
-                    });
+                            window.open(this.href,'Guganews');
+                        });
                     // console.log(datta);
                     if (e.detail.location=="/index.html"){
 
@@ -90,36 +90,36 @@ WinJS.UI.processAll().then(function () {
 
                     if (e.detail.location=="/list.html"){
                         WinJS.Utilities.query("#pivotScenario3")[0].winControl.onselectionchanged=
-                                function(e){
-                                    console.log(e);
-                                    v=e.detail
+                        function(e){
+                            console.log(e);
+                            v=e.detail
                             //var si=WinJS.Utilities.query("#pivotScenario3")[0].selectedItem;
-                        WinJS.Utilities.query(".nlist")
-                        .map( function(v){ 
-                            if ( typeof v.winControl!="undefined"){
+                            WinJS.Utilities.query(".nlist")
+                            .map( function(v){ 
+                                if ( typeof v.winControl!="undefined"){
 
-                                     updatesecint=v.winControl._dataSource.list;
-                                     console.log('default',v.winControl);
+                                   updatesecint=v.winControl._dataSource.list;
+                                   console.log('default',v.winControl);
                                 // a=x._dataSource.list.getAt(1);
                                 //a=x._dataSource.itemFromIndex(1)
                                 //x._dataSource.list.notifyMutated(1)
                                 // console.log(v.winControl);
-                                };
-                            });
+                            };
+                        });
                         };
-                       
+
                         WinJS.Utilities.query(".nlist")
                         .map( function(v){ 
                             if ( typeof v.winControl!="undefined"){
 
-                                     updatesecint=v.winControl._dataSource.list;
+                               updatesecint=v.winControl._dataSource.list;
                                     // console.log('default',updatesecint);
                                 // a=x._dataSource.list.getAt(1);
                                 //a=x._dataSource.itemFromIndex(1)
                                 //x._dataSource.list.notifyMutated(1)
                                 // console.log(v.winControl);
-                                };
-                            });
+                            };
+                        });
 
                         WinJS.Utilities.query(".listviewpivotitem")
                         .listen(
@@ -146,11 +146,11 @@ WinJS.UI.processAll().then(function () {
                                             }
                                             );
                                 }, false);
-                    }
+}
 
-            });
+});
 
-    });
+});
 
 });
 
@@ -187,11 +187,13 @@ function getNews(invoke){
     */
     var list=["h","w","b","n","t","el","p","e","s","m"];
 
-    RequestDataInternal = invoke.detail.itemPromise._value.data;
+    var url = invoke.detail.itemPromise._value.data.url;
 
+
+    var name  = invoke.detail.itemPromise._value.data.name;
     // console.log(RequestDataInternal);
 
-    var ned = RequestDataInternal.url.substr(RequestDataInternal.url.indexOf('=')+1);
+    var ned = url.substr(url.indexOf('=')+1);
     var hl = ned.substr(0,ned.indexOf('_'));
 
     var requests = list.map(function(item){
@@ -212,7 +214,7 @@ function getNews(invoke){
                 'click'
                 ,function(){
                     spinner.stop();return;
-            });
+                });
             contentDialog.show();
             return;
         }
@@ -222,12 +224,11 @@ function getNews(invoke){
 
         head.appendChild(script);
         if(item=='h') script.onload=function(){
-            var name  = invoke.detail.itemPromise._value.data.name;
             WinJS.Navigation.navigate("/list.html",name).done(
                 function(){
                     //spinner.stop();
                 }
-            );
+                );
         };
 
     });
@@ -264,17 +265,17 @@ function spin(){
         var target = document.getElementById('progress');
         var spinner = new Spinner(opts).spin(target);
         return spinner;
-}
+    }
 
-var actout=0;
-var actin=0;
-function transitionBetweenContent(invoke,id,id2,cb) {
+    var actout=0;
+    var actin=0;
+    function transitionBetweenContent(invoke,id,id2,cb) {
 
-    var incoming;
-    var outgoing;
-    var output1=document.querySelectorAll('[name="'+id+'"]')[0];
-    var output2=document.querySelectorAll('[name="'+id2+'"]')[0];
-    
+        var incoming;
+        var outgoing;
+        var output1=document.querySelectorAll('[name="'+id+'"]')[0];
+        var output2=document.querySelectorAll('[name="'+id2+'"]')[0];
+
 
     // Assign incoming and outgoing
     if (output2.style.display === "none") {
@@ -293,8 +294,8 @@ function transitionBetweenContent(invoke,id,id2,cb) {
             actin.style.display = "none";
             actout.style.opacity = 1;
             actin.style.opacity = 0;
-            actin.style.backgroundColor="#fff";
-            actout.style.backgroundColor="#fff";
+            // actin.style.backgroundColor="#fff";
+            // actout.style.backgroundColor="#fff";
         }
     } 
 
@@ -311,34 +312,34 @@ function transitionBetweenContent(invoke,id,id2,cb) {
         to: "#E3F3E8"
     });
 */
-    WinJS.UI.executeTransition(outgoing,
+WinJS.UI.executeTransition(outgoing,
+{
+    property: "opacity",
+    delay: 0,
+    duration: 0,
+    timing: "linear",
+    from: 1,
+    to: 0
+}).done(function(){
+
+    outgoing.style.display = "none";
+    incoming.style.display = "block";
+    WinJS.UI.executeTransition(incoming,
     {
         property: "opacity",
         delay: 0,
-        duration: 0,
+        duration: 250,
         timing: "linear",
-        from: 1,
-        to: 0
+        from: 0,
+        to: 1
     }).done(function(){
 
-        outgoing.style.display = "none";
-        incoming.style.display = "block";
-        WinJS.UI.executeTransition(incoming,
-        {
-            property: "opacity",
-            delay: 0,
-            duration: 250,
-            timing: "linear",
-            from: 0,
-            to: 1
-        }).done(function(){
-                                
 
-            cb();
-        });
+        cb();
     });
+});
 
-    return;
+return;
     // Run the exitContent animation and then the enterContent animation
     // Use the recommended offset by leaving the offset argument empty to get the best performance
    /* WinJS.UI.Animation.exitContent(output, null).done(function () {
@@ -355,45 +356,40 @@ function transitionBetweenContent(invoke,id,id2,cb) {
 updatesecint=0
 function updatesec(){
     if(!updatesecint){
-                setTimeout(updatesec,2500);
-        return;}
-        var list = updatesecint;
+        setTimeout(updatesec,2500);
+        return;
+    }
+        // var list = updatesecint;
         clearTimeout(intf);
 
         var intf=function(){
-                                
-                                var l=0;
+            /*
+            var l=0;
 
-                                list.forEach(
-                                    function(item){
-                                        //var S=WinJS.Utilities.Scheduler;
-                                        //var p = S.schedule(
-                                        // function(){
-                                            //console.log(l,currentItem);
-                                         
-                                        // console.log(vwc._dataSource.list.getAt(l));
-                                        if (currentItem==l) {l++; return;}
+            list.forEach(
+                function(item){
 
-                                        var val = list.getAt(l)
+                    if (currentItem==l) {l++; return;}
+
+                    var val = list.getAt(l)
                                         //console.log(val.title);
                                         val.publishedDate
-                                            =getelapsedtime(
-                                                val.publishedDateOrigin);       
-                                        // console.log(item.publishedDate);
-                                        // list.notifyMutated(l);
-                                        //notifyMutated(val,list);
+                                        =getelapsedtime(
+                                            val.publishedDateOrigin);       
+
                                         list.setAt(l,val);
-                                    //},S.Priority.high);
+
                                         l++;
                                     }
-                                );
-updatesec();
-                                 };
+                                    );
+            */
+            updatesec();
+        };
 
-     setTimeout(intf,2500);
+        setTimeout(intf,2500);
         
 
-return ;
-}
+        return ;
+    }
 
-updatesec();
+    updatesec();
