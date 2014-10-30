@@ -257,6 +257,32 @@ function spin(){
     }
     if (actin){
         if(actin==outgoing){
+
+            WinJS.UI.executeTransition(actin,
+            {
+                property: "opacity",
+                delay: 0,
+                duration: 0,
+                timing: "linear",
+                from: 1,
+                to: 0
+            }).done(function(){
+
+                actout.style.display = "block";
+                actin.style.display = "none";
+
+                WinJS.UI.executeTransition(
+                    actout,
+                {
+                    property: "opacity",
+                    delay: 0,
+                    duration: 250,
+                    timing: "linear",
+                    from: 0,
+                    to: 1
+                }).done(function(){
+                });
+            });
             return;
 
         } else {
