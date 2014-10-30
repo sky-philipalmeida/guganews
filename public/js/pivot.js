@@ -33,7 +33,7 @@ WinJS.UI.processAll().then(function () {
 
 
 
- WinJS.Navigation.addEventListener("navigating", function (e) {
+   WinJS.Navigation.addEventListener("navigating", function (e) {
 
     var elem = document.getElementById("contentTarget");
 
@@ -67,64 +67,31 @@ WinJS.UI.processAll().then(function () {
                 WinJS.Utilities.query("a")
                 .listen("click",
                     function(e){
-                            // console.log(this);
-                            e.returnValue =false;
-                            e.preventDefault();
-                            e.stopPropagation();
-                            
-                            window.open(this.href,'Guganews');
-                        });
-                    // console.log(datta);
-                    if (e.detail.location=="/index.html"){
 
-                        WinJS.Utilities.query(".listviewpivotitem")
-                        .listen("iteminvoked", 
-                            function(invoke){ 
+                        e.returnValue =false;
+                        e.preventDefault();
+                        e.stopPropagation();
 
-                                    // console.log(invoke.detail.itemPromise._value.data);
-                                    // WinJS.Navigation.navigate("/list.html");
-                                    getNews(invoke);
+                        window.open(this.href,'Guganews');
+                    });
 
-                                }, false);
-                    }
+                if (e.detail.location=="/index.html"){
 
-                    if (e.detail.location=="/list.html"){
-                        WinJS.Utilities.query("#pivotScenario3")[0].winControl.onselectionchanged=
-                        function(e){
-                            console.log(e);
-                            v=e.detail
-                            //var si=WinJS.Utilities.query("#pivotScenario3")[0].selectedItem;
-                            WinJS.Utilities.query(".nlist")
-                            .map( function(v){ 
-                                if ( typeof v.winControl!="undefined"){
+                    WinJS.Utilities.query(".listviewpivotitem")
+                    .listen("iteminvoked", 
+                        function(invoke){ 
 
-                                   updatesecint=v.winControl._dataSource.list;
-                                   console.log('default',v.winControl);
-                                // a=x._dataSource.list.getAt(1);
-                                //a=x._dataSource.itemFromIndex(1)
-                                //x._dataSource.list.notifyMutated(1)
-                                // console.log(v.winControl);
-                            };
-                        });
-                        };
+                            getNews(invoke);
 
-                        WinJS.Utilities.query(".nlist")
-                        .map( function(v){ 
-                            if ( typeof v.winControl!="undefined"){
+                        }, false);
+                }
 
-                               updatesecint=v.winControl._dataSource.list;
-                                    // console.log('default',updatesecint);
-                                // a=x._dataSource.list.getAt(1);
-                                //a=x._dataSource.itemFromIndex(1)
-                                //x._dataSource.list.notifyMutated(1)
-                                // console.log(v.winControl);
-                            };
-                        });
+                if (e.detail.location=="/list.html"){
 
-                        WinJS.Utilities.query(".listviewpivotitem")
-                        .listen(
-                            "iteminvoked", 
-                            function(invoke){ 
+                    WinJS.Utilities.query(".listviewpivotitem")
+                    .listen(
+                        "iteminvoked", 
+                        function(invoke){ 
 
                                     //console.log(this);
                                     var index  = invoke.detail.itemIndex;
@@ -166,7 +133,8 @@ WinJS.Utilities.query(".listviewpivotitem")
 });
 
 
-function getNews(invoke){
+currentCountryData=0;
+function getNews(invoke,uselast){
 
     var spinner = spin();
 
@@ -187,14 +155,13 @@ function getNews(invoke){
     */
     var list=["h","w","b","n","t","el","p","e","s","m"];
 
-    var url = invoke.detail.itemPromise._value.data.url;
-
-
-    var name  = invoke.detail.itemPromise._value.data.name;
-    // console.log(RequestDataInternal);
+    var url = uselast? currentCountryData.data.url : invoke.detail.itemPromise._value.data.url;
+    var name  = uselast? currentCountryData.data.name : invoke.detail.itemPromise._value.data.name;
 
     var ned = url.substr(url.indexOf('=')+1);
     var hl = ned.substr(0,ned.indexOf('_'));
+
+    currentCountryData = invoke ? invoke.detail.itemPromise._value : currentCountryData;
 
     var requests = list.map(function(item){
 
@@ -206,14 +173,18 @@ function getNews(invoke){
 
         var topic = item;
         script.type= 'text/javascript';
-        script.onerror = function(){
-            if (error) return;
+        script.onerror = function(er){
+            console.log(er);
+            if (error) {
+                return;
+            }
             error=true;
             var contentDialog = document.querySelector(".win-contentdialog").winControl;
             contentDialog._dom.commands[0].addEventListener(
                 'click'
                 ,function(){
-                    spinner.stop();return;
+                    spinner.stop();
+                    return;
                 });
             contentDialog.show();
             return;
@@ -226,7 +197,7 @@ function getNews(invoke){
         if(item=='h') script.onload=function(){
             WinJS.Navigation.navigate("/list.html",name).done(
                 function(){
-                    //spinner.stop();
+                    // spinner.stop();
                 }
                 );
         };
@@ -382,14 +353,14 @@ function updatesec(){
                                         l++;
                                     }
                                     );
-            */
-            updatesec();
-        };
+*/
+updatesec();
+};
 
-        setTimeout(intf,2500);
-        
+setTimeout(intf,2500);
 
-        return ;
-    }
 
-    updatesec();
+return ;
+}
+
+updatesec();

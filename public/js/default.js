@@ -39,13 +39,13 @@ function processResults(topic,result){
             
 
             var s = item.contentSnippet.lastIndexOf(item.author);
-                item.contentSnippet=item.contentSnippet.substr(s+item.author.length);
+            item.contentSnippet=item.contentSnippet.substr(s+item.author.length);
 
             var img=/.*src=\"(.*?)\".*/.exec(item.content);
             item.img= (img && typeof img[1]!=='undefined')?img[1]:"images/windows/Square70x70Logo.scale-180.png";
 
             item.publishedDateOrigin = item.publishedDate;
-            item.publishedDate = getelapsedtime(item.publishedDate);
+            item.publishedDate = new Date(item.publishedDate) + " <b>" + getelapsedtime(item.publishedDateOrigin) + "</b>";
             return item;
 
         }
@@ -136,7 +136,7 @@ function getelapsedtime(datestring){
     if (hours==0) {
         return out + sminutes + 'm';
     } else {
-        return out + shours + 'h:' + sminutes+"m";
+        return out + shours + 'h and ' + sminutes+"m";
     }
 
 }
