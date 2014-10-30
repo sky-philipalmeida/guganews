@@ -1,12 +1,18 @@
 html, body {
-    /* background-image: url('../background.svg') */
-    background-color:#fff;
-    color: #333;
+    background-image: url('/images/background.svg');
+    background-size: cover;   
+    background-color:#000;
+    color: #fff;
 }
 
 .box  {
-    z-index: 99999999;
+    z-index: 99999;
 }
+
+.spinner, #progress  {
+    z-index: 99999999999999;
+}
+
 
 
 h1 {
@@ -14,6 +20,9 @@ h1 {
 }
 
 /*BUTTONS*/
+.win-contentdialog .win-contentdialog-primarycommand {
+    background-color: #61ba7f;
+}
 .win-backbutton, .win-back {
     /*border-color: #333;
     color: #333;*/
@@ -50,7 +59,7 @@ a:hover {
     bottom:10px;
     left: 0px;
     width: 100%;
-        background-color: #61ba7f;
+        /*background-color: #61ba7f;*/
 }
 
 #appHeader .win-navigation-backbutton {
@@ -58,7 +67,7 @@ a:hover {
 }
 
 #appHeader h1 {
-    color: #FFF;
+    color: #fff;
     top: 5pt;
     left:40pt;
     position : absolute;

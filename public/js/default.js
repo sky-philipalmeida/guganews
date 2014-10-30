@@ -44,13 +44,16 @@ function processResults(topic,result){
             var img=/.*src=\"(.*?)\".*/.exec(item.content);
             item.img= (img && typeof img[1]!=='undefined')?img[1]:"images/windows/Square70x70Logo.scale-180.png";
 
+            item.publishedDateOrigin = item.publishedDate;
             item.publishedDate = getelapsedtime(item.publishedDate);
             return item;
 
         }
     );
     // console.log(data);
-    window["data_"+topic] = { dataSource: new WinJS.Binding.List(data).dataSource };
+    window["data_"+topic] = { 
+        dataSource: new WinJS.Binding.List(data).dataSource 
+    };
 }
 
 WinJS.UI.Pages.define("/list.html", {
@@ -112,28 +115,28 @@ function getelapsedtime(datestring){
 
     if ( minutes == 1 ) {
 
-        sminutes = minutes + " minute";
+        sminutes = minutes;
 
     } else {
 
-        sminutes = minutes + " minutes";
+        sminutes = minutes;
 
     }
 
     if ( hours == 1 ) {
 
-        shours = hours + " hour";
+        shours = hours;
 
     } else {
 
-        shours = hours + " hours";
+        shours = hours;
 
     }
 
     if (hours==0) {
-        return out + sminutes + ' ago';
+        return out + sminutes + 'm';
     } else {
-        return out + shours + ' and ' + sminutes + ' ago'; 
+        return out + shours + 'h:' + sminutes+"m";
     }
 
 }

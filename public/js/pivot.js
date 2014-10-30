@@ -28,8 +28,10 @@
     
 
 })();
-
+currentItem=-1;
 WinJS.UI.processAll().then(function () {
+
+
 
    WinJS.Navigation.addEventListener("navigating", function (e) {
 
@@ -87,13 +89,47 @@ WinJS.UI.processAll().then(function () {
                     }
 
                     if (e.detail.location=="/list.html"){
+                        WinJS.Utilities.query("#pivotScenario3")[0].winControl.onselectionchanged=
+                                function(e){
+                                    console.log(e);
+                                    v=e.detail
+                            //var si=WinJS.Utilities.query("#pivotScenario3")[0].selectedItem;
+                        WinJS.Utilities.query(".nlist")
+                        .map( function(v){ 
+                            if ( typeof v.winControl!="undefined"){
+
+                                     updatesecint=v.winControl._dataSource.list;
+                                     console.log('default',v.winControl);
+                                // a=x._dataSource.list.getAt(1);
+                                //a=x._dataSource.itemFromIndex(1)
+                                //x._dataSource.list.notifyMutated(1)
+                                // console.log(v.winControl);
+                                };
+                            });
+                        };
+                       
+                        WinJS.Utilities.query(".nlist")
+                        .map( function(v){ 
+                            if ( typeof v.winControl!="undefined"){
+
+                                     updatesecint=v.winControl._dataSource.list;
+                                    // console.log('default',updatesecint);
+                                // a=x._dataSource.list.getAt(1);
+                                //a=x._dataSource.itemFromIndex(1)
+                                //x._dataSource.list.notifyMutated(1)
+                                // console.log(v.winControl);
+                                };
+                            });
 
                         WinJS.Utilities.query(".listviewpivotitem")
                         .listen(
                             "iteminvoked", 
                             function(invoke){ 
+
                                     //console.log(this);
                                     var index  = invoke.detail.itemIndex;
+
+                                    currentItem=index;
                                     // console.log(invoke.detail.itemPromise._value.data)
                                     var clicked = invoke.detail.itemPromise._value.data;
                                     // console.log(invoke);
@@ -128,6 +164,7 @@ WinJS.Utilities.query(".listviewpivotitem")
     }, false
     ); 
 });
+
 
 function getNews(invoke){
 
@@ -175,7 +212,6 @@ function getNews(invoke){
                 'click'
                 ,function(){
                     spinner.stop();return;
-                 window.location.reload();
             });
             contentDialog.show();
             return;
@@ -189,7 +225,7 @@ function getNews(invoke){
             var name  = invoke.detail.itemPromise._value.data.name;
             WinJS.Navigation.navigate("/list.html",name).done(
                 function(){
-                    spinner.stop();
+                    //spinner.stop();
                 }
             );
         };
@@ -210,18 +246,18 @@ function spin(){
     var opts = {
             lines: 8, // The number of lines to draw
             length: 0, // The length of each line
-            width: 15, // The line thickness
-            radius: 31, // The radius of the inner circle
+            width: 900, // The line thickness
+            radius: 0, // The radius of the inner circle
             corners: 1, // Corner roundness (0..1)
             rotate: 0, // The rotation offset
             direction: 1, // 1: clockwise, -1: counterclockwi
-            color: '#61ba7f', // #rgb or #rrggbb or array of col
+            color: '#08fa18', // #rgb or #rrggbb or array of col
             speed: 1, // Rounds per second
             trail: 50, // Afterglow percentage
             shadow: false, // Whether to render a shadow
             hwaccel: true, // Whether to use hardware acceler
             className: 'spinner', // The CSS class to assign
-            zIndex: 999, // The z-index (defaults to 20000000
+            zIndex: "999999999999999999999999", // The z-index (defaults to 20000000
             top: '50%', // Top position relative to parent
             left: '50%' // Left position relative to parent
         };
@@ -264,6 +300,7 @@ function transitionBetweenContent(invoke,id,id2,cb) {
 
     actout=outgoing;actin=incoming;
 
+/*
     WinJS.UI.executeTransition(incoming,
     {
         property: "background-color",
@@ -271,9 +308,9 @@ function transitionBetweenContent(invoke,id,id2,cb) {
         duration: 400,
         timing: "linear",
         from: "#fff",
-        to: "#EEE"
+        to: "#E3F3E8"
     });
-
+*/
     WinJS.UI.executeTransition(outgoing,
     {
         property: "opacity",
@@ -315,3 +352,48 @@ function transitionBetweenContent(invoke,id,id2,cb) {
 });*/
 }
 
+updatesecint=0
+function updatesec(){
+    if(!updatesecint){
+                setTimeout(updatesec,2500);
+        return;}
+        var list = updatesecint;
+        clearTimeout(intf);
+
+        var intf=function(){
+                                
+                                var l=0;
+
+                                list.forEach(
+                                    function(item){
+                                        //var S=WinJS.Utilities.Scheduler;
+                                        //var p = S.schedule(
+                                        // function(){
+                                            //console.log(l,currentItem);
+                                         
+                                        // console.log(vwc._dataSource.list.getAt(l));
+                                        if (currentItem==l) {l++; return;}
+
+                                        var val = list.getAt(l)
+                                        //console.log(val.title);
+                                        val.publishedDate
+                                            =getelapsedtime(
+                                                val.publishedDateOrigin);       
+                                        // console.log(item.publishedDate);
+                                        // list.notifyMutated(l);
+                                        //notifyMutated(val,list);
+                                        list.setAt(l,val);
+                                    //},S.Priority.high);
+                                        l++;
+                                    }
+                                );
+updatesec();
+                                 };
+
+     setTimeout(intf,2500);
+        
+
+return ;
+}
+
+updatesec();
