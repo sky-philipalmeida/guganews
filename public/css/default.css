@@ -64,13 +64,16 @@ a:hover {
 
 #appHeader .win-navigation-backbutton {
     margin-right: 20px;
+        margin-top: 10px;
+            margin-left: 10px;
 }
 
 #appHeader h1 {
     color: #fff;
-    top: 5pt;
-    left:40pt;
+    top: 5px;
+    left:50pt;
     position : absolute;
+    font-size:30pt;
 }
 
 .powered{
