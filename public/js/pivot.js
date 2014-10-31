@@ -50,7 +50,7 @@ WinJS.UI.processAll().then(function () {
             
             WinJS.Utilities.setInnerHTML(
                 WinJS.Utilities.query("#appHeaderTitle")[0]
-                , 'Guganews <b>'+local+'</b>');
+                , '<b>'+local+'</b>');
 
 
         }
@@ -136,6 +136,7 @@ currentCountryData=0;
 function getNews(invoke,uselast){
 
     var spinner = spin();
+   // spinner.stop();
 
     console.log("Getting news!");
         // console.log(invoke.detail.itemPromise._value.data);
@@ -174,7 +175,9 @@ function getNews(invoke,uselast){
         script.type= 'text/javascript';
         script.onerror = function(er){
             console.log(er);
+            spinner.stop();
             if (error) {
+
                 return;
             }
             error=true;
@@ -194,6 +197,7 @@ function getNews(invoke,uselast){
 
         head.appendChild(script);
         if(item=='h') script.onload=function(){
+
             WinJS.Navigation.navigate("/list.html",name).done(
                 function(){
                     // spinner.stop();
