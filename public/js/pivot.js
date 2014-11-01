@@ -60,7 +60,7 @@ WinJS.UI.processAll().then(function () {
             
             WinJS.Utilities.setInnerHTML(
                 WinJS.Utilities.query("#appHeaderTitle")[0]
-                , '<b>'+local+'</b>');
+                , '<b><a href="/#'+currentCountryData.data.ned+'">'+local+'</a></b>');
 
 
         }
@@ -106,7 +106,7 @@ WinJS.UI.processAll().then(function () {
                                     currentItem=index;
                                     // console.log(invoke.detail.itemPromise._value.data)
                                     var clicked = invoke.detail.itemPromise._value.data;
-                                    // console.log(invoke);
+
                                     // window.location=clicked.link;
                                     // window.open(clicked.link, "_blank", "fullscreen=yes,height=600,width=800,scrollbars=yes,resizable=no");
                                     transitionBetweenContent(
@@ -170,7 +170,8 @@ function getNews(invoke,uselast,cb){
     var hl = ned.substr(0,ned.indexOf('_'));
 
     currentCountryData = invoke ? invoke.detail.itemPromise._value : currentCountryData;
-
+    currentCountryData.data.ned=ned;
+    currentCountryData.data.hl=hl;
     var requests = list.map(function(item){
 
         // console.log(item);
@@ -343,7 +344,7 @@ function spin(){
 
 // Update engine ******************************
 boxopen=0;
-refreshtimeout=15000;//1000*60*60;
+refreshtimeout=1000*60*15;
 tor=0
 function updateBar(){
 /* Button action

@@ -9,7 +9,7 @@
 
 /*HEADERS*/
 .win-pivot .win-pivot-headers {
-    height: 36px;
+    height: 10px;
     z-index:999;
 }
 .win-pivot button.win-pivot-header, .win-pivot button.win-pivot-header:focus, .win-pivot button.win-pivot-header.win-pivot-header:hover:active
@@ -57,8 +57,7 @@ html.win-hoverable .win-pivot button.win-pivot-header:hover
 }
 /*ITEM*/
 .win-pivot-item {
-    top:1px;
-    padding-bottom:80px;
+    
 }
 .win-pivot-item .win-pivot-item-content {
     padding:0px;
@@ -108,11 +107,12 @@ html.win-hoverable .win-pivot button.win-pivot-header:hover
 /*IMAGES*/
 
 .mailItemImage{
-    margin-left:10px;
-    margin-top:10px;
+    margin-left:0px;
+    margin-top:0px;
+    margin-right: 10px;
     opacity:1;
     filter: alpha(opacity=100);
-    border-radius:10px;
+    border-radius:0px;
     height:86px;
     width: 86px;
     border-bottom: 2px solid #08fa18;
@@ -121,8 +121,8 @@ html.win-hoverable .win-pivot button.win-pivot-header:hover
 }
 
 .mailItem {
-    padding-left:10px;
-    padding-right:10px;
+    padding-left:0px;
+    padding-right:0px;
     flex:1;
     cursor:pointer;
     background-image: 
@@ -140,17 +140,20 @@ html.win-hoverable .win-pivot button.win-pivot-header:hover
 
 font[color="#6f6f6f"],
 .mailItem .author {
-    /* font-weight: 500; */
-
-    padding-top: 5px;
+    font-weight: 100;
+    padding-top: 15px;
     white-space: nowrap;
     overflow: hidden;
-    -ms-flex: 1 100%;
+   /* -ms-flex: 1 100%;
     -webkit-flex: 1 100%;
-    flex: 1 100%;
-    color:green;
-    font-size: 16pt;
-        font-weight: 300;
+    flex: 1 100%;*/
+    color:#fff;
+    font-size: 12pt;
+    background-image: 
+    /*    linear-gradient(
+            to right,
+            red,orange);
+        float:left; */
 }
 
 .mailItem .title {
@@ -165,6 +168,7 @@ font[color="#6f6f6f"],
     color:#ccff00;
     color:#08fa18;
     font-size: 25pt;
+
 }
 
 .listPivotItem .title {
