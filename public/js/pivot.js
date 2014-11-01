@@ -29,10 +29,21 @@
 
 })();
 
+// Config starter ...
+// --------------------
 currentItem=-1;
+page=0; // index.html
+
+
 WinJS.UI.processAll().then(function () {
 
 
+    WinJS.Navigation.addEventListener("beforenavigate", function(e){
+        if (boxopen) {
+            e.detail.setPromise(WinJS.Promise.wrap(true));
+            spinn.stop();
+        }
+    });
 
    WinJS.Navigation.addEventListener("navigating", function (e) {
 
@@ -44,7 +55,6 @@ WinJS.UI.processAll().then(function () {
     .then(function () {
 
         if (e.detail.location=="/list.html"){
-
 
             var local = e.detail.state;
             
@@ -73,7 +83,7 @@ WinJS.UI.processAll().then(function () {
                     });
 
                 if (e.detail.location=="/index.html"){
-
+                    page=0;
                     WinJS.Utilities.query(".listviewpivotitem")
                     .listen("iteminvoked", 
                         function(invoke){ 
@@ -84,9 +94,7 @@ WinJS.UI.processAll().then(function () {
                 }
 
                 if (e.detail.location=="/list.html"){
-
-                    updateBar();
-
+                    page=1; // list.html
                     WinJS.Utilities.query(".listviewpivotitem")
                     .listen(
                         "iteminvoked", 
@@ -133,7 +141,7 @@ WinJS.Utilities.query(".listviewpivotitem")
 
 
 currentCountryData=0;
-function getNews(invoke,uselast){
+function getNews(invoke,uselast,cb){
 
     var spinner = spin();
    // spinner.stop();
@@ -201,6 +209,7 @@ function getNews(invoke,uselast){
             WinJS.Navigation.navigate("/list.html",name).done(
                 function(){
                     // spinner.stop();
+                    if (cb) cb();
                 }
                 );
         };
@@ -237,8 +246,8 @@ function spin(){
             left: '50%' // Left position relative to parent
         };
         var target = document.getElementById('progress');
-        var spinner = new Spinner(opts).spin(target);
-        return spinner;
+        spinn = new Spinner(opts).spin(target);
+        return spinn;
     }
 
     var actout=0;
@@ -332,10 +341,65 @@ function spin(){
 
 }
 
+// Update engine ******************************
+boxopen=0;
+refreshtimeout=15000;//1000*60*60;
+tor=0
 function updateBar(){
-
+/* Button action
     var appBar = document.getElementById("createAppBar").winControl;
     appBar.getCommandById("cmdAdd").addEventListener("click", 
     function(){ getNews(false,true);  }, false);
+*/
 
+    if (boxopen) {return;}
+    boxopen=1;
+    var cd = document.querySelector("#refresh");
+    
+    if (cd){
+        var contentDialog = document.querySelector("#refresh").winControl;
+    } else {  
+        startupdate();
+        return;
+    }
+    
+    contentDialog.onafterhide = function(){
+
+    };
+    contentDialog._dom.commands[0].addEventListener(
+        'click'
+        ,function(){
+            
+            if (page==0) {
+                window.location.reload();
+            }else if (page==1) {
+                WinJS.Navigation.back().done(function(){
+                    getNews(false,true,function(){ 
+                        startupdate();
+                     });
+                    
+                });
+            }
+
+            return;
+        });
+    contentDialog._dom.commands[1].addEventListener(
+        'click'
+        ,function(){
+                    startupdate();
+            return;
+        });
+
+    contentDialog.show();
+        boxopen=1;
+
+}
+
+function startupdate(force,log) {
+    if (log) console.log("updating call:start",tor,refreshtimeout,boxopen);
+    boxopen= 0;
+    if (tor) clearTimeout(tor);
+    tor=0;
+    tor=setTimeout(updateBar, refreshtimeout);
+    if (log) console.log("updating call:stop",tor,refreshtimeout,boxopen);
 }

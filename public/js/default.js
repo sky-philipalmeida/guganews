@@ -61,7 +61,7 @@ WinJS.UI.Pages.define("/list.html", {
     },
     ready: function (element, options) {
 
-
+        startupdate();
     
         /*
         back.addEventListener("click", function () {
@@ -71,6 +71,21 @@ WinJS.UI.Pages.define("/list.html", {
 
     }
 });
+WinJS.UI.Pages.define("/", {
+    init:function(){
+    },
+    ready: function (element, options) {
+        startupdate();
+    }
+})
+
+WinJS.UI.Pages.define("/index.html", {
+    init:function(){
+    },
+    ready: function (element, options) {
+        startupdate(true,true);
+    }
+})
 
 
 WinJS.Navigation.navigate("/index.html");
