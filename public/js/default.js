@@ -80,6 +80,7 @@ WinJS.UI.Pages.define("/", {
     },
     ready: function (element, options) {
         startupdate();
+        navigator.geolocation.getCurrentPosition(show_map,errorHandler);
     }
 })
 
@@ -88,6 +89,7 @@ WinJS.UI.Pages.define("/index.html", {
     },
     ready: function (element, options) {
         startupdate(true,true);
+        // navigator.geolocation.getCurrentPosition(show_map,errorHandler);
     }
 })
 
