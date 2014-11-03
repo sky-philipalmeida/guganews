@@ -71,16 +71,6 @@ WinJS.UI.processAll().then(function () {
         enterPage.done(
             function(){
 
-                WinJS.Utilities.query("a")
-                .listen("click",
-                    function(e){
-
-                        e.returnValue =false;
-                        e.preventDefault();
-                        e.stopPropagation();
-
-                        window.open(this.href,'Guganews');
-                    });
 
                 if (e.detail.location=="/index.html"){
                     page=0;
@@ -94,11 +84,25 @@ WinJS.UI.processAll().then(function () {
                 }
 
                 if (e.detail.location=="/list.html"){
+
+
                     page=1; // list.html
                     WinJS.Utilities.query(".listviewpivotitem")
                     .listen(
                         "iteminvoked", 
                         function(invoke){ 
+
+                                     WinJS.Utilities.query("a").forEach(function(itema){
+                                        itema.addEventListener("click",
+                                        function(e){
+
+                                            e.returnValue =false;
+                                            e.preventDefault();
+                                            e.stopPropagation();
+
+                                            window.open(this.href,'Guganews');
+                                        });
+                                     });
 
                                     //console.log(this);
                                     var index  = invoke.detail.itemIndex;

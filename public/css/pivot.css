@@ -57,7 +57,7 @@ html.win-hoverable .win-pivot button.win-pivot-header:hover
 }
 /*ITEM*/
 .win-pivot-item {
-    
+    padding-bottom: 35pt;
 }
 .win-pivot-item .win-pivot-item-content {
     padding:0px;

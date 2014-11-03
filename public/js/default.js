@@ -58,10 +58,14 @@ function processResults(topic,result){
 
 WinJS.UI.Pages.define("/list.html", {
     init:function(){
+
+
     },
     ready: function (element, options) {
 
         startupdate();
+
+
     
         /*
         back.addEventListener("click", function () {
