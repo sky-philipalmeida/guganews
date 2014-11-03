@@ -348,7 +348,7 @@ function spin(){
 
 // Update engine ******************************
 boxopen=0;
-refreshtimeout=1000*60*1;
+refreshtimeout=1000*60*15;
 tor=0
 function updateBar(){
 /* Button action
