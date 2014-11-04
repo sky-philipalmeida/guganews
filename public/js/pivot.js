@@ -348,8 +348,8 @@ function spin(){
 
 // Update engine ******************************
 boxopen=0;
-refreshtimeout=1000*60*15;
-tor=0
+refreshtimeout=1000*60*30;
+tor=0;
 function updateBar(){
 /* Button action
     var appBar = document.getElementById("createAppBar").winControl;
@@ -375,16 +375,16 @@ function updateBar(){
         'click'
         ,function(){
             
-            if (page==0) {
+            // if (page==0) {
                 window.location.reload();
-            }else if (page==1) {
+            /* }else if (page==1) {
                 WinJS.Navigation.back().done(function(){
                     getNews(false,true,function(){ 
                         startupdate();
                      });
                     
                 });
-            }
+            }*/
 
             return;
         });
