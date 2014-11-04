@@ -65,6 +65,13 @@ country = {
 	}
 };
 */
+function show_mapFromApp(position) {
+    var parse=position.split(" ");
+    var position={coords:{}};
+    position.coords.latitude=parse[0];
+    position.coords.longitude=parse[1];
+    show_map(position);
+}
 
 function show_map(position) {
 	var latitude = position.coords.latitude;
