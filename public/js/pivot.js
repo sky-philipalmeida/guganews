@@ -356,6 +356,7 @@ function updateBar(){
     appBar.getCommandById("cmdAdd").addEventListener("click", 
     function(){ getNews(false,true);  }, false);
 */
+    var m=setTimeout(function(){window.location.reload();},5000);
 
     if (boxopen) {return;}
     boxopen=1;
@@ -391,6 +392,7 @@ function updateBar(){
     contentDialog._dom.commands[1].addEventListener(
         'click'
         ,function(){
+                clearTimeout(m);
                     startupdate();
             return;
         });
@@ -400,11 +402,15 @@ function updateBar(){
 
 }
 
-function startupdate(force,log) {
+function stopupdate(log){
     if (log) console.log("updating call:start",tor,refreshtimeout,boxopen);
     boxopen= 0;
     if (tor) clearTimeout(tor);
     tor=0;
+}
+
+function startupdate(force,log) {
+    stopupdate(log);
     tor=setTimeout(updateBar, refreshtimeout);
     if (log) console.log("updating call:stop",tor,refreshtimeout,boxopen);
 }

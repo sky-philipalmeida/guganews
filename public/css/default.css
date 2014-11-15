@@ -35,7 +35,6 @@ a:hover {
     color: green;
 }
 
-
 .fullScreen {
     width: 100%;
     height: 100%;
@@ -43,7 +42,15 @@ a:hover {
     top: 0;
     left: 0;
 }
-
+.powered::before {
+    position:fixed !important;
+    content:"v.2" !important;
+    color:#fff !important;
+    z-index:99999999999999;
+    top:0pt;
+    right:1pt;
+    opacity:0.5;
+}
 /*width of each section*/
 .section1.win-hub-section {
     width: 780px;
