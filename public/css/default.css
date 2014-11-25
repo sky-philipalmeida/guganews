@@ -105,12 +105,6 @@ a:hover {
 
 
 
-#listView
-{
-    width: 100%;
-    height:100%;
-}
-
 #listView .win-listheadercontainer {
     display:none;
 }
@@ -144,7 +138,8 @@ a:hover {
 /* CSS applied to the ListViews in this sample */
 #listView
 {
+    width:100%;
     height: auto;
+    float:left;
+    padding-bottom:20pt;
 }
-
-

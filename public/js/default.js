@@ -36,7 +36,7 @@ function processResults(topic,result){
             item.title = item.title.substr(0,jornal).trim();
             item.id=topic+"_" +(++id);
             item.id2=topic+"_2_" +id;
-            item.id3="data_img_"+item.id;
+            item.id3=topic+"_data_img_"+item.id;
             
 
             var s = item.contentSnippet.lastIndexOf(item.author);
@@ -59,7 +59,7 @@ function processResults(topic,result){
     };
 }
 
-function loadImageForItem(item,id){
+function loadImageForItem(item,context){
     
     // load images per item
     var head= document.getElementsByTagName('head')[0];
@@ -86,7 +86,7 @@ function loadImageForItem(item,id){
         return;
     }
     var linkrss = encodeURIComponent(item.title);
-    var context=id;
+    //var context=id;
     script.src="https://ajax.googleapis.com/ajax/services/search/images?context="+context+"&callback=processImagesForResult&v=1.0&imgsz=large&rsz=8&q="+linkrss;
     //console.log(script.src);
 
@@ -163,8 +163,8 @@ function processImagesForResult(context,response){
                         
                         return;
                 }
-            item.width2=item.width;
-            item.height2=item.height;
+            item.width2=item.width+'px';
+            item.height2=item.height+'px';
             item.moreResultUrl = response.cursor.moreResultUrl;
             item.idname=context+'_'+(++i);
             item.idname2=context+'_'+i+'_2';

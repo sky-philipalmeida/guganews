@@ -45,13 +45,9 @@ function loadImages(id3) {
 
 
 function imageLoadErrorEvent(imgin) {
-    // console.log(imgin.src);
-    // imgin.src="images/windows/Square70x70Logo.scale-180.png";
-    // imgin.style.width="50px";
-    // imgin.style.height="50px";
-    var img=document.querySelectorAll('[name="'+imgin.name+'_2"]')[0];
 
-    img.style.display='none';
+        imgin.src="/images/background.svg";
+    
 
 }
 function imageLoadEvent(imgin) {
