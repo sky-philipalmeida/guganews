@@ -49,17 +49,18 @@
 	    </div>
 
 	    <!-- Template for ListView in section 2 -->
-	    <!--
-	    <div class="smallListIconTextTemplate" data-win-control="WinJS.Binding.Template">
-	        <div class="smallListIconTextItem">	
-	            <img src="#" class="smallListIconTextItem-Image" data-win-bind="src: picture" />
-	            <div class="smallListIconTextItem-Detail">
-	                <h4 data-win-bind="textContent: title"></h4>
-	                <h6 data-win-bind="textContent: text"></h6>
-	            </div>
-	        </div>
-	    </div>
+	    
+        <!-- Simple template for the ListView instantiation  -->
+        <div class="smallListIconTextTemplate" data-win-control="WinJS.Binding.Template">
+            <div name="" class="smallListIconTextItem" data-win-bind="name: idname2">
+            	<a target="_blank" href="#" data-win-bind="href: url">
+	                <img name="" onLoad="imageLoadEvent(this);" onError="imageLoadErrorEvent(this);" src="#" height="" width="" class="smallListIconTextItem-Image" 
+	                data-win-bind="src: url; height: height2; width: width2; name: idname" />
+            	</a>
+            </div>
+        </div>
 
+<!--
 /*
 h - specifies the top headlines topic
 w - specifies the world topic
@@ -86,24 +87,41 @@ m - specifies the health topic
 				           <h5 class="date" data-win-bind="innerHTML: publishedDate"></h5>	 
 					        <div class="more" data-win-bind="innerHTML: content">
 					        </div>
+                                           
+                                                <!-- The declarative markup necesary for ListView instantiation -->
+                                                <!-- Call WinJS.UI.processAll() in your initialization code -->
+                                                <div id="listView"
+                                                	data-win-bind="name: id3"
+                                                     class="win-selectionstylefilled"
+                                                     data-win-control="WinJS.UI.ListView"
+                                                     data-win-options="{
+                                                            itemDataSource: false,
+                                                            itemTemplate: select('.smallListIconTextTemplate'),
+                                                            selectionMode: 'none',
+                                                            tapBehavior: 'none',
+                                                            swipeBehavior: 'none',
+                                                            layout: { type: WinJS.UI.GridLayout }
+                                                    }">
+                                                </div>
+                                                
 				        </div>
 				        <div data-win-bind="name: id">
 
-							<div class="mailItemContainer"> 
-								<div class="mailImageContainer">
-									<img alt="Loading" align="absbottom" src="#" class="mailItemImage"data-win-bind="src: img" />
-								</div>
-							    <div class="mailItem listPivotItem">
-							    	
-							        <div class="hitTarget win-interactive"></div>
+                                                <div class="mailItemContainer"> 
+                                                        <div class="mailImageContainer">
+                                                                <img alt="Loading" align="absbottom" src="#" class="mailItemImage"data-win-bind="src: img" />
+                                                        </div>
+                                                    <div class="mailItem listPivotItem">
 
-							        <h2 class="author" data-win-bind="innerHTML: author"></h2>	
-							        <!-- 
-							        <h5 class="date" data-win-bind="innerHTML: publishedDate"></h5>	 		-->					          
-							        <h2 class="title" data-win-bind="innerHTML: title"></h2><!--
-							        <h5 class="previewText win-pivot-slide2" data-win-bind="innerHTML: contentSnippet"></h5>-->
-							    </div>
-							</div>
+                                                        <div class="hitTarget win-interactive"></div>
+
+                                                        <h2 class="author" data-win-bind="innerHTML: author"></h2>	
+                                                        <!-- 
+                                                        <h5 class="date" data-win-bind="innerHTML: publishedDate"></h5>	 		-->					          
+                                                        <h2 class="title" data-win-bind="innerHTML: title"></h2><!--
+                                                        <h5 class="previewText win-pivot-slide2" data-win-bind="innerHTML: contentSnippet"></h5>-->
+                                                    </div>
+                                                </div>
 
 				        </div>
 				    </div>

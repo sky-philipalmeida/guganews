@@ -110,19 +110,19 @@ WinJS.UI.processAll().then(function () {
                                     currentItem=index;
                                     // console.log(invoke.detail.itemPromise._value.data)
                                     var clicked = invoke.detail.itemPromise._value.data;
-
+                                        
                                     // window.location=clicked.link;
                                     // window.open(clicked.link, "_blank", "fullscreen=yes,height=600,width=800,scrollbars=yes,resizable=no");
                                     transitionBetweenContent(
                                         invoke
                                         ,clicked.id
                                         ,clicked.id2
+                                        ,clicked.id3
                                         ,function(){
                                             var list=document.getElementById("pivotScenario3").winControl._currentItem._contentElement.firstElementChild.winControl;
                                                 // console.log("Ensure visible");
                                                 list.ensureVisible(index)
-                                            }
-                                            );
+                                            });
                                 }, false);
 }
 
@@ -208,7 +208,7 @@ function getNews(invoke,uselast,cb){
         var totalresults=20;
         script.src= "http://ajax.googleapis.com/ajax/services/feed/load?context="+topic+"&callback=processResults&num="+totalresults+"&v=1.0&q=https%3A%2F%2Fnews.google.com%2Fnews%2Ffeeds%3Fpz%3D1%26cf%3Dall%26num%3D"+totalresults+"%26ned%3D"+ned+"%26hl%3D"+hl+"%26topic%3D"+topic+"%26output%3Drss";
         //console.log(script.src);
-
+        
         head.appendChild(script);
         if(item=='h') script.onload=function(){
 
@@ -258,7 +258,10 @@ function spin(){
 
     var actout=0;
     var actin=0;
-    function transitionBetweenContent(invoke,id,id2,cb) {
+    function transitionBetweenContent(invoke,id,id2,id3,cb) {
+
+
+        loadImages(id3) ;
 
         var incoming;
         var outgoing;
@@ -337,7 +340,6 @@ function spin(){
             from: 0,
             to: 1
         }).done(function(){
-
 
             cb();
         });

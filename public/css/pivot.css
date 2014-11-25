@@ -3,6 +3,10 @@
     background-color: transparent;
 }
 
+.win-listview .win-vertical .win-gridlayout .win-uniformgridlayout .win-itemsblock {
+    width: auto;
+}
+
 .win-pivot .win-pivot-header.win-pivot-header-selected, .win-pivot.win-pivot-locked .win-pivot-header.win-pivot-header-selected {
     text-decoration: underline;
 }
