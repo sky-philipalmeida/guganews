@@ -1,9 +1,9 @@
 .win-itemscontainer .win-uniformlistlayout {
-    height:100% !important;
+    height: inherit !important;
 }
 
 .win-itemscontainer win-uniformlistlayout {
-    height:100% !important;
+    height:inherit !important;
 }
 
 .win-listview .win-itembox, .win-itemcontainer .win-itembox
