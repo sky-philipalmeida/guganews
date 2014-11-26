@@ -1,3 +1,11 @@
+.win-itemscontainer .win-uniformlistlayout {
+    height:100% !important;
+}
+
+.win-itemscontainer win-uniformlistlayout {
+    height:100% !important;
+}
+
 .win-listview .win-itembox, .win-itemcontainer .win-itembox
 .win-pivot .win-pivot-headers {
     background-color: transparent;
@@ -201,7 +209,7 @@ font[color="#6f6f6f"],
 }
 /* MORE 
 **********************************
-*/
+*/ 
 .morehiddenblock {
     display:none;
     border-left:10px solid #61ba7f;

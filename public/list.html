@@ -50,16 +50,6 @@
 
 	    <!-- Template for ListView in section 2 -->
 	    
-        <!-- Simple template for the ListView instantiation  -->
-        <div class="smallListIconTextTemplate" data-win-control="WinJS.Binding.Template">
-            <div name="" class="smallListIconTextItem" data-win-bind="name: idname2">
-            	<a target="_blank" href="#" data-win-bind="href: url">
-	                <img name="" onLoad="imageLoadEvent(this);" onError="imageLoadErrorEvent(this);" src="#" height="" width="" class="smallListIconTextItem-Image" 
-	                data-win-bind="src: url; height: height2; width: width2; name: idname" />
-            	</a>
-            </div>
-        </div>
-
 <!--
 /*
 h - specifies the top headlines topic
@@ -88,21 +78,31 @@ m - specifies the health topic
 					        <div class="more" data-win-bind="innerHTML: content">
 					        </div>
                                            
-                                                <!-- The declarative markup necesary for ListView instantiation -->
-                                                <!-- Call WinJS.UI.processAll() in your initialization code -->
-                                                <div id="listView"
-                                                	data-win-bind="name: id3"
-                                                     class="win-selectionstylefilled"
-                                                     data-win-control="WinJS.UI.ListView"
-                                                     data-win-options="{
-                                                            itemDataSource: false,
-                                                            itemTemplate: select('.smallListIconTextTemplate'),
-                                                            selectionMode: 'none',
-                                                            tapBehavior: 'none',
-                                                            swipeBehavior: 'none',
-                                                            layout: { type: WinJS.UI.GridLayout }
-                                                    }">
-                                                </div>
+					        <!-- Simple template for the ListView instantiation  -->
+					        <div class="smallListIconTextTemplate" data-win-control="WinJS.Binding.Template">
+					            <div name="" class="smallListIconTextItem" data-win-bind="name: idname2">
+					            	<a target="_blank" href="#" data-win-bind="href: url">
+						                <img name="" onLoad="imageLoadEvent(this);" onError="imageLoadErrorEvent(this);" src="#" height="" width="" class="smallListIconTextItem-Image" 
+						                data-win-bind="src: url; height: height2; width: width2; name: idname" />
+					            	</a>
+					            </div>
+					        </div>
+
+					        <!-- The declarative markup necesary for ListView instantiation -->
+					        <!-- Call WinJS.UI.processAll() in your initialization code -->
+					        <div id="listView"
+					        	data-win-bind="name: id3"
+					             class="win-selectionstylefilled"
+					             data-win-control="WinJS.UI.ListView"
+					             data-win-options="{
+					                    itemDataSource: false,
+					                    itemTemplate: select('.smallListIconTextTemplate'),
+					                    selectionMode: 'none',
+					                    tapBehavior: 'none',
+					                    swipeBehavior: 'none',
+					                    layout: { type: WinJS.UI.GridLayout }
+					            }">
+					        </div>
                                                 
 				        </div>
 				        <div data-win-bind="name: id">
