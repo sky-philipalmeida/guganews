@@ -104,6 +104,13 @@ a:hover {
 }
 
 
+/* CSS applied to the ListViews in this sample */
+#listView
+{
+    width:100%;
+    float:left;
+    padding-bottom:20pt;
+}
 
 #listView .win-listheadercontainer {
     display:none;
@@ -123,6 +130,9 @@ a:hover {
     {
         margin: 5px;
         margin-right:20px;
+    background-image: url('/images/background.svg');
+    background-size: cover;   
+    background-color:#000;
     }
 
     .smallListIconTextItem .smallListIconTextItem-Detail
@@ -135,11 +145,3 @@ a:hover {
         margin-left: 16px;
     }
     
-/* CSS applied to the ListViews in this sample */
-#listView
-{
-    width:100%;
-    height: auto;
-    float:left;
-    padding-bottom:20pt;
-}
