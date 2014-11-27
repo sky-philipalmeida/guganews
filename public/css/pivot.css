@@ -153,7 +153,7 @@ html.win-hoverable .win-pivot button.win-pivot-header:hover
 font[color="#6f6f6f"],
 .mailItem .author {
     font-weight: 100;
-    padding-top: 15px;
+    padding-top: 5px;
     white-space: nowrap;
     overflow: hidden;
    /* -ms-flex: 1 100%;
@@ -179,10 +179,14 @@ font[color="#6f6f6f"],
     flex: 1 100%;
     color:#ccff00;
     color:#08fa18;
-    font-size: 25pt;
-
+    font-size: 18pt;
 }
 
+.mailItem .title-index{
+    min-height:100px;
+    line-height:100px !important;
+    padding-left:20pt;
+}
 .listPivotItem .title {
     color:#ccff00 !important; 
 }
@@ -219,18 +223,29 @@ font[color="#6f6f6f"],
             black,transparent);
     opacity:0.7;
     filter: alpha(opacity=70);
+    height:100%;
 }
-.morehiddenblock .date{
-    font-weight: 100;
-    padding-left: 95px;
-    padding-top:10px;
-    position:absolute;
+
+.morehiddenblock img{
+ min-width:125px;
+  min-height:125px;
+ max-height:400px;
 }
 font[color="#6f6f6f"] {
     margin-right:10px !important;
+    font-size: 12pt !important;
 }
 font[size="-1"] {
     font-size: 22pt;
+    line-height: 25pt;
+
+}
+font[size="-2"] {
+    display:none;
+}
+td[valign="top"] {
+    padding-left: 10pt !important;
+    min-width: 50pt;
 }
 div[style="padding-top: 0.8em;"] {
     display: none;
@@ -253,4 +268,41 @@ div[style="padding-top: 0.8em;"] {
 .more a b {
     font-size:26pt;
     font-weight: 100;
+}
+.morehiddenblock .date{
+    margin-top: 140px;
+    position:absolute;
+    margin-left:15pt;
+}
+.date
+{
+float: left;
+background: green;
+width:75px;
+height:75px;
+line-height: normal;
+}
+.date .month
+{
+display: block;
+text-align: center;
+color: #FFF;
+font-size: 12pt;
+padding-top: 5pt;
+text-transform: uppercase;
+}
+.date .day
+{
+display: block;
+text-align: center;
+padding-top: 5px;
+color: #fff;
+font-size: 20pt;
+font-weight: bold;
+}
+.meta
+{
+display: block;
+font-size: 11px;
+color: #fff;
 }

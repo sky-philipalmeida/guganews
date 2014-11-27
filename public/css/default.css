@@ -123,6 +123,9 @@ a:hover {
     {
         margin: 5px;
         margin-right:20px;
+            background-image: url('/images/background.svg');
+    background-size: cover;   
+    background-color:#000;
     }
 
     .smallListIconTextItem .smallListIconTextItem-Detail
@@ -142,4 +145,7 @@ a:hover {
     height: auto;
     float:left;
     padding-bottom:20pt;
+}
+.win-listview .win-itemscontainer{
+
 }

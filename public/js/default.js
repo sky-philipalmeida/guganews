@@ -37,6 +37,7 @@ function processResults(topic,result){
             item.id=topic+"_" +(++id);
             item.id2=topic+"_2_" +id;
             item.id3=topic+"_data_img_"+item.id;
+
             
 
             var s = item.contentSnippet.lastIndexOf(item.author);
@@ -46,6 +47,11 @@ function processResults(topic,result){
             item.img= (img && typeof img[1]!=='undefined')?img[1]:"images/windows/Square70x70Logo.scale-180.png";
 
             item.publishedDate = new Date(item.publishedDate);
+
+            item.year=item.publishedDate.getFullYear();
+            item.month= item.publishedDate.getMonth()+1;
+            item.day= item.publishedDate.getDate();
+            item.monthyear= item.month+"/"+item.year;
             
             loadImageForItem(item,item.id3);
             
@@ -57,128 +63,6 @@ function processResults(topic,result){
     window["data_"+topic] = { 
         dataSource: new WinJS.Binding.List(data).dataSource 
     };
-}
-
-function loadImageForItem(item,context){
-    
-    // load images per item
-    var head= document.getElementsByTagName('head')[0];
-    var script= document.createElement('script');
-    var error= false;
-
-    script.type= 'text/javascript';
-    script.onerror = function(er){
-        console.log(er);
-        spinner.stop();
-        if (error) {
-
-            return;
-        }
-        error=true;
-        var contentDialog = document.querySelector(".win-contentdialog").winControl;
-        contentDialog._dom.commands[0].addEventListener(
-            'click'
-            ,function(){
-                spinner.stop();
-                return;
-            });
-        contentDialog.show();
-        return;
-    }
-    var linkrss = encodeURIComponent(item.title);
-    //var context=id;
-    script.src="https://ajax.googleapis.com/ajax/services/search/images?context="+context+"&callback=processImagesForResult&v=1.0&imgsz=large&rsz=8&q="+linkrss;
-    //console.log(script.src);
-
-    head.appendChild(script);
-
-
-    
-}
-
-function processImagesForResult(context,response){
-    
-    // console.log(arguments);
-    var i = 0;
-    
-    var data = [];
-
-
-            if (!response) {
-                return;
-            }
-
-    
-    response.results.map(
-        function(item){
-
-            /*
-            GsearchResultClass
-                    "GimageSearch"
-
-            content
-                    "a cantora <b>Janis Joplin</b>,"
-
-            contentNoFormatting
-                    "a cantora Janis Joplin,"
-
-            height
-                    "300"
-
-            imageId
-                    "ANd9GcRC_Xbqbe-awGA63fMG...ANIdVMxU2-7_TwCt9Eaedjw"
-
-            originalContextUrl
-                    "http://www.cineclick.com...joplin-em-cinebiografia"
-
-            tbHeight
-                    "93"
-
-            tbUrl
-                    "http://t0.gstatic.com/im...ANIdVMxU2-7_TwCt9Eaedjw"
-
-            tbWidth
-                    "124"
-
-            title
-                    "<b>Amy Adams será Janis ...tor de Clube <b>...</b>"
-
-            titleNoFormatting
-                    "Amy Adams será Janis Jop...de diretor de Clube ..."
-
-            unescapedUrl
-                    "http://static.cineclick....602x0_519fb8dc9bc14.jpg"
-
-            url
-                    "http://static.cineclick....602x0_519fb8dc9bc14.jpg"
-
-            visibleUrl
-                    "www.cineclick.com.br"
-
-            width
-                    "400"
-                         */
-               
-                if (item.url.indexOf("localhost")>=0){
-                        
-                        return;
-                }
-            item.width2=item.width+'px';
-            item.height2=item.height+'px';
-            item.moreResultUrl = response.cursor.moreResultUrl;
-            item.idname=context+'_'+(++i);
-            item.idname2=context+'_'+i+'_2';
-
-            if (typeof item!="undefined") {
-                data.push(item);
-            }
-
-        }
-    );
-    
-    // console.log(data);
-    window[context] = new WinJS.Binding.List(data).dataSource;
-
 }
 
 WinJS.UI.Pages.define("/list.html", {
