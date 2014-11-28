@@ -86,7 +86,7 @@ html.win-hoverable .win-pivot button.win-pivot-header:hover
 #pivotScenario3 .win-listview .win-item {
 
     margin-bottom:0px;
-        border-bottom:1px solid #08fa18;
+        border-bottom:1px solid #222;
     /* width: calc(100% - 20px); */
 }
 
@@ -189,7 +189,7 @@ font[color="#6f6f6f"],
     line-height:100px !important;
     padding-left:20pt;
     margin: 0px !important;
-    border-bottom:1px solid #08fa18;
+    border-bottom:1px solid #222;
     font-size: 40pt !important;
 }
 
@@ -231,7 +231,6 @@ font[color="#6f6f6f"],
     height:100%;
     opacity:1;
     filter: alpha(opacity=100);
-    background-color: green;
 
 }
 
