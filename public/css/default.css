@@ -15,7 +15,6 @@ html, body {
 
 
 h1 {
-    font-size: 20pt;
 }
 
 /*BUTTONS*/
@@ -23,8 +22,14 @@ h1 {
     background-color: #61ba7f;
 }
 .win-backbutton, .win-back {
+    font-size:24pt;
+}
+.win-backbutton, .win-back {
     /*border-color: #333;
     color: #333;*/
+width: 70px;
+height: 70px;
+line-height:70px;
 }
 a {
     color: #61ba7f;
@@ -42,15 +47,7 @@ a:hover {
     top: 0;
     left: 0;
 }
-.powered::before {
-    position:fixed !important;
-    content:"v.2" !important;
-    color:#fff !important;
-    z-index:99999999999999;
-    top:0pt;
-    right:1pt;
-    opacity:0.5;
-}
+
 /*width of each section*/
 .section1.win-hub-section {
     width: 780px;
@@ -65,6 +62,7 @@ a:hover {
     left: 0px;
     width: 100%;
     float: left;
+
         /*background-color: #61ba7f;*/
 }
 
@@ -73,6 +71,9 @@ a:hover {
         margin-top: 2pt;
             margin-left: 5px;
             float:left;
+            width: 70px;
+height: 70px;
+    padding:0px;
 }
 
 #appHeader h1 {
@@ -81,8 +82,11 @@ a:hover {
     left:50pt;
     /*position : absolute;*/
     z-index: 999999999999;
-    font-size:31pt;
     float:left;
+    font-size: 55pt;
+    margin-bottom:5pt;
+    float: left;
+margin-left: 5%;
 }
 #appHeader h1 a { color:#fff;}
 

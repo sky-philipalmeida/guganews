@@ -235,10 +235,10 @@ function getNews(invoke,uselast,cb){
 function spin(){
     var opts = {
             lines: 8, // The number of lines to draw
-            length: 10, // The length of each line
-            width: 25, // The line thickness
-            radius: 50, // The radius of the inner circle
-            corners: 1, // Corner roundness (0..1)
+            length: 1000, // The length of each line
+            width: 1, // The line thickness
+            radius: 0, // The radius of the inner circle
+            corners: 0, // Corner roundness (0..1)
             rotate: 0, // The rotation offset
             direction: 1, // 1: clockwise, -1: counterclockwi
             color: '#08fa18', // #rgb or #rrggbb or array of col
