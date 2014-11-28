@@ -284,7 +284,7 @@ function spin(){
             {
                 property: "opacity",
                 delay: 0,
-                duration: 0,
+                duration: 250,
                 timing: "linear",
                 from: 1,
                 to: 0
@@ -298,7 +298,7 @@ function spin(){
                 {
                     property: "opacity",
                     delay: 0,
-                    duration: 250,
+                    duration: 300,
                     timing: "linear",
                     from: 0,
                     to: 1

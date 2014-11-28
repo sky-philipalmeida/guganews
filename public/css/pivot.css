@@ -138,12 +138,12 @@ html.win-hoverable .win-pivot button.win-pivot-header:hover
     padding-right:0px;
     flex:1;
     cursor:pointer;
-    background-image: 
+    /* background-image: 
         linear-gradient(
             to right,
-            transparent,green);
-    opacity:0.7;
-    filter: alpha(opacity=70);
+            transparent,green);*/
+    opacity:1;
+    filter: alpha(opacity=100);
 }
 
 .mailItem .date {
@@ -224,13 +224,13 @@ font[color="#6f6f6f"],
 .morehiddenblock {
     display:none;
     border-left:0px solid #61ba7f;
-    background-image: 
+    /* background-image: 
         linear-gradient(
             to right,
-            black,transparent);
+            black,transparent);*/
     height:100%;
-    opacity:80;
-    filter: alpha(opacity=80);
+    opacity:1;
+    filter: alpha(opacity=100);
     background-color: green;
 
 }
