@@ -305,6 +305,7 @@ function spin(){
                 }).done(function(){
                 });
             });
+            cb();
             return;
 
         } else {
@@ -314,6 +315,7 @@ function spin(){
             actin.style.opacity = 0;
         }
     } 
+
 
     actout=outgoing;actin=incoming;
 
@@ -330,6 +332,8 @@ function spin(){
     outgoing.style.display = "none";
     incoming.style.display = "block";
 
+        cb();
+
     WinJS.UI.executeTransition(
             incoming,
         {
@@ -341,7 +345,7 @@ function spin(){
             to: 1
         }).done(function(){
 
-            cb();
+            
         });
     });
 

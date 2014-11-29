@@ -230,6 +230,8 @@ font[color="#6f6f6f"],
             to right,
             black,transparent);*/
     height:100%;
+    float:left;
+    width:100%;
     opacity:1;
     filter: alpha(opacity=100);
 
