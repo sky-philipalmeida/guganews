@@ -44,11 +44,11 @@ html.win-hoverable .win-pivot button.win-pivot-header:hover {
 
 .win-pivot .win-pivot-header-selected.win-pivot-header
 , .win-pivot-locked.win-pivot .win-pivot-header-selected.win-pivot-header {
-    background-image: 
+    /*background-image: 
         linear-gradient(
             to right,
-            #f9ff00,#ffcc00);
-    text-decoration:none;
+            #f9ff00,#ffcc00);*/
+    /* text-decoration:none; */
     color:#000;
     border-radius:0px;
 }
