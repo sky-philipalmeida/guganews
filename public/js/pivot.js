@@ -241,7 +241,7 @@ function spin(){
             corners: 0, // Corner roundness (0..1)
             rotate: 0, // The rotation offset
             direction: 1, // 1: clockwise, -1: counterclockwi
-            color: '#08fa18', // #rgb or #rrggbb or array of col
+            color: '#61ba7f', // #rgb or #rrggbb or array of col
             speed: 1, // Rounds per second
             trail: 50, // Afterglow percentage
             shadow: false, // Whether to render a shadow
