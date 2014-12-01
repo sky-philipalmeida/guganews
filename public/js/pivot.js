@@ -61,7 +61,7 @@ WinJS.UI.processAll().then(function () {
             
             WinJS.Utilities.setInnerHTML(
                 WinJS.Utilities.query("#appHeaderTitle")[0]
-                , '<b><a href="/#'+currentCountryData.data.ned+'">'+local+'</a></b>');
+                , '<b>'+local+'</b>');
 
 
         }
@@ -242,7 +242,7 @@ function spin(){
             corners: 0, // Corner roundness (0..1)
             rotate: 0, // The rotation offset
             direction: 1, // 1: clockwise, -1: counterclockwi
-            color: '#61ba7f', // #rgb or #rrggbb or array of col
+            color: currentcolor, // #rgb or #rrggbb or array of col
             speed: 1, // Rounds per second
             trail: 50, // Afterglow percentage
             shadow: false, // Whether to render a shadow

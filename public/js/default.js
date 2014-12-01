@@ -15,15 +15,64 @@ var myData = new WinJS.Binding.List([
 ]);
 */
 
+var sheet = (function() {
+    // Create the <style> tag
+    var style = document.createElement("style");
 
-function setTheme(){
+    // Add a media (and/or media query) here if you'd like!
+    // style.setAttribute("media", "screen")
+    // style.setAttribute("media", "only screen and (max-width : 1024px)")
+
+    // WebKit hack :(
+    style.appendChild(document.createTextNode(""));
+
+    // Add the <style> element to the page
+    document.head.appendChild(style);
+
+    return style.sheet;
+})();
+
+
+function addCSSRule(sheet, selector, rules, index) {
+    if("insertRule" in sheet) {
+        sheet.insertRule(selector + "{" + rules + "}", index);
+    }
+    else if("addRule" in sheet) {
+        sheet.addRule(selector, rules, index);
+    }
+}
+
+function setTheme(color){
+
+        currentcolor=color?color:'yellowgreen';// '#61ba7f';
+
+        // Use it!
+        // 
+        addCSSRule(document.styleSheets[0], 
+           ".bgcolor"
+           , "background-color: "+currentcolor+" !important");
+
+        addCSSRule(document.styleSheets[0], 
+           ".fontcolorselect,.fontcolor2 a, .fontcolor2 a b,a"
+           , "color: "+currentcolor+" !important");
+
+        addCSSRule(document.styleSheets[0], 
+           ".morehiddenblock"
+           , "border-top:1px solid "+currentcolor+" !important");
+
+        addCSSRule(document.styleSheets[0], 
+           ".morehiddenblock"
+           , "border-bottom:1px solid "+currentcolor+" !important");
+
+
         var t = new Trianglify({
           fillOpacity:'0.5', 
           strokeOpacity: '0.5', 
           cellsize: '350',
-          x_gradient:['#61ba7f','#000000'],
-          y_gradient:['#61ba7f','#000000'],
+          x_gradient:[currentcolor,'#000000'],
+          y_gradient:[currentcolor,'#000000'],
         });
+
         var pattern = t.generate(document.body.clientWidth, document.body.clientHeight);
         document.body.setAttribute('style', 'background-image: '+pattern.dataUrl);
 }
