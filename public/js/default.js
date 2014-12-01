@@ -16,6 +16,18 @@ var myData = new WinJS.Binding.List([
 */
 
 
+function setTheme(){
+        var t = new Trianglify({
+          fillOpacity:'0.5', 
+          strokeOpacity: '0.5', 
+          cellsize: '350',
+          x_gradient:['#61ba7f','#000000'],
+          y_gradient:['#61ba7f','#000000'],
+        });
+        var pattern = t.generate(document.body.clientWidth, document.body.clientHeight);
+        document.body.setAttribute('style', 'background-image: '+pattern.dataUrl);
+}
+
 function processResults(topic,result){
     var id=0;
     data = result.feed.entries.map(
@@ -86,6 +98,7 @@ WinJS.UI.Pages.define("/list.html", {
 });
 WinJS.UI.Pages.define("/", {
     init:function(){
+        setTheme();
     },
     ready: function (element, options) {
         startupdate();
@@ -99,6 +112,7 @@ WinJS.UI.Pages.define("/index.html", {
     ready: function (element, options) {
         startupdate(true,true);
         // navigator.geolocation.getCurrentPosition(show_map,errorHandler);
+        // 
     }
 })
 

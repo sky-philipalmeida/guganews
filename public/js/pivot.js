@@ -27,6 +27,7 @@
     window.North = { dataSource: new WinJS.Binding.List(data).dataSource };
     
 
+
 })();
 
 // Config starter ...
@@ -251,22 +252,26 @@ function spin(){
             top: '50%', // Top position relative to parent
             left: '50%' // Left position relative to parent
         };
-        var target = document.getElementById('progress');
-        spinn = new Spinner(opts).spin(target);
-        return spinn;
-    }
+    var target = document.getElementById('progress');
+    spinn = new Spinner(opts).spin(target);
+    return spinn;
+}
 
-    var actout=0;
-    var actin=0;
-    function transitionBetweenContent(invoke,id,id2,id3,cb) {
+/****************************************************************
+transitionBetweenContent
+*/
+var actout=0;
+var actin=0;
+
+function transitionBetweenContent(invoke,id,id2,id3,cb) {
 
 
-        loadImages(id3) ;
+    loadImages(id3) ;
 
-        var incoming;
-        var outgoing;
-        var output1=document.querySelectorAll('[name="'+id+'"]')[0];
-        var output2=document.querySelectorAll('[name="'+id2+'"]')[0];
+    var incoming;
+    var outgoing;
+    var output1=document.querySelectorAll('[name="'+id+'"]')[0];
+    var output2=document.querySelectorAll('[name="'+id2+'"]')[0];
 
 
     // Assign incoming and outgoing
@@ -278,23 +283,22 @@ function spin(){
         outgoing = output2;
     }
     if (actin){
-        if(actin==outgoing){
+    if(actin==outgoing){
 
-            WinJS.UI.executeTransition(actin,
-            {
-                property: "opacity",
-                delay: 0,
-                duration: 250,
-                timing: "linear",
-                from: 1,
-                to: 0
-            }).done(function(){
+        WinJS.UI.executeTransition(actin,
+        {
+            property: "opacity",
+            delay: 0,
+            duration: 250,
+            timing: "linear",
+            from: 1,
+            to: 0
+        }).done(function(){
 
-                actout.style.display = "block";
-                actin.style.display = "none";
+            actout.style.display = "block";
+            actin.style.display = "none";
 
-                WinJS.UI.executeTransition(
-                    actout,
+            WinJS.UI.executeTransition(actout,
                 {
                     property: "opacity",
                     delay: 0,
@@ -302,18 +306,17 @@ function spin(){
                     timing: "linear",
                     from: 0,
                     to: 1
-                }).done(function(){
-                });
-            });
-            cb();
-            return;
+                }).done(function(){});
+        });
+        cb();
+        return;
 
-        } else {
-            actout.style.display = "block";
-            actin.style.display = "none";
-            actout.style.opacity = 1;
-            actin.style.opacity = 0;
-        }
+    } else {
+        actout.style.display = "block";
+        actin.style.display = "none";
+        actout.style.opacity = 1;
+        actin.style.opacity = 0;
+    }
     } 
 
 
@@ -329,24 +332,24 @@ function spin(){
         to: 0
     }).done(function(){
 
-    outgoing.style.display = "none";
-    incoming.style.display = "block";
+        outgoing.style.display = "none";
+        incoming.style.display = "block";
 
-        cb();
+            cb();
 
-    WinJS.UI.executeTransition(
-            incoming,
-        {
-            property: "opacity",
-            delay: 0,
-            duration: 250,
-            timing: "linear",
-            from: 0,
-            to: 1
-        }).done(function(){
+        WinJS.UI.executeTransition(
+                incoming,
+            {
+                property: "opacity",
+                delay: 0,
+                duration: 250,
+                timing: "linear",
+                from: 0,
+                to: 1
+            }).done(function(){
 
-            
-        });
+                
+            });
     });
 
     return;
