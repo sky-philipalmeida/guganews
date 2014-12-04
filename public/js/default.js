@@ -116,7 +116,7 @@ function processResults(topic,result){
             item.monthyear= item.month+"/"+item.year;
             
             loadImageForItem(item,item.id3);
-            loadVideoForItem(item,item.id4);
+            //loadVideoForItem(item,item.id4);
             
             return item;
 
