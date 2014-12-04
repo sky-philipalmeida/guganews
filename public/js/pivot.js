@@ -119,6 +119,7 @@ WinJS.UI.processAll().then(function () {
                                         ,clicked.id
                                         ,clicked.id2
                                         ,clicked.id3
+                                        ,clicked.id4
                                         ,function(){
                                             var list=document.getElementById("pivotScenario3").winControl._currentItem._contentElement.firstElementChild.winControl;
                                                 // console.log("Ensure visible");
@@ -263,10 +264,10 @@ transitionBetweenContent
 var actout=0;
 var actin=0;
 
-function transitionBetweenContent(invoke,id,id2,id3,cb) {
+function transitionBetweenContent(invoke,id,id2,id3,id4,cb) {
 
 
-    loadImages(id3) ;
+    loadMedia(id3,id4) ;
 
     var incoming;
     var outgoing;

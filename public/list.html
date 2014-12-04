@@ -85,7 +85,36 @@ m - specifies the health topic
 
 					        <div class="more fontcolor2" data-win-bind="innerHTML: content">
 					        </div>
-                                           
+                                          
+                                                
+					        <!-- Simple template for the ListViewVideo instantiation  -->
+					        <div class="smallListIconTextTemplateVideo" data-win-control="WinJS.Binding.Template">
+					            <div class="smallListIconTextItemVideo">
+                                                          <video onLoad="videoLoadEvent(this);" onError="videoLoadErrorEvent(this);" width="300" height="200" controls>
+                                                            <source src="" type="video/mp4" data-win-bind="src: url;" class="smallListIconTextItem-Video">
+                                                            Your browser does not support the video tag.
+                                                          </video> 
+					            </div>
+					        </div>
+
+					        <!-- The declarative markup necesary for ListViewVideo instantiation -->
+					        <!-- Call WinJS.UI.processAll() in your initialization code -->
+					        <div id="listViewVideo"
+					        	data-win-bind="name: id4"
+					             class="win-selectionstylefilled"
+					             data-win-control="WinJS.UI.ListView"
+					             data-win-options="{
+					                    itemDataSource: false,
+					                    itemTemplate: select('.smallListIconTextTemplateVideo'),
+					                    selectionMode: 'none',
+					                    tapBehavior: 'none',
+					                    swipeBehavior: 'none',
+					                    layout: { type: WinJS.UI.GridLayout }
+					            }">
+					        </div>    
+                                                
+                                                
+                                                
 					        <!-- Simple template for the ListView instantiation  -->
 					        <div class="smallListIconTextTemplate" data-win-control="WinJS.Binding.Template">
 					            <div name="" class="smallListIconTextItem" data-win-bind="name: idname2">
@@ -111,6 +140,7 @@ m - specifies the health topic
 					                    layout: { type: WinJS.UI.GridLayout }
 					            }">
 					        </div>
+                                                
                                                 
 				        </div>
 				        <div data-win-bind="name: id">

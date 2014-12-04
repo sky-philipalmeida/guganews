@@ -44,7 +44,7 @@ function addCSSRule(sheet, selector, rules, index) {
 
 function setTheme(color){
 
-        currentcolor=color?color:'yellowgreen';// '#61ba7f';
+        currentcolor=color?color:'maroon';// '#61ba7f';
 
         // Use it!
         // 
@@ -98,6 +98,7 @@ function processResults(topic,result){
             item.id=topic+"_" +(++id);
             item.id2=topic+"_2_" +id;
             item.id3=topic+"_data_img_"+item.id;
+            item.id4=topic+"_data_mp4_"+item.id;
 
             
 
@@ -115,6 +116,7 @@ function processResults(topic,result){
             item.monthyear= item.month+"/"+item.year;
             
             loadImageForItem(item,item.id3);
+            loadVideoForItem(item,item.id4);
             
             return item;
 
