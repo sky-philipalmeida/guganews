@@ -168,8 +168,8 @@ font[color="#6f6f6f"],
 
 .mailItem .title {
     white-space:normal !important;
-    font-weight: 100 !important;
-    margin-top: 0pt;
+    font-weight: 400 !important;
+    margin-top: 10pt;
     white-space: nowrap;
     overflow: hidden;
     -ms-flex: 1 100%;
