@@ -267,7 +267,7 @@ var actin=0;
 function transitionBetweenContent(invoke,id,id2,id3,id4,cb) {
 
 
-    loadMedia(id3,id4) ;
+
 
     var incoming;
     var outgoing;
@@ -320,7 +320,7 @@ function transitionBetweenContent(invoke,id,id2,id3,id4,cb) {
     }
     } 
 
-
+    loadMedia(id3,id4) ;
     actout=outgoing;actin=incoming;
 
     WinJS.UI.executeTransition(outgoing,

@@ -1,3 +1,11 @@
+.win-listview .win-vertical .win-structuralnodes.win-gridlayout .win-laidout.win-itemscontainer.win-uniformgridlayout,
+.win-listview .win-vertical .win-gridlayout.win-structuralnodes .win-uniformgridlayout.win-itemscontainer.win-laidout,
+.win-listview .win-vertical .win-surface.win-gridlayout
+{
+    width:auto !important;
+    min-height:400px !important;
+}
+
 .win-itemscontainer .win-uniformlistlayout {
     height: inherit !important;
 }

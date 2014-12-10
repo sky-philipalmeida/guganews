@@ -44,7 +44,7 @@ function addCSSRule(sheet, selector, rules, index) {
 
 function setTheme(color){
 
-        currentcolor=color?color:'green';// '#61ba7f';
+        currentcolor=color?color:'yellowgreen';// '#61ba7f';
 
         // Use it!
         // 

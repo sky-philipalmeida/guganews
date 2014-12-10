@@ -56,17 +56,15 @@ function loadMedia(id3,id4) {
 
 function imageLoadErrorEvent(imgin) {
 
-        imgin.src="/images/background.svg";
-        imgin.style.width='0px !important';
-                imgin.style.height='0px !important';
-    
+    imgin.style.display="none"
 
 }
 function imageLoadEvent(imgin) {
-    
+             imgin.style.display="table" 
         //imgin.src="/images/background.svg";
         imgin.style.width=imgin.width+"px !important';";
         imgin.style.height=imgin.height+"px !important';";
+
 }
 
 
