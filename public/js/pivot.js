@@ -97,7 +97,6 @@ WinJS.UI.processAll().then(function () {
 
                                     // console.log(invoke.detail.itemPromise._value.data)
                                     var clicked = invoke.detail.itemPromise._value.data;
-                                    loadMedia(clicked.id3,clicked.id4) ;
 
                                      WinJS.Utilities.query("a").forEach(function(itema){
                                         itema.addEventListener("click",
@@ -325,7 +324,8 @@ function transitionBetweenContent(invoke,id,id2,id3,id4,cb) {
     }
     } 
 
-    
+    loadMedia(id3,id4) ;
+                                        
     actout=outgoing;actin=incoming;
 
     WinJS.UI.executeTransition(outgoing,
