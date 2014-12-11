@@ -93,6 +93,12 @@ WinJS.UI.processAll().then(function () {
                         "iteminvoked", 
                         function(invoke){ 
 
+                                
+
+                                    // console.log(invoke.detail.itemPromise._value.data)
+                                    var clicked = invoke.detail.itemPromise._value.data;
+                                    loadMedia(clicked.id3,clicked.id4) ;
+
                                      WinJS.Utilities.query("a").forEach(function(itema){
                                         itema.addEventListener("click",
                                         function(e){
@@ -109,8 +115,7 @@ WinJS.UI.processAll().then(function () {
                                     var index  = invoke.detail.itemIndex;
 
                                     currentItem=index;
-                                    // console.log(invoke.detail.itemPromise._value.data)
-                                    var clicked = invoke.detail.itemPromise._value.data;
+
                                         
                                     // window.location=clicked.link;
                                     // window.open(clicked.link, "_blank", "fullscreen=yes,height=600,width=800,scrollbars=yes,resizable=no");
@@ -121,9 +126,9 @@ WinJS.UI.processAll().then(function () {
                                         ,clicked.id3
                                         ,clicked.id4
                                         ,function(){
-                                            var list=document.getElementById("pivotScenario3").winControl._currentItem._contentElement.firstElementChild.winControl;
+                                                 var list=document.getElementById("pivotScenario3").winControl._currentItem._contentElement.firstElementChild.winControl;
                                                 // console.log("Ensure visible");
-                                                list.ensureVisible(index)
+                                                list.ensureVisible(index);
                                             });
                                 }, false);
 }
@@ -320,7 +325,7 @@ function transitionBetweenContent(invoke,id,id2,id3,id4,cb) {
     }
     } 
 
-    loadMedia(id3,id4) ;
+    
     actout=outgoing;actin=incoming;
 
     WinJS.UI.executeTransition(outgoing,

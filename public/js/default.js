@@ -79,6 +79,7 @@ function setTheme(color){
 
 function processResults(topic,result){
     var id=0;
+    // var preimg=[];
     data = result.feed.entries.map(
         function(item){
 
@@ -109,6 +110,9 @@ function processResults(topic,result){
             item.img= (img && typeof img[1]!=='undefined')?img[1]:"images/windows/Square70x70Logo.scale-180.png";
 
             item.publishedDate = new Date(item.publishedDate);
+            
+            // preimg[item.id] = new Image();
+            // preimg[item.id].src = item.img;            
 
             item.year=item.publishedDate.getFullYear();
             item.month= item.publishedDate.getMonth()+1;

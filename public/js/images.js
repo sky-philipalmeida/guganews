@@ -54,19 +54,6 @@ function loadMedia(id3,id4) {
 }
 
 
-function imageLoadErrorEvent(imgin) {
-
-    imgin.style.display="none"
-
-}
-function imageLoadEvent(imgin) {
-             imgin.style.display="table" 
-        //imgin.src="/images/background.svg";
-        imgin.style.width=imgin.width+"px !important';";
-        imgin.style.height=imgin.height+"px !important';";
-
-}
-
 
 function loadImageForItem(item,context){
     
@@ -108,6 +95,7 @@ function processImagesForResult(context,response){
     
     // console.log(arguments);
     var i = 0;
+    var preimg = [];
     
     var data = [];
 
@@ -171,11 +159,12 @@ function processImagesForResult(context,response){
                         
                         return;
                 }
-            item.width2=item.width+'px';
-            item.height2=item.height+'px';
             item.moreResultUrl = response.cursor.moreResultUrl;
             item.idname=context+'_'+(++i);
             item.idname2=context+'_'+i+'_2';
+
+            preimg[item.idname] = new Image();
+            preimg[item.idname].src = item.url;
 
             if (typeof item!="undefined") {
                 data.push(item);
@@ -184,8 +173,23 @@ function processImagesForResult(context,response){
         }
     );
     
-    // console.log(data);
     window[context] = new WinJS.Binding.List(data).dataSource;
+
+}
+
+function imageLoadErrorEvent(imgin) {
+
+    imgin.style.display="none"
+
+}
+function imageLoadEvent(imgin) {
+
+        // console.log(imgin);
+
+        imgin.style.display="block" 
+        //imgin.src="/images/background.svg";
+        imgin.style.width=imgin.width+"px !important';";
+        imgin.style.height=imgin.height+"px !important';";
 
 }
 
