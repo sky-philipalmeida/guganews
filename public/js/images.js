@@ -41,14 +41,18 @@ function loadMedia(id3,id4) {
     try {
         var li=document.querySelectorAll('[name="'+id3+'"]')[0];
         li.winControl.itemDataSource=window[id3];
-    } catch(e){ console.log(e);}
+    } catch(e){ 
+        setTimeout(function(){ loadMedia(id3,id4) }, 1000);
+        console.log(e);}
     
     try {    
         // console.log(id4);
         if (window[id4]===false) {console.log("NO VIDEOS!!!"); return; };
         var lv=document.querySelectorAll('[name="'+id4+'"]')[0];
         lv.winControl.itemDataSource=window[id4].dataSource;
-    } catch(e){ console.log(e);}
+    } catch(e){ 
+        setTimeout(function(){ loadMedia(id3,id4) }, 1000);
+        console.log(e);}
     
     
 }
