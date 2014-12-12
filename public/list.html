@@ -87,31 +87,6 @@ m - specifies the health topic
 					        </div>
                                           
                                                 
-					        <!-- Simple template for the ListViewVideo instantiation  -->
-					        <div class="smallListIconTextTemplateVideo" data-win-control="WinJS.Binding.Template">
-					            <div class="smallListIconTextItemVideo">
-                                  <video class="smallListIconTextItem-Video" src="" type="video/mp4" data-win-bind="src: url;" onclick="videoOnClickEvent(this);" onload="videoLoadEvent(this);" onerror="videoLoadErrorEvent(this);" controls>
-
-                                    Your browser does not support the video tag.
-                                  </video> 
-					            </div>
-					        </div>
-
-					        <!-- The declarative markup necesary for ListViewVideo instantiation -->
-					        <!-- Call WinJS.UI.processAll() in your initialization code -->
-					        <div id="listViewVideo"
-					        	data-win-bind="name: id4"
-					             class="win-selectionstylefilled"
-					             data-win-control="WinJS.UI.ListView"
-					             data-win-options="{
-					                    itemDataSource: false,
-					                    itemTemplate: select('.smallListIconTextTemplateVideo'),
-					                    selectionMode: 'none',
-					                    tapBehavior: 'none',
-					                    swipeBehavior: 'none',
-					                    layout: { type: WinJS.UI.GridLayout }
-					            }">
-					        </div>    
                                                 
                                                 
                                                 
@@ -141,7 +116,34 @@ m - specifies the health topic
 					            }">
 					        </div>
                                                 
-                                                
+                                    
+					        <!-- Simple template for the ListViewVideo instantiation  -->
+					        <div class="smallListIconTextTemplateVideo" data-win-control="WinJS.Binding.Template">
+					            <div class="smallListIconTextItemVideo">
+                                  <video class="smallListIconTextItem-Video" src="" type="video/mp4" data-win-bind="src: url;" onclick="videoOnClickEvent(this);" onload="videoLoadEvent(this);" onerror="videoLoadErrorEvent(this);" controls>
+
+                                    Your browser does not support the video tag.
+                                  </video> 
+					            </div>
+					        </div>
+
+					        <!-- The declarative markup necesary for ListViewVideo instantiation -->
+					        <!-- Call WinJS.UI.processAll() in your initialization code -->
+					        <div id="listViewVideo"
+					        	data-win-bind="name: id4"
+					             class="win-selectionstylefilled"
+					             data-win-control="WinJS.UI.ListView"
+					             data-win-options="{
+					                    itemDataSource: false,
+					                    itemTemplate: select('.smallListIconTextTemplateVideo'),
+					                    selectionMode: 'none',
+					                    tapBehavior: 'none',
+					                    swipeBehavior: 'none',
+					                    layout: { type: WinJS.UI.GridLayout }
+					            }">
+					        </div>    
+
+
 				        </div>
 				        <div data-win-bind="name: id">
 
