@@ -166,6 +166,7 @@ function processImagesForResult(context,response){
             item.moreResultUrl = response.cursor.moreResultUrl;
             item.idname=context+'_'+(++i);
             item.idname2=context+'_'+i+'_2';
+            item.visibleUrl='http://'+item.visibleUrl;
 
             preimg[item.idname] = new Image();
             preimg[item.idname].src = item.url;
