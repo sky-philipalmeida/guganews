@@ -65,7 +65,7 @@ function loadImageForItem(item,context){
     script.type= 'text/javascript';
     script.onerror = function(er){
         console.log(er);
-        spinner.stop();
+        // spinner.stop();
         if (error) {
 
             return;
@@ -75,7 +75,7 @@ function loadImageForItem(item,context){
         contentDialog._dom.commands[0].addEventListener(
             'click'
             ,function(){
-                spinner.stop();
+                // spinner.stop();
                 return;
             });
         contentDialog.show();
@@ -83,7 +83,7 @@ function loadImageForItem(item,context){
     }
     var linkrss = encodeURIComponent(item.title);
     //var context=id;
-    script.src="https://ajax.googleapis.com/ajax/services/search/images?context="+context+"&callback=processImagesForResult&v=1.0&imgsz=large&rsz=8&q="+linkrss;
+    script.src="http://ajax.googleapis.com/ajax/services/search/images?context="+context+"&callback=processImagesForResult&v=1.0&imgsz=large&rsz=8&q="+linkrss;
     //console.log(script.src);
 
     head.appendChild(script);
@@ -179,14 +179,14 @@ function processImagesForResult(context,response){
 
 function imageLoadErrorEvent(imgin) {
 
-    imgin.style.display="none"
+    imgin.style.display="none";
 
 }
 function imageLoadEvent(imgin) {
 
         // console.log(imgin);
 
-        imgin.style.display="block" 
+        imgin.style.display="block";
         //imgin.src="/images/background.svg";
         imgin.style.width=imgin.width+"px !important';";
         imgin.style.height=imgin.height+"px !important';";
@@ -208,7 +208,7 @@ function loadVideoForItem(item,context){
     script.type= 'text/javascript';
     script.onerror = function(er){
         console.log(er);
-        spinner.stop();
+        // spinner.stop();
         if (error) {
 
             return;
@@ -218,7 +218,7 @@ function loadVideoForItem(item,context){
         contentDialog._dom.commands[0].addEventListener(
             'click'
             ,function(){
-                spinner.stop();
+                // spinner.stop();
                 return;
             });
         contentDialog.show();
@@ -235,7 +235,7 @@ function loadVideoForItem(item,context){
     };
     var finalname='videofunction.'+context;
 
-    script.src="http://gdata.youtube.com/feeds/videos?vq="+linkrss+"&max-results=20&alt=json&callback="+finalname+"&orderby=relevance&sortorder=descending&format=5&fmt=18";
+    script.src="http://gdata.youtube.com/feeds/videos?vq="+linkrss+"&max-results=10&alt=json&callback="+finalname+"&orderby=relevance&sortorder=descending&format=5&fmt=18";
     //console.log(script.src);
 
     head.appendChild(script);
@@ -291,7 +291,8 @@ function processVideoForResult(request,context){
                         // console.log(result.responseText);
                         item.url=result.responseText;
                         // data.push();
-                        window[context].push(item);
+                        if(item.url) window[context].push(item);
+                        
                 });                   
             }
 
@@ -304,10 +305,10 @@ function processVideoForResult(request,context){
 }
 
 function videoLoadErrorEvent(imgin) {
-
+    // imgin.style.display="none";
 }
 function videoLoadEvent(imgin) {
-
+    // imgin.style.display="block";
 }
 
 

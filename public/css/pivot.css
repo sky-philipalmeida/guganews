@@ -305,3 +305,8 @@ div[style="padding-top: 0.8em;"] {
     font-size: 22pt;
     font-weight: bold;
 }
+
+video {
+    width:800px;
+    height:600px;
+}

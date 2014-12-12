@@ -42,7 +42,7 @@ WinJS.UI.processAll().then(function () {
     WinJS.Navigation.addEventListener("beforenavigate", function(e){
         if (boxopen) {
             e.detail.setPromise(WinJS.Promise.wrap(true));
-            spinn.stop();
+            // spinn.stop();
         }
     });
 
@@ -93,11 +93,14 @@ WinJS.UI.processAll().then(function () {
                         "iteminvoked", 
                         function(invoke){ 
 
-                                
 
                                     // console.log(invoke.detail.itemPromise._value.data)
                                     var clicked = invoke.detail.itemPromise._value.data;
 
+                                    loadImageForItem(clicked,clicked.id3);
+                                    loadVideoForItem(clicked,clicked.id4);
+
+                                    /*
                                      WinJS.Utilities.query("a").forEach(function(itema){
                                         itema.addEventListener("click",
                                         function(e){
@@ -108,7 +111,7 @@ WinJS.UI.processAll().then(function () {
 
                                             window.open(this.href,'Guganews');
                                         });
-                                     });
+                                     });*/
 
                                     //console.log(this);
                                     var index  = invoke.detail.itemIndex;
@@ -194,7 +197,7 @@ function getNews(invoke,uselast,cb){
         script.type= 'text/javascript';
         script.onerror = function(er){
             console.log(er);
-            spinner.stop();
+            // spinner.stop();
             if (error) {
 
                 return;
@@ -204,7 +207,7 @@ function getNews(invoke,uselast,cb){
             contentDialog._dom.commands[0].addEventListener(
                 'click'
                 ,function(){
-                    spinner.stop();
+                    // spinner.stop();
                     return;
                 });
             contentDialog.show();
@@ -216,15 +219,16 @@ function getNews(invoke,uselast,cb){
         //console.log(script.src);
         
         head.appendChild(script);
-        if(item=='h') script.onload=function(){
-
-            WinJS.Navigation.navigate("/list.html",name).done(
-                function(){
-                    // spinner.stop();
-                    if (cb) cb();
-                }
-                );
-        };
+        if(item==='h') {
+            script.onload=function(){
+                WinJS.Navigation.navigate("/list.html",name).done(
+                    function(){
+                        // spinner.stop();
+                        if (cb) cb();
+                    }
+                    );
+            };
+        }
 
     });
 /*

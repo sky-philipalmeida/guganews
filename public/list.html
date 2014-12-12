@@ -90,8 +90,8 @@ m - specifies the health topic
 					        <!-- Simple template for the ListViewVideo instantiation  -->
 					        <div class="smallListIconTextTemplateVideo" data-win-control="WinJS.Binding.Template">
 					            <div class="smallListIconTextItemVideo">
-                                                          <video onLoad="videoLoadEvent(this);" onError="videoLoadErrorEvent(this);" width="300" height="200" controls>
-                                                            <source src="" type="video/mp4" data-win-bind="src: url;" class="smallListIconTextItem-Video">
+                                                          <video class="smallListIconTextItem-Video" src="" type="video/mp4" data-win-bind="src: url;" onLoad="videoLoadEvent(this);" onError="videoLoadErrorEvent(this);" controls>
+     
                                                             Your browser does not support the video tag.
                                                           </video> 
 					            </div>

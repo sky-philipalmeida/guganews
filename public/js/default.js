@@ -119,8 +119,8 @@ function processResults(topic,result){
             item.day= item.publishedDate.getDate();
             item.monthyear= item.month+"/"+item.year;
             
-            loadImageForItem(item,item.id3);
-            //loadVideoForItem(item,item.id4);
+            // loadImageForItem(item,item.id3);
+            // loadVideoForItem(item,item.id4);
             
             return item;
 

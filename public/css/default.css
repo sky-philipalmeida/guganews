@@ -124,6 +124,7 @@ a:hover {
 
 
 /* CSS applied to the ListViews in this sample */
+#listViewVideo,
 #listView
 {
     width:100%;
@@ -131,11 +132,13 @@ a:hover {
     padding-bottom:20pt;
 }
 
+#listViewVideo .win-listheadercontainer,
 #listView .win-listheadercontainer {
     display:none;
 }
 
 /* Template for the items in the ListViews in this sample */       
+.smallListIconTextItemVideo,
 .smallListIconTextItem
 {
     padding: 5px;
@@ -145,6 +148,7 @@ a:hover {
     display: flex;
 }
 
+.smallListIconTextItemVideo img.smallListIconTextItem-Video,
 .smallListIconTextItem img.smallListIconTextItem-Image 
 {
     margin: 5px;
@@ -162,7 +166,8 @@ a:hover {
 }
     
 /* CSS applied to the ListViews in this sample */
-#listView
+#listView,
+#listViewVideo
 {
     width:100%;
     height: auto;
