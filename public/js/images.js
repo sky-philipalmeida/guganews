@@ -316,6 +316,14 @@ function videoLoadEvent(imgin) {
     // imgin.style.display="block";
 }
 
+function videoOnClickEvent(video) {
+    if (video.paused){
+        video.play();
+    }else{
+        video.pause();
+    }
+}
+
 
 // Simple but unreliable function to create string hash by Sergey.Shuchkin [t] gmail.com
 // alert( strhash('http://www.w3schools.com/js/default.asp') ); // 6mn6tf7st333r2q4o134o58888888888

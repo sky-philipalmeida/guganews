@@ -100,7 +100,13 @@ WinJS.UI.processAll().then(function () {
                                     loadImageForItem(clicked,clicked.id3);
                                     loadVideoForItem(clicked,clicked.id4);
 
-                                    /*
+                                    WinJS.Utilities.query(".smallListIconTextItem-Video").forEach(function(itema){
+                                        itema.addEventListener("click",
+                                        function(e){
+
+                                            alert('dd');
+                                        });
+                                     });    
                                      WinJS.Utilities.query("a").forEach(function(itema){
                                         itema.addEventListener("click",
                                         function(e){
@@ -111,7 +117,7 @@ WinJS.UI.processAll().then(function () {
 
                                             window.open(this.href,'Guganews');
                                         });
-                                     });*/
+                                     });
 
                                     //console.log(this);
                                     var index  = invoke.detail.itemIndex;

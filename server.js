@@ -3,7 +3,7 @@
 
 
 baseurl = "http://www.guganews.com";
-ip = process.env.OPENSHIFT_NODEJS_IP ? process.env.OPENSHIFT_NODEJS_IP : "172.21.215.87"; 
+ip = process.env.OPENSHIFT_NODEJS_IP ? process.env.OPENSHIFT_NODEJS_IP : "192.168.1.4"; 
 port = process.env.OPENSHIFT_NODEJS_PORT ? process.env.OPENSHIFT_NODEJS_PORT : "8000";
 
 
