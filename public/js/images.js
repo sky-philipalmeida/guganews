@@ -39,8 +39,9 @@ function loadMedia(id3,id4) {
     WinJS.UI.processAll();*/
 
     try {
+        if (window[id3]===false) {console.log("NO PICS!!!"); return; };
         var li=document.querySelectorAll('[name="'+id3+'"]')[0];
-        li.winControl.itemDataSource=window[id3];
+        li.winControl.itemDataSource=window[id3].dataSource;
     } catch(e){ 
         setTimeout(function(){ loadMedia(id3,id4) }, 1000);
         console.log(e);}
@@ -98,17 +99,20 @@ function loadImageForItem(item,context){
 function processImagesForResult(context,response){
     
     // console.log(arguments);
+
+    window[context] = new WinJS.Binding.List([]);
+
     var i = 0;
     var preimg = [];
     
     var data = [];
 
+    if (!response) {
 
-            if (!response) {
-                return;
-            }
+        window[context] = false;
+        return;
+    }
 
-    
     response.results.map(
         function(item){
 
@@ -159,10 +163,11 @@ function processImagesForResult(context,response){
                     "400"
                          */
                
-                if (item.url.indexOf("localhost")>=0){
-                        
-                        return;
-                }
+            if (item.url.indexOf("localhost")>=0){
+                    
+                    return;
+            }
+
             item.moreResultUrl = response.cursor.moreResultUrl;
             item.idname=context+'_'+(++i);
             item.idname2=context+'_'+i+'_2';
@@ -170,28 +175,29 @@ function processImagesForResult(context,response){
 
             preimg[item.idname] = new Image();
             preimg[item.idname].src = item.url;
-
-            if (typeof item!="undefined") {
-                data.push(item);
+            preimg[item.idname].onload = function(){
+                window[context].push(item);
             }
+
+            
 
         }
     );
     
-    window[context] = new WinJS.Binding.List(data).dataSource;
+    // window[context] = new WinJS.Binding.List(data).dataSource;
 
 }
 
 function imageLoadErrorEvent(imgin) {
 
-    imgin.style.display="none";
+    //imgin.style.display="none";
 
 }
 function imageLoadEvent(imgin) {
 
         // console.log(imgin);
 
-        imgin.style.display="block";
+        // imgin.style.display="block";
         //imgin.src="/images/background.svg";
         imgin.style.width=imgin.width+"px !important';";
         imgin.style.height=imgin.height+"px !important';";
@@ -240,7 +246,7 @@ function loadVideoForItem(item,context){
     };
     var finalname='videofunction.'+context;
 
-    script.src="http://gdata.youtube.com/feeds/videos?vq="+linkrss+"&max-results=10&alt=json&callback="+finalname+"&orderby=relevance&sortorder=descending&format=5&fmt=18";
+    script.src="http://gdata.youtube.com/feeds/videos?vq="+linkrss+"&max-results=10&alt=json&callback="+finalname+"&orderby=relevance&sortorder=descending&format=6&fmt=18";
     //console.log(script.src);
 
     head.appendChild(script);
@@ -252,17 +258,8 @@ videofunction={};
 
 function processVideoForResult(request,context){
     
-    // console.log(context);
-    
-    /* var entry=request.feed.entry;
-    // console.log(request.feed.entry);
-    
-    entry.map(function(item){
-        
-       //  console.log(item.link[0].href);
-    }); */
-    
-    // console.log(arguments);
+    window[context] = new WinJS.Binding.List([]); 
+
     var i = 0;
     
     var data = [];
@@ -273,30 +270,30 @@ function processVideoForResult(request,context){
         window[context]=false;
         return;
     }
-
-    // console.log(context);
     
-   
-                
-    window[context] = new WinJS.Binding.List([]); 
-    
-    
-
     entry.map(
         function(item){
                
+            // console.log(item);
+
             item.ourl=item.link[0].href;
 
             if (typeof item.ourl!=="undefined") {
                 
-                
                 var r = encodeURIComponent(item.ourl);
+
+                var re = /([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i
+                var results = re.exec(item.content.$t);
+                item.poster = results[0];
+
                 WinJS.xhr({ url: "getyoutubeurl/?link="+r })
                     .done(function complete(result) {
                         // console.log(result.responseText);
                         item.url=result.responseText;
                         // data.push();
-                        if(item.url) window[context].push(item);
+                        if(item.url) {
+                            window[context].push(item);
+                        }
                         
                 });                   
             }
@@ -309,14 +306,15 @@ function processVideoForResult(request,context){
   
 }
 
-function videoLoadErrorEvent(imgin) {
-    // imgin.style.display="none";
+function videoLoadErrorEvent(video) {
+    // video.style.display="none";
 }
-function videoLoadEvent(imgin) {
-    // imgin.style.display="block";
+function videoLoadEvent(video) {
+    // video.style.display="block";
 }
 
 function videoOnClickEvent(video) {
+
     if (video.paused){
         video.play();
     }else{
