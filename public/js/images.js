@@ -197,7 +197,7 @@ function imageLoadEvent(imgin) {
 
         // console.log(imgin);
 
-        // imgin.style.display="block";
+        imgin.style.display="block";
         //imgin.src="/images/background.svg";
         imgin.style.width=imgin.width+"px !important';";
         imgin.style.height=imgin.height+"px !important';";
