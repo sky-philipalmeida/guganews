@@ -42,12 +42,47 @@ function addCSSRule(sheet, selector, rules, index) {
     }
 }
 
-function setTheme(color){
+// TODO: Create theme class
+function spin(){
 
-        currentcolor=color?color:'yellowgreen';// '#61ba7f';
+    var progressRing = document.getElementById("myProgressRing");
+
+    progressRing.style.display = 'block';
+
+    return {
+        stop : function(){
+            progressRing.style.display = 'none';
+        }
+    }
+}
+
+function isIEMobile(){
+    return navigator.userAgent.match(/iemobile|windows phone|wpdesktop|wphone/i);
+}
+
+function setTheme(){
+
+         if ( isIEMobile() ) {
+
+            var hlcolor=document.createElement("div");
+            hlcolor.style.color="Highlight";
+            document.body.appendChild(hlcolor);
+            hlcolorrgb=window.getComputedStyle(hlcolor).color;
+            // delete hlcolor;
+            currentcolor = hlcolorrgb;// '#61ba7f';
+
+        } else {
+            currentcolor = 'green';
+        }
+
+        // if (color) { currentcolor=color; }     
 
         // Use it!
         // 
+        addCSSRule(document.styleSheets[0], 
+           "progress"
+           , "color: "+currentcolor+" !important");
+
         addCSSRule(document.styleSheets[0], 
            ".bgcolor"
            , "background-color: "+currentcolor+" !important");

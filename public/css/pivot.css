@@ -2,7 +2,7 @@
 .win-listview .win-vertical .win-gridlayout.win-structuralnodes .win-uniformgridlayout.win-itemscontainer.win-laidout,
 .win-listview .win-vertical .win-surface.win-gridlayout
 {
-    width:auto !important;
+    width: auto !important;
     min-height:400px !important;
 }
 

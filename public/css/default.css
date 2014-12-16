@@ -7,7 +7,12 @@ html, body {
     z-index: 9999999999999999;
 }
 
-.spinner, #progress  {
+progress{
+    z-index: 99999999;
+    position:absolute;
+    top:50%;
+    left:50%;
+    display:none;
 }
 
 /* Font colors

@@ -248,30 +248,6 @@ function getNews(invoke,uselast,cb){
 */  
 }
 
-function spin(){
-    var opts = {
-            lines: 8, // The number of lines to draw
-            length: 1000, // The length of each line
-            width: 1, // The line thickness
-            radius: 0, // The radius of the inner circle
-            corners: 0, // Corner roundness (0..1)
-            rotate: 0, // The rotation offset
-            direction: 1, // 1: clockwise, -1: counterclockwi
-            color: currentcolor, // #rgb or #rrggbb or array of col
-            speed: 1, // Rounds per second
-            trail: 50, // Afterglow percentage
-            shadow: false, // Whether to render a shadow
-            hwaccel: true, // Whether to use hardware acceler
-            className: 'spinner', // The CSS class to assign
-            zIndex: "999999999999999999999999", // The z-index (defaults to 20000000
-            top: '50%', // Top position relative to parent
-            left: '50%' // Left position relative to parent
-        };
-    var target = document.getElementById('progress');
-    spinn = new Spinner(opts).spin(target);
-    return spinn;
-}
-
 /****************************************************************
 transitionBetweenContent
 */
