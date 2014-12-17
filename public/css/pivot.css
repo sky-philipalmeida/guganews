@@ -5,8 +5,8 @@
     width: auto !important;
     min-height:400px !important;
     padding-left: 0px;
-    padding-right: 0px;
-    margin-left: 70px;
+    padding-right: 80px;
+    margin-left: 0px;
 }
 
 .win-itemscontainer .win-uniformlistlayout {
@@ -311,6 +311,6 @@ div[style="padding-top: 0.8em;"] {
 }
 
 video {
-    width:600px;
+    width:400px;
     height:400px;
 }

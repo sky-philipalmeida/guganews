@@ -153,10 +153,15 @@ a:hover {
     display: flex;
 }
 
-.smallListIconTextItem img.smallListIconTextItem-Image 
+.smallListIconTextItem a.smallListIconTextItem-Image 
 {
     margin: 5px;
-    margin-right:20px;
+    margin-right:10px;
+    width:400px !important;
+    height:400px !important;
+    background-size:100% auto; 
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .smallListIconTextItem .smallListIconTextItem-Detail

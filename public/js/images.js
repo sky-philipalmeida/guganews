@@ -172,6 +172,7 @@ function processImagesForResult(context,response){
             item.idname=context+'_'+(++i);
             item.idname2=context+'_'+i+'_2';
             item.visibleUrl='http://'+item.visibleUrl;
+            item.bgurl="url("+item.url+")";
 
             preimg[item.idname] = new Image();
             preimg[item.idname].src = item.url;
@@ -196,12 +197,6 @@ function imageLoadErrorEvent(imgin) {
 function imageLoadEvent(imgin) {
 
         // console.log(imgin);
-
-        imgin.style.display="block";
-        //imgin.src="/images/background.svg";
-        imgin.style.width=imgin.width+"px !important';";
-        imgin.style.height=imgin.height+"px !important';";
-
 }
 
 // +----------------------------------------------------------------------------
