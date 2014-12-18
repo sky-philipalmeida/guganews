@@ -78,10 +78,15 @@ function setTheme(){
         // if (color) { currentcolor=color; }     
 
         // Use it!
+        // .win-pivot .win-pivot-header-selected.win-pivot-header, .win-pivot-locked.win-pivot .win-pivot-header-selected.win-pivot-header
         // .smallListIconTextItem a.smallListIconTextItem-Image 
         addCSSRule(document.styleSheets[0], 
            "progress"
            , "color: "+currentcolor+" !important");
+
+        addCSSRule(document.styleSheets[0], 
+           ".win-pivot .win-pivot-header-selected.win-pivot-header, .win-pivot-locked.win-pivot .win-pivot-header-selected.win-pivot-header"
+           , "background-image: linear-gradient(to right,"+currentcolor+",#000);");
 
         addCSSRule(document.styleSheets[0], 
            ".bgcolor, .smallListIconTextItem a.smallListIconTextItem-Image"
@@ -98,6 +103,10 @@ function setTheme(){
         addCSSRule(document.styleSheets[0], 
            ".morehiddenblock"
            , "border-bottom:1px solid "+currentcolor+" !important");
+
+        addCSSRule(document.styleSheets[0], 
+           ".mailItemImage"
+           , "border-bottom:3px solid "+currentcolor+" !important");
 
 
         var t = new Trianglify({

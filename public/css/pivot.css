@@ -48,19 +48,16 @@ html.win-hoverable .win-pivot button.win-pivot-header:hover
 }
 /*NAVIGATION*/
 .win-pivot button.win-pivot-header {
-
+background-color: white;
+color:black;
 }
 html.win-hoverable .win-pivot button.win-pivot-header:hover {
 }
 
 .win-pivot .win-pivot-header-selected.win-pivot-header
 , .win-pivot-locked.win-pivot .win-pivot-header-selected.win-pivot-header {
-    /*background-image: 
-        linear-gradient(
-            to right,
-            #f9ff00,#ffcc00);*/
-    /* text-decoration:none; */
-
+    text-decoration:none;
+    color:white;
     border-radius:0px;
 }
 html.win-hoverable .win-pivot button.win-pivot-header:hover
@@ -96,8 +93,12 @@ html.win-hoverable .win-pivot button.win-pivot-header:hover
 #pivotScenario3 .win-listview .win-item {
 
     margin-bottom:0px;
-        border-bottom:0px solid #222;
+        border-bottom:1px solid #222;
     /* width: calc(100% - 20px); */
+    background-image: 
+        linear-gradient(
+            to right,
+            black,transparent);
 }
 
 #pivotScenario3 .win-listview.win-rtl .win-item {
@@ -124,7 +125,6 @@ html.win-hoverable .win-pivot button.win-pivot-header:hover
     -ms-flex-wrap: wrap;
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
-
 }
 /*IMAGES*/
 
@@ -135,12 +135,12 @@ html.win-hoverable .win-pivot button.win-pivot-header:hover
     opacity:1;
     filter: alpha(opacity=100);
     border-radius:0px;
-    height:100px;
-    width: 100px;
+    height:125px;
+    width: 125px;
     border-bottom: 0px solid #08fa18;
     background-size: cover;
     background-image:url("/images/windows/Square70x70Logo.scale-180.png");
-    margin:10pt;
+    margin-right:  10pt;
 }
 
 .mailItem {
@@ -180,7 +180,7 @@ font[color="#6f6f6f"],
 .mailItem .title {
     white-space:normal !important;
     font-weight: 400 !important;
-    margin-top: 10pt;
+    margin-top: 6pt;
     white-space: nowrap;
     overflow: hidden;
     -ms-flex: 1 100%;
