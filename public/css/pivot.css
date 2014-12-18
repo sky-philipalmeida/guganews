@@ -94,11 +94,11 @@ html.win-hoverable .win-pivot button.win-pivot-header:hover
 
     margin-bottom:0px;
         border-bottom:1px solid #222;
-    /* width: calc(100% - 20px); */
+    /* width: calc(100% - 20px); 
     background-image: 
         linear-gradient(
             to right,
-            black,transparent);
+            black,transparent);*/
 }
 
 #pivotScenario3 .win-listview.win-rtl .win-item {
