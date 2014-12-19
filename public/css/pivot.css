@@ -234,7 +234,7 @@ font[color="#6f6f6f"],
     background-color: #000;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: top top;
+    background-position: center center;
 
    opacity:0;
    -webkit-transition: opacity 500ms linear;
