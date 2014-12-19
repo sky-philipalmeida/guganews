@@ -162,13 +162,15 @@ html.win-hoverable .win-pivot button.win-pivot-header:hover
 font[color="#6f6f6f"],
 .mailItem .author {
     font-weight: 100;
-    padding-top: 20px;
     white-space: nowrap;
     overflow: hidden;
    /* -ms-flex: 1 100%;
     -webkit-flex: 1 100%;
     flex: 1 100%;*/
-    font-size: 20pt;
+    font-size: 15pt !important;
+    padding-right:5px;
+    padding-left:5px;
+    color:black;
     /* background-image: 
         linear-gradient(
             to right,
@@ -252,14 +254,9 @@ font[color="#6f6f6f"],
     min-height:125px;
     max-height:400px;
 }
-font[color="#6f6f6f"] {
-    margin-right:10px !important;
-    font-size: 20pt !important;
-}
 font[size="-1"] {
     font-size: 26pt;
     line-height: 40pt;
-
 }
 font[size="-2"] {
     display:none;
