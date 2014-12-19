@@ -5,7 +5,7 @@
     width: auto !important;
     padding-left: 0px;
     margin-left: 0px;
-    height: 420px;
+    max-height: 420px;
 }
 
 .win-itemscontainer .win-uniformlistlayout {

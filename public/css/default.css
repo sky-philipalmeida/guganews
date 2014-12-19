@@ -7,11 +7,6 @@ html, body {
     z-index: 9999999999999999;
 }
 
-iframe {
-    background:transparent;
-    padding-left: 10px;
-    padding-top: 10px;
-}
 
 progress{
     z-index: 99999999;
@@ -158,6 +153,15 @@ a:hover {
     display: -webkit-flex;
     display: flex;
 }
+
+.smallListIconTextItemVideo iframe {
+    background:transparent;
+    padding-left: 10px;
+    padding-top: 10px;
+    width:600px !important;
+    height:400px !important;
+}
+
 
 .smallListIconTextItem a.smallListIconTextItem-Image 
 {
