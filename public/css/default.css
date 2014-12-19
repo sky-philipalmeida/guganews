@@ -9,6 +9,8 @@ html, body {
 
 iframe {
     background:transparent;
+    padding-left: 10px;
+    padding-top: 10px;
 }
 
 progress{
