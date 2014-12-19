@@ -3,10 +3,9 @@
 .win-listview .win-vertical .win-surface.win-gridlayout
 {
     width: auto !important;
-    min-height:400px !important;
     padding-left: 0px;
-    padding-right: 80px;
     margin-left: 0px;
+    max-height: 420px;
 }
 
 .win-itemscontainer .win-uniformlistlayout {
@@ -254,6 +253,7 @@ font[color="#6f6f6f"],
     min-height:125px;
     max-height:400px;
 }
+
 font[size="-1"] {
     font-size: 26pt;
     line-height: 40pt;
@@ -318,9 +318,4 @@ div[style="padding-top: 0.8em;"] {
     padding-top: 5px;
     font-size: 22pt;
     font-weight: bold;
-}
-
-video {
-    width:400px;
-    height:400px;
 }

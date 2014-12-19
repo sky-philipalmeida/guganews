@@ -277,8 +277,12 @@ function processVideoForResult(request,context){
     entry.map(
         function(item){
                
-            // console.log(item);
-
+            console.log(item);
+            var u = item.id.$t.split('/');
+            item.video = 'http://www.youtube.com/embed/' + u[(u.length-1)];
+            window[context].push(item);
+            return;
+            /*
             item.ourl=item.link[0].href;
 
             if (typeof item.ourl!=="undefined") {
@@ -299,7 +303,7 @@ function processVideoForResult(request,context){
                         }
                         
                 });                   
-            }
+            } */
 
         }
     );
