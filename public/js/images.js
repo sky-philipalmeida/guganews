@@ -180,12 +180,13 @@ function processImagesForResult(contextin,response){
             preimg[item.idname] = new Image();
             preimg[item.idname].src = item.url;
             preimg[item.idname].onload = function(){
-                if(window[context].dataSource.list.length===0){
+                var totalLoaded=window[context].dataSource.list.length;
+                if(totalLoaded===0){
                     var ct=document.querySelectorAll('[name="'+id2+'"]')[0];
                     ct.style.backgroundImage="url("+this.src+")";
                 }
-
-                window[context].push(item);
+                if (totalLoaded<7)
+                    window[context].push(item);
             }
 
             
