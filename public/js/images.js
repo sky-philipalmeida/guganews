@@ -59,7 +59,6 @@ function loadMedia(id3,id4) {
 }
 
 
-
 function loadImageForItem(item,context){
     
     // load images per item
@@ -87,7 +86,7 @@ function loadImageForItem(item,context){
         return;
     }
     var linkrss = encodeURIComponent(item.title);
-    //var context=id;
+    context +='__'+item.id2;
     script.src="http://ajax.googleapis.com/ajax/services/search/images?context="+context+"&callback=processImagesForResult&v=1.0&imgsz=large&rsz=8&q="+linkrss;
     //console.log(script.src);
 
@@ -96,9 +95,13 @@ function loadImageForItem(item,context){
     
 }
 
-function processImagesForResult(context,response){
+function processImagesForResult(contextin,response){
     
     // console.log(arguments);
+    var r=contextin.split("__");
+    var context=r[0];
+    var id2=r[1];
+
 
     window[context] = new WinJS.Binding.List([]);
 
@@ -177,6 +180,11 @@ function processImagesForResult(context,response){
             preimg[item.idname] = new Image();
             preimg[item.idname].src = item.url;
             preimg[item.idname].onload = function(){
+                if(window[context].dataSource.list.length===0){
+                    var ct=document.querySelectorAll('[name="'+id2+'"]')[0];
+                    ct.style.backgroundImage="url("+this.src+")";
+                }
+
                 window[context].push(item);
             }
 
