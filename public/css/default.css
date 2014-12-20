@@ -147,8 +147,7 @@ a:hover {
 .smallListIconTextItemVideo,
 .smallListIconTextItem
 {
-    margin: 5px;
-    margin-right:10px;
+    margin: 10px;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
@@ -156,11 +155,10 @@ a:hover {
 
 .smallListIconTextItemVideo iframe {
     background:transparent;
-    padding-left: 10px;
-    padding-top: 10px;
     width:600px !important;
     height:400px !important;
     padding:20px;
+    padding-top: 0px;
 }
 
 
