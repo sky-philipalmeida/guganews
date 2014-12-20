@@ -30,7 +30,19 @@ function loadImages() {
 }
 
 */
-function loadMedia(id2,id3,id4) {
+function bindMediaVideo(id2,id3,id4) {
+    //console.log(window[id4]);
+    if (typeof window[id4]!=='undefined'&&window[id4]!==false&&window[id4].length>=0){
+
+        var li=document.querySelectorAll('[name="'+id4+'"]')[0];
+        li.winControl.itemDataSource=window[id4].dataSource;
+     
+    }else{
+        if(window[id4]!==false)
+            setTimeout(function(){ bindMediaVideo(id2,id3,id4) }, 1000);
+    }
+}
+function bindMediaImage(id2,id3,id4) {
     /*
     WinJS.Namespace.define("Sample.ListView", {
         dataSource:  window["data_img_"+id]
@@ -38,39 +50,35 @@ function loadMedia(id2,id3,id4) {
     
     WinJS.UI.processAll();*/
 
-    console.log(window[id3]);
-    x=window[id3];
+    //console.log(window[id3]);
+    //x=window[id3];
     if (typeof window[id3]!=='undefined'&&window[id3]!==false&&window[id3].length>0){
         var li=document.querySelectorAll('[name="'+id3+'"]')[0];
         li.winControl.itemDataSource=window[id3].dataSource;
-        var ct=document.querySelectorAll('[name="'+id2+'"]')[0];
-        ct.style.backgroundImage=window[id3].getAt(0).bgurl;  
+     
+
+            /*
+            var cs1="background:linear-gradient(to bottom, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0.7) 100%), "+window[id3].getAt(0).bgurl+";"; 
+            var cs2="background:linear-gradient(to bottom, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0.7) 100%), "+window[id3].getAt(0).bgurl+";"; 
+
+            var cs1="background-size:0px 0px";
+            var cs2="background-size:cover";
+            addCSSRule(document.styleSheets[0], 
+           "@keyframes animatedBackground"+id2
+           , "from { "+cs1+" } to { "+cs2+" }");
+
+*/
+            addCSSRule(document.styleSheets[0], 
+           'div[name="'+id2+'"]'
+           , "background-image:"+window[id3].getAt(0).bgurl+";/*animation: animatedBackground"+id2+" 10s linear;*/");
+            
+   //var ct=document.querySelectorAll('[name="'+id2+'"]')[0];
+      //  ct.style.background="-ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%),"+window[id3].getAt(0).bgurl; 
+         //ct.style.backgroundImage=window[id3].getAt(0).bgurl;  
+         
     }else{
-        setTimeout(function(){ loadMedia(id2,id3,id4) }, 1000);
+        setTimeout(function(){ bindMediaImage(id2,id3,id4) }, 1000);
     }
-
-    return;
-
-    try {
-        if (window[id3]===false) {console.log("NO PICS!!!"); return; };
-        var li=document.querySelectorAll('[name="'+id3+'"]')[0];
-        li.winControl.itemDataSource=window[id3].dataSource;
-        var ct=document.querySelectorAll('[name="'+id2+'"]')[0];
-        ct.style.backgroundImage=window[id3].getAt(0).bgurl;  
-                
-    } catch(e){ 
-        setTimeout(function(){ loadMedia(id2,id3,id4) }, 1000);
-        console.log(e);}
-    return;
-    try {    
-        // console.log(id4);
-        if (window[id4]===false) {console.log("NO VIDEOS!!!"); return; };
-        var lv=document.querySelectorAll('[name="'+id4+'"]')[0];
-        lv.winControl.itemDataSource=window[id4].dataSource;
-    } catch(e){ 
-        setTimeout(function(){ loadMedia(id2,id3,id4) }, 1000);
-        console.log(e);}
-    
     
 }
 
@@ -78,7 +86,7 @@ function loadMedia(id2,id3,id4) {
 function loadImageForItem(item,context){
     
     context +='__'+item.id2;
-    
+
     // load images per item
     var head= document.getElementsByTagName('head')[0];
     var script= document.createElement('script');
@@ -268,6 +276,7 @@ function processVideoForResult(request,context){
     var entry=request.feed.entry;
 
     if (!entry) {
+        window[context]=false;
         return;
     }
 

@@ -103,7 +103,8 @@ WinJS.UI.processAll().then(function () {
                                     loadImageForItem(clicked,clicked.id3);
                                     loadVideoForItem(clicked,clicked.id4);
 
-                                    loadMedia(clicked.id2,clicked.id3,clicked.id4) ;
+                                    bindMediaImage(clicked.id2,clicked.id3,clicked.id4);
+                                    bindMediaVideo(clicked.id2,clicked.id3,clicked.id4);
 
                                      WinJS.Utilities.query("a").forEach(function(itema){
                                         itema.addEventListener("click",
