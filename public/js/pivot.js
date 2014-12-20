@@ -97,16 +97,14 @@ WinJS.UI.processAll().then(function () {
                                     // console.log(invoke.detail.itemPromise._value.data)
                                     var clicked = invoke.detail.itemPromise._value.data;
 
+                                    window[clicked.id3] = new WinJS.Binding.List([]);
+                                    window[clicked.id4] = new WinJS.Binding.List([]);
+
                                     loadImageForItem(clicked,clicked.id3);
                                     loadVideoForItem(clicked,clicked.id4);
 
-                                    WinJS.Utilities.query(".smallListIconTextItem-Video").forEach(function(itema){
-                                        itema.addEventListener("click",
-                                        function(e){
+                                    loadMedia(clicked.id2,clicked.id3,clicked.id4) ;
 
-                                            alert('dd');
-                                        });
-                                     });    
                                      WinJS.Utilities.query("a").forEach(function(itema){
                                         itema.addEventListener("click",
                                         function(e){
@@ -257,8 +255,6 @@ var actin=0;
 function transitionBetweenContent(invoke,id,id2,id3,id4,cb) {
 
 
-
-
     var incoming;
     var outgoing;
     var output1=document.querySelectorAll('[name="'+id+'"]')[0];
@@ -293,7 +289,7 @@ function transitionBetweenContent(invoke,id,id2,id3,id4,cb) {
                 {
                     property: "opacity",
                     delay: 0,
-                    duration: 300,
+                    duration: 250,
                     timing: "linear",
                     from: 0,
                     to: 1
@@ -310,7 +306,6 @@ function transitionBetweenContent(invoke,id,id2,id3,id4,cb) {
     }
     } 
 
-    loadMedia(id3,id4) ;
                                         
     actout=outgoing;actin=incoming;
 

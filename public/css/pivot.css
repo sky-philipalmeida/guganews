@@ -240,11 +240,6 @@ font[color="#6f6f6f"],
     background-position: center center;
 
    opacity:0;
-   -webkit-transition: opacity 500ms linear;
-   -moz-transition: opacity 500ms linear;
-   -o-transition: opacity 500ms linear;
-   -ms-transition: opacity 500ms linear;
-   transition: opacity 500ms linear;
   box-shadow: 
             inset 60rem 60rem 60rem 60rem rgba(0,0,0,0.75), 
            60rem 60rem 60rem #000;

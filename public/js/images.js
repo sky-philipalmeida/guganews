@@ -30,7 +30,7 @@ function loadImages() {
 }
 
 */
-function loadMedia(id3,id4) {
+function loadMedia(id2,id3,id4) {
     /*
     WinJS.Namespace.define("Sample.ListView", {
         dataSource:  window["data_img_"+id]
@@ -38,21 +38,37 @@ function loadMedia(id3,id4) {
     
     WinJS.UI.processAll();*/
 
+    console.log(window[id3]);
+    x=window[id3];
+    if (typeof window[id3]!=='undefined'&&window[id3]!==false&&window[id3].length>0){
+        var li=document.querySelectorAll('[name="'+id3+'"]')[0];
+        li.winControl.itemDataSource=window[id3].dataSource;
+        var ct=document.querySelectorAll('[name="'+id2+'"]')[0];
+        ct.style.backgroundImage=window[id3].getAt(0).bgurl;  
+    }else{
+        setTimeout(function(){ loadMedia(id2,id3,id4) }, 1000);
+    }
+
+    return;
+
     try {
         if (window[id3]===false) {console.log("NO PICS!!!"); return; };
         var li=document.querySelectorAll('[name="'+id3+'"]')[0];
         li.winControl.itemDataSource=window[id3].dataSource;
+        var ct=document.querySelectorAll('[name="'+id2+'"]')[0];
+        ct.style.backgroundImage=window[id3].getAt(0).bgurl;  
+                
     } catch(e){ 
-        setTimeout(function(){ loadMedia(id3,id4) }, 1000);
+        setTimeout(function(){ loadMedia(id2,id3,id4) }, 1000);
         console.log(e);}
-    
+    return;
     try {    
         // console.log(id4);
         if (window[id4]===false) {console.log("NO VIDEOS!!!"); return; };
         var lv=document.querySelectorAll('[name="'+id4+'"]')[0];
         lv.winControl.itemDataSource=window[id4].dataSource;
     } catch(e){ 
-        setTimeout(function(){ loadMedia(id3,id4) }, 1000);
+        setTimeout(function(){ loadMedia(id2,id3,id4) }, 1000);
         console.log(e);}
     
     
@@ -60,6 +76,8 @@ function loadMedia(id3,id4) {
 
 
 function loadImageForItem(item,context){
+    
+    context +='__'+item.id2;
     
     // load images per item
     var head= document.getElementsByTagName('head')[0];
@@ -86,7 +104,7 @@ function loadImageForItem(item,context){
         return;
     }
     var linkrss = encodeURIComponent(item.title);
-    context +='__'+item.id2;
+
     script.src="http://ajax.googleapis.com/ajax/services/search/images?context="+context+"&callback=processImagesForResult&v=1.0&imgsz=large&rsz=8&q="+linkrss;
     //console.log(script.src);
 
@@ -102,19 +120,10 @@ function processImagesForResult(contextin,response){
     var context=r[0];
     var id2=r[1];
 
-
-    window[context] = new WinJS.Binding.List([]);
-
     var i = 0;
     var preimg = [];
     
     var data = [];
-
-    if (!response) {
-
-        window[context] = false;
-        return;
-    }
 
     response.results.map(
         function(item){
@@ -174,18 +183,12 @@ function processImagesForResult(contextin,response){
             item.moreResultUrl = response.cursor.moreResultUrl;
             item.idname=context+'_'+(++i);
             item.idname2=context+'_'+i+'_2';
-            item.visibleUrl='http://'+item.visibleUrl;
-            item.bgurl="url("+item.url+")";
+            item.bgurl="url("+item.unescapedUrl+")";
 
             preimg[item.idname] = new Image();
-            preimg[item.idname].src = item.url;
+            preimg[item.idname].src = item.unescapedUrl;
             preimg[item.idname].onload = function(){
-                var totalLoaded=window[context].dataSource.list.length;
-                if(totalLoaded===0){
-                    var ct=document.querySelectorAll('[name="'+id2+'"]')[0];
-                    ct.style.backgroundImage="url("+this.src+")";
-                }
-                
+
                 window[context].push(item);
             }
 
@@ -212,7 +215,7 @@ function imageLoadEvent(imgin) {
 // | Videos
 // +----------------------------------------------------------------------------
 function loadVideoForItem(item,context){
-    
+
     // load images per item
     var head= document.getElementsByTagName('head')[0];
     var script= document.createElement('script');
@@ -261,24 +264,21 @@ videofunction={};
 
 
 function processVideoForResult(request,context){
-    
-    window[context] = new WinJS.Binding.List([]); 
-
-    var i = 0;
-    
-    var data = [];
 
     var entry=request.feed.entry;
 
     if (!entry) {
-        window[context]=false;
         return;
     }
+
+    var i = 0;
     
+    var data = [];    
+
     entry.map(
         function(item){
                
-            console.log(item);
+            // console.log(item);
             var u = item.id.$t.split('/');
             item.video = 'http://www.youtube.com/embed/' + u[(u.length-1)];
             window[context].push(item);
@@ -320,16 +320,6 @@ function videoLoadErrorEvent(video) {
 function videoLoadEvent(video) {
     // video.style.display="block";
 }
-
-function videoOnClickEvent(video) {
-
-    if (video.paused){
-        video.play();
-    }else{
-        video.pause();
-    }
-}
-
 
 // Simple but unreliable function to create string hash by Sergey.Shuchkin [t] gmail.com
 // alert( strhash('http://www.w3schools.com/js/default.asp') ); // 6mn6tf7st333r2q4o134o58888888888
