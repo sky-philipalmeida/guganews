@@ -185,8 +185,8 @@ function processImagesForResult(contextin,response){
                     var ct=document.querySelectorAll('[name="'+id2+'"]')[0];
                     ct.style.backgroundImage="url("+this.src+")";
                 }
-                if (totalLoaded<7)
-                    window[context].push(item);
+                
+                window[context].push(item);
             }
 
             
