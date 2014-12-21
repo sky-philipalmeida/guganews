@@ -10,6 +10,10 @@
     padding-bottom: 20px;
 }
 
+.win-listview > .win-horizontal .win-listlayout.win-surface{
+        max-height: 440px;
+}
+
 .win-itemscontainer .win-uniformlistlayout {
     height: inherit !important;
 }

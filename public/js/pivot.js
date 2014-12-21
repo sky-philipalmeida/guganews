@@ -97,14 +97,13 @@ WinJS.UI.processAll().then(function () {
                                     // console.log(invoke.detail.itemPromise._value.data)
                                     var clicked = invoke.detail.itemPromise._value.data;
 
-                                    window[clicked.id3] = new WinJS.Binding.List([]);
-                                    window[clicked.id4] = new WinJS.Binding.List([]);
+
 
                                     loadImageForItem(clicked,clicked.id3);
                                     loadVideoForItem(clicked,clicked.id4);
 
-                                    bindMediaImage(clicked.id2,clicked.id3,clicked.id4);
-                                    bindMediaVideo(clicked.id2,clicked.id3,clicked.id4);
+                                     bindMediaImage(clicked.id2,clicked.id3,clicked.id4);
+
 
                                      WinJS.Utilities.query("a").forEach(function(itema){
                                         itema.addEventListener("click",
@@ -264,12 +263,20 @@ function transitionBetweenContent(invoke,id,id2,id3,id4,cb) {
 
     // Assign incoming and outgoing
     if (output2.style.display === "none") {
+
+        //window[id3] = new WinJS.Binding.List([]);
+        //window[id4] = new WinJS.Binding.List([]);
+                                    
+
         incoming = output2;
         outgoing = output1;
     } else {
         incoming = output1;
         outgoing = output2;
     }
+
+
+
     if (actin){
     if(actin==outgoing){
 
@@ -309,6 +316,8 @@ function transitionBetweenContent(invoke,id,id2,id3,id4,cb) {
 
                                         
     actout=outgoing;actin=incoming;
+       
+        //bindMediaVideo(id2,id3,id4);
 
     WinJS.UI.executeTransition(outgoing,
     {

@@ -36,6 +36,8 @@ function bindMediaVideo(id2,id3,id4) {
 
         var li=document.querySelectorAll('[name="'+id4+'"]')[0];
         li.winControl.itemDataSource=window[id4].dataSource;
+
+
      
     }else{
         if(window[id4]!==false)
@@ -67,14 +69,17 @@ function bindMediaImage(id2,id3,id4) {
            "@keyframes animatedBackground"+id2
            , "from { "+cs1+" } to { "+cs2+" }");
 
-*/
+
             addCSSRule(document.styleSheets[0], 
            'div[name="'+id2+'"]'
-           , "background-image:"+window[id3].getAt(0).bgurl+";/*animation: animatedBackground"+id2+" 10s linear;*/");
-            
-   //var ct=document.querySelectorAll('[name="'+id2+'"]')[0];
-      //  ct.style.background="-ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%),"+window[id3].getAt(0).bgurl; 
-         //ct.style.backgroundImage=window[id3].getAt(0).bgurl;  
+           , "background-image:"+window[id3].getAt(0).bgurl+";animation: animatedBackground"+id2+" 10s linear;");
+            */
+
+            var ct=document.querySelectorAll('[name="'+id2+'"]')[0];
+            //ct.style.background="-ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%),"+window[id3].getAt(0).bgurl; 
+            ct.style.backgroundImage=window[id3].getAt(0).bgurl;  
+
+                    bindMediaVideo(id2,id3,id4);
          
     }else{
         setTimeout(function(){ bindMediaImage(id2,id3,id4) }, 1000);
@@ -85,8 +90,10 @@ function bindMediaImage(id2,id3,id4) {
 
 function loadImageForItem(item,context){
     
+        window[context] = new WinJS.Binding.List([]);
     context +='__'+item.id2;
 
+        //window[id4] = new WinJS.Binding.List([]);
     // load images per item
     var head= document.getElementsByTagName('head')[0];
     var script= document.createElement('script');
@@ -224,6 +231,9 @@ function imageLoadEvent(imgin) {
 // +----------------------------------------------------------------------------
 function loadVideoForItem(item,context){
 
+        //window[id3] = new WinJS.Binding.List([]);
+    window[context] = new WinJS.Binding.List([]);
+
     // load images per item
     var head= document.getElementsByTagName('head')[0];
     var script= document.createElement('script');
@@ -322,14 +332,6 @@ function processVideoForResult(request,context){
     
   
 }
-
-function videoLoadErrorEvent(video) {
-    // video.style.display="none";
-}
-function videoLoadEvent(video) {
-    // video.style.display="block";
-}
-
 // Simple but unreliable function to create string hash by Sergey.Shuchkin [t] gmail.com
 // alert( strhash('http://www.w3schools.com/js/default.asp') ); // 6mn6tf7st333r2q4o134o58888888888
 /*
