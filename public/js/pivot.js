@@ -93,6 +93,7 @@ WinJS.UI.processAll().then(function () {
                         "iteminvoked", 
                         function(invoke){ 
 
+                                var spinner=spin();
 
                                     // console.log(invoke.detail.itemPromise._value.data)
                                     var clicked = invoke.detail.itemPromise._value.data;
@@ -102,9 +103,9 @@ WinJS.UI.processAll().then(function () {
                                     loadImageForItem(clicked,clicked.id3);
                                     loadVideoForItem(clicked,clicked.id4);
 
-                                     bindMediaImage(clicked.id2,clicked.id3,clicked.id4);
+                                   
 
-
+                                        var promise=function(){
                                      WinJS.Utilities.query("a").forEach(function(itema){
                                         itema.addEventListener("click",
                                         function(e){
@@ -136,6 +137,11 @@ WinJS.UI.processAll().then(function () {
                                                 // console.log("Ensure visible");
                                                 list.ensureVisible(index);
                                             });
+
+                                    spinner.stop();
+
+                                }
+                                  bindMediaImage(clicked.id2,clicked.id3,clicked.id4,promise);
                                 }, false);
 }
 
