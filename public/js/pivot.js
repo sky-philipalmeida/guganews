@@ -353,7 +353,7 @@ function transitionBetweenContentToggle(id,id2,id3,id4,cb){
         outgoing.style.display = "none";
         incoming.style.display = "block";
 
-            cb();
+            
 
         WinJS.UI.executeTransition(
                 incoming,
@@ -366,6 +366,7 @@ function transitionBetweenContentToggle(id,id2,id3,id4,cb){
                 to: 1
             }).done(function(){
 
+                cb();
                 
             });
     });
