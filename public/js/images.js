@@ -36,14 +36,14 @@ function bindMediaVideo(id2,id3,id4,promisein) {
 
         var li=document.querySelectorAll('[name="'+id4+'"]')[0];
         li.winControl.itemDataSource=window[id4].dataSource;
-        promisein();
+        //promisein();
 
      
     }else{
         if(window[id4]!==false){
             setTimeout(function(){ bindMediaVideo(id2,id3,id4,promisein) }, 1000);
         } else {
-                promisein();
+                //promisein();
         }
     }
 }
@@ -59,6 +59,16 @@ function bindMediaImage(id2,id3,id4,promisein) {
     //x=window[id3];
     if (typeof window[id3]!=='undefined'&&window[id3]!==false&&window[id3].length>0){
         var li=document.querySelectorAll('[name="'+id3+'"]')[0];
+        console.log(li.winControl);
+        li.winControl.onloadingstatechanged=
+                        function(invoke){ 
+                              console.log(li.winControl);
+                                //console.log(li.winControl._loadingState);
+                                if(li.winControl._cachedCount===1&&
+                                    li.winControl._loadingState=='complete'){
+                                        promisein();
+                                }
+                        };
         li.winControl.itemDataSource=window[id3].dataSource;
 
             /*
