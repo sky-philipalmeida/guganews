@@ -96,16 +96,8 @@ WinJS.UI.processAll().then(function () {
                                 var spinner=spin();
 
                                     // console.log(invoke.detail.itemPromise._value.data)
-                                    var clicked = invoke.detail.itemPromise._value.data;
+                                    var clicked = invoke.detail.itemPromise._value.data;          
 
-
-
-                                    loadImageForItem(clicked,clicked.id3);
-                                    loadVideoForItem(clicked,clicked.id4);
-
-                                   
-
-                                        var promise=function(){
                                      WinJS.Utilities.query("a").forEach(function(itema){
                                         itema.addEventListener("click",
                                         function(e){
@@ -123,15 +115,10 @@ WinJS.UI.processAll().then(function () {
 
                                     currentItem=index;
 
-                                        
                                     // window.location=clicked.link;
                                     // window.open(clicked.link, "_blank", "fullscreen=yes,height=600,width=800,scrollbars=yes,resizable=no");
                                     transitionBetweenContent(
-                                        invoke
-                                        ,clicked.id
-                                        ,clicked.id2
-                                        ,clicked.id3
-                                        ,clicked.id4
+                                        clicked
                                         ,function(){
                                                  var list=document.getElementById("pivotScenario3").winControl._currentItem._contentElement.firstElementChild.winControl;
                                                 // console.log("Ensure visible");
@@ -140,8 +127,8 @@ WinJS.UI.processAll().then(function () {
 
                                     spinner.stop();
 
-                                }
-                                  bindMediaImage(clicked.id2,clicked.id3,clicked.id4,promise);
+                                
+
                                 }, false);
 }
 
@@ -195,6 +182,8 @@ function getNews(invoke,uselast,cb){
     currentCountryData = invoke ? invoke.detail.itemPromise._value : currentCountryData;
     currentCountryData.data.ned=ned;
     currentCountryData.data.hl=hl;
+    // Content cache clear
+    currentCountryData.content={};
     var requests = list.map(function(item){
 
         // console.log(item);
@@ -257,9 +246,34 @@ transitionBetweenContent
 */
 var actout=0;
 var actin=0;
+var loaded={};
 
-function transitionBetweenContent(invoke,id,id2,id3,id4,cb) {
+function transitionBetweenContent(clicked,cb) {
 
+    // Check loaded state
+    if (typeof currentCountryData.content[clicked.id]!=='undefined') {
+
+        transitionBetweenContentToggle(clicked.id,clicked.id2,clicked.id3,clicked.id4,cb);
+
+    } else {
+
+        currentCountryData.content[clicked.id]=true;
+        loadImageForItem(clicked,clicked.id3);
+        loadVideoForItem(clicked,clicked.id4);
+        bindMediaImage(clicked.id2,clicked.id3,clicked.id4,
+            function(){
+
+                transitionBetweenContentToggle(clicked.id,clicked.id2,clicked.id3,clicked.id4,cb);
+                
+        });
+
+    }
+
+    return;
+
+}
+
+function transitionBetweenContentToggle(id,id2,id3,id4,cb){
 
     var incoming;
     var outgoing;
@@ -290,7 +304,7 @@ function transitionBetweenContent(invoke,id,id2,id3,id4,cb) {
         {
             property: "opacity",
             delay: 0,
-            duration: 250,
+            duration: 150,
             timing: "linear",
             from: 1,
             to: 0
@@ -354,8 +368,6 @@ function transitionBetweenContent(invoke,id,id2,id3,id4,cb) {
                 
             });
     });
-
-    return;
 
 }
 

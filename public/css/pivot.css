@@ -237,7 +237,7 @@ font[color="#6f6f6f"],
     height:100%;
     float:left;
     width:100%;
-    padding-top:110px;
+    /*padding-top:110px;*/
     background-color: #000;
     background-size: cover;
     background-repeat: no-repeat;
@@ -250,8 +250,8 @@ font[color="#6f6f6f"],
    -ms-transition: opacity 500ms linear;
    transition: opacity 500ms linear;
   box-shadow: 
-            inset 60rem 60rem 60rem 60rem rgba(0,0,0,0.75), 
-           60rem 60rem 60rem #000;
+            inset 55rem 55rem 55rem 55rem rgba(0,0,0,0.50), 
+           55rem 55rem 55rem #000;
 }
 
 .morehiddenblock img{
@@ -268,6 +268,7 @@ font[size="-2"] {
     display:none;
 }
 td[width="80"] {
+    display:none;
     position:absolute;
     top:0pt;
 }
@@ -297,14 +298,13 @@ div[style="padding-top: 0.8em;"] {
 }
 
 .morehiddenblock .date{
-    margin-left: 136px;
-    position:absolute;
+    position:relative;
     top:2px;
 }
 
 .date
 {
-    float: left;
+    float: right;
     width:125px;
     height:125px;
     line-height: normal;
