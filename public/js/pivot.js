@@ -123,9 +123,10 @@ WinJS.UI.processAll().then(function () {
                                                  var list=document.getElementById("pivotScenario3").winControl._currentItem._contentElement.firstElementChild.winControl;
                                                 // console.log("Ensure visible");
                                                 list.ensureVisible(index);
+                                                spinner.stop();
                                             });
 
-                                    spinner.stop();
+                                    
 
                                 
 

@@ -46,12 +46,19 @@ function addCSSRule(sheet, selector, rules, index) {
 function spin(){
 
     var progressRing = document.getElementById("myProgressRing");
+    var progressRingc = document.getElementById("progresscontainer");
 
     progressRing.style.display = 'block';
+    progressRingc.style.display = 'block';
 
     return {
         stop : function(){
             progressRing.style.display = 'none';
+            progressRingc.style.display = 'none';
+        },
+        show : function(){
+            progressRing.style.display = 'block';
+            progressRingc.style.display = 'block';
         }
     }
 }
@@ -199,10 +206,11 @@ WinJS.UI.Pages.define("/list.html", {
 WinJS.UI.Pages.define("/", {
     init:function(){
         setTheme();
+        spinner=spin();
     },
     ready: function (element, options) {
         startupdate();
-        navigator.geolocation.getCurrentPosition(show_map,errorHandler);
+        navigator.geolocation.getCurrentPosition(show_map,spinner.stop/*errorHandler*/);
     }
 })
 

@@ -16,6 +16,15 @@ progress{
     display:none;
 }
 
+#progresscontainer{
+    display: none;
+    z-index: 99999999;
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+}
+
 /* Font colors
 ********************************************/
 
