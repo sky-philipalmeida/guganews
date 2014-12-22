@@ -59,13 +59,15 @@ function bindMediaImage(id2,id3,id4,promisein) {
     //x=window[id3];
     if (typeof window[id3]!=='undefined'&&window[id3]!==false&&window[id3].length>0){
         var li=document.querySelectorAll('[name="'+id3+'"]')[0];
-        console.log(li.winControl);
+        //console.log(li.winControl);
+        var run=false;
         li.winControl.onloadingstatechanged=
                         function(invoke){ 
-                              console.log(li.winControl);
+                              //console.log(li.winControl);
                                 //console.log(li.winControl._loadingState);
-                                if(li.winControl._cachedCount===1&&
-                                    li.winControl._loadingState=='complete'){
+                                if(!run&&li.winControl._loadingState=='complete'
+                                    ){
+                                    run=true;
                                         promisein();
                                 }
                         };
