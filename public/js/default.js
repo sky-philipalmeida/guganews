@@ -53,10 +53,14 @@ function spin(){
 
     return {
         stop : function(){
+            var progressRing = document.getElementById("myProgressRing");
+            var progressRingc = document.getElementById("progresscontainer");
             progressRing.style.display = 'none';
             progressRingc.style.display = 'none';
         },
         show : function(){
+            var progressRing = document.getElementById("myProgressRing");
+            var progressRingc = document.getElementById("progresscontainer");
             progressRing.style.display = 'block';
             progressRingc.style.display = 'block';
         }
