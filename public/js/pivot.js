@@ -93,7 +93,7 @@ WinJS.UI.processAll().then(function () {
                         "iteminvoked", 
                         function(invoke){ 
 
-                                spinner.start();
+                                spinner.show();
 
                                     // console.log(invoke.detail.itemPromise._value.data)
                                     var clicked = invoke.detail.itemPromise._value.data;          
