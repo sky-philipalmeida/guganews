@@ -1,35 +1,4 @@
-/*
-function loadImages() {
-    
-    var itemArray =[
-            { title: "Marvelous Mint", text: "Gelato", picture: "/images/fruits/60Mint.png" },
-            { title: "Succulent Strawberry", text: "Sorbet", picture: "/images/fruits/60Strawberry.png" },
-            { title: "Banana Blast", text: "Low-fat frozen yogurt", picture: "/images/fruits/60Banana.png" },
-            { title: "Lavish Lemon Ice", text: "Sorbet", picture: "/images/fruits/60Lemon.png" },
-            { title: "Creamy Orange", text: "Sorbet", picture: "/images/fruits/60Orange.png" },
-            { title: "Very Vanilla", text: "Ice Cream", picture: "/images/fruits/60Vanilla.png" },
-            { title: "Banana Blast", text: "Low-fat frozen yogurt", picture: "/images/fruits/60Banana.png" },
-            { title: "Lavish Lemon Ice", text: "Sorbet", picture: "/images/fruits/60Lemon.png" }
-    ];
 
-    var items = [];
-
-    // Generate 160 items
-    for (var i = 0; i < 20; i++) {
-        itemArray.forEach(function (item) {
-            items.push(item);
-        });
-    }
-
-
-    WinJS.Namespace.define("Sample.ListView", {
-        data: new WinJS.Binding.List(items)
-    });
-    WinJS.UI.processAll();
-    
-}
-
-*/
 function bindMediaVideo(id2,id3,id4,promisein) {
     //console.log(window[id4]);
     if (typeof window[id4]!=='undefined'&&window[id4]!==false&&window[id4].length>=0){
@@ -48,19 +17,20 @@ function bindMediaVideo(id2,id3,id4,promisein) {
     }
 }
 function bindMediaImage(id2,id3,id4,promisein) {
-    /*
-    WinJS.Namespace.define("Sample.ListView", {
-        dataSource:  window["data_img_"+id]
-    });
-    
-    WinJS.UI.processAll();*/
 
-    //console.log(window[id3]);
-    //x=window[id3];
     if (typeof window[id3]!=='undefined'&&window[id3]!==false&&window[id3].length>0){
         var li=document.querySelectorAll('[name="'+id3+'"]')[0];
         //console.log(li.winControl);
         var run=false;
+
+
+            var ct=document.querySelectorAll('[name="'+id2+'"]')[0];
+            ct.style.backgroundImage=window[id3].getAt(0).bgurl;  
+
+            bindMediaVideo(id2,id3,id4,promisein);
+
+            li.winControl.itemDataSource=window[id3].dataSource;
+
         li.winControl.onloadingstatechanged=
                         function(invoke){ 
                               //console.log(li.winControl);
@@ -71,29 +41,8 @@ function bindMediaImage(id2,id3,id4,promisein) {
                                         promisein();
                                 }
                         };
-        li.winControl.itemDataSource=window[id3].dataSource;
-
-            /*
-            var cs1="background:linear-gradient(to bottom, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0.7) 100%), "+window[id3].getAt(0).bgurl+";"; 
-            var cs2="background:linear-gradient(to bottom, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0.7) 100%), "+window[id3].getAt(0).bgurl+";"; 
-
-            var cs1="background-size:0px 0px";
-            var cs2="background-size:cover";
-            addCSSRule(document.styleSheets[0], 
-           "@keyframes animatedBackground"+id2
-           , "from { "+cs1+" } to { "+cs2+" }");
 
 
-            addCSSRule(document.styleSheets[0], 
-           'div[name="'+id2+'"]'
-           , "background-image:"+window[id3].getAt(0).bgurl+";animation: animatedBackground"+id2+" 10s linear;");
-            */
-
-            var ct=document.querySelectorAll('[name="'+id2+'"]')[0];
-            //ct.style.background="-ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%),"+window[id3].getAt(0).bgurl; 
-            ct.style.backgroundImage=window[id3].getAt(0).bgurl;  
-
-                    bindMediaVideo(id2,id3,id4,promisein);
          
     }else{
         setTimeout(function(){ bindMediaImage(id2,id3,id4,promisein) }, 1000);

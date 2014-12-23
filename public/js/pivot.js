@@ -259,14 +259,15 @@ function transitionBetweenContent(clicked,cb) {
     } else {
 
         currentCountryData.content[clicked.id]=true;
-        loadImageForItem(clicked,clicked.id3);
-        loadVideoForItem(clicked,clicked.id4);
+
         bindMediaImage(clicked.id2,clicked.id3,clicked.id4,
             function(){
 
                 transitionBetweenContentToggle(clicked.id,clicked.id2,clicked.id3,clicked.id4,cb);
                 
         });
+            loadImageForItem(clicked,clicked.id3);
+        loadVideoForItem(clicked,clicked.id4);
 
     }
 
