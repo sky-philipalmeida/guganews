@@ -93,7 +93,7 @@ WinJS.UI.processAll().then(function () {
                         "iteminvoked", 
                         function(invoke){ 
 
-                                var spinner=spin();
+                                spinner.start();
 
                                     // console.log(invoke.detail.itemPromise._value.data)
                                     var clicked = invoke.detail.itemPromise._value.data;          
@@ -367,7 +367,7 @@ function transitionBetweenContentToggle(id,id2,id3,id4,cb){
             }).done(function(){
 
                 cb();
-                
+
             });
     });
 
