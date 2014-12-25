@@ -2,17 +2,31 @@
 function bindMediaVideo(id2,id3,id4,promisein) {
     //console.log(window[id4]);
     if (typeof window[id4]!=='undefined'&&window[id4]!==false&&window[id4].length>=0){
-
+console.log("bvideo loading video");
         var li=document.querySelectorAll('[name="'+id4+'"]')[0];
         li.winControl.itemDataSource=window[id4].dataSource;
         //promisein();
+        li.winControl.onloadingstatechanged=
+                        function(invoke){ 
+                              //console.log(li.winControl);
+                                //console.log(li.winControl._loadingState);
+                                if(li.winControl._loadingState=='complete'
+                                    ){
+
+                                    li.winControl.onloadingstatechanged=false;
+                                    console.log("bvideo2 calling promeisse");
+                                      promisein();
+                                }
+                        };
 
      
     }else{
         if(window[id4]!==false){
-            setTimeout(function(){ bindMediaVideo(id2,id3,id4,promisein) }, 1000);
+            console.log("bvideo3 setimeout");
+            setTimeout(function(){ bindMediaVideo(id2,id3,id4) }, 1000);
         } else {
-                //promisein();
+            console.log("bvideo4 promise finel");
+                promisein();
         }
     }
 }
@@ -21,13 +35,13 @@ function bindMediaImage(id2,id3,id4,promisein) {
     if (typeof window[id3]!=='undefined'&&window[id3]!==false&&window[id3].length>0){
         var li=document.querySelectorAll('[name="'+id3+'"]')[0];
         //console.log(li.winControl);
-        var run=false;
+    console.log("bimage1 loading image");
 
 
             var ct=document.querySelectorAll('[name="'+id2+'"]')[0];
             ct.style.backgroundImage=window[id3].getAt(0).bgurl;  
 
-            bindMediaVideo(id2,id3,id4,promisein);
+            
 
             li.winControl.itemDataSource=window[id3].dataSource;
 
@@ -35,16 +49,20 @@ function bindMediaImage(id2,id3,id4,promisein) {
                         function(invoke){ 
                               //console.log(li.winControl);
                                 //console.log(li.winControl._loadingState);
-                                if(!run&&li.winControl._loadingState=='complete'
+                                if(li.winControl._loadingState=='complete'
                                     ){
-                                    run=true;
-                                        promisein();
+
+                                    li.winControl.onloadingstatechanged=false;
+                                    
+                                        console.log("bimage2 calling video");
+                                        bindMediaVideo(id2,id3,id4,promisein);
                                 }
                         };
 
 
          
     }else{
+        console.log("bimage3 timeout");
         setTimeout(function(){ bindMediaImage(id2,id3,id4,promisein) }, 1000);
     }
     

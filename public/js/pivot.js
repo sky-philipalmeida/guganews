@@ -111,8 +111,12 @@ WinJS.UI.processAll().then(function () {
                                         ,function(){
                                                  var list=document.getElementById("pivotScenario3").winControl._currentItem._contentElement.firstElementChild.winControl;
                                                 // console.log("Ensure visible");
-                                                list.ensureVisible(index);
+                                                
                                                 spinner.stop();
+                                                console.log("spinner out");
+
+                                                list.ensureVisible(index);
+                                                
                                             });
 
                                     
@@ -327,9 +331,13 @@ function transitionBetweenContentToggle(id,id2,id3,id4,cb){
                     timing: "linear",
                     from: 0,
                     to: 1
-                }).done(function(){});
+                }).done(function(){
+
+                    cb();
+                    
+                });
         });
-        cb();
+        
         return;
 
     } else {
