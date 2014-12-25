@@ -98,17 +98,6 @@ WinJS.UI.processAll().then(function () {
                                     // console.log(invoke.detail.itemPromise._value.data)
                                     var clicked = invoke.detail.itemPromise._value.data;          
 
-                                     WinJS.Utilities.query("a").forEach(function(itema){
-                                        itema.addEventListener("click",
-                                        function(e){
-
-                                            e.returnValue =false;
-                                            e.preventDefault();
-                                            e.stopPropagation();
-
-                                            window.open(this.href,'Guganews');
-                                        });
-                                     });
 
                                     //console.log(this);
                                     var index  = invoke.detail.itemIndex;
@@ -259,6 +248,22 @@ function transitionBetweenContent(clicked,cb) {
     } else {
 
         currentCountryData.content[clicked.id]=true;
+        loadImageForItem(clicked,clicked.id3);
+        loadVideoForItem(clicked,clicked.id4);
+       // console.log(clicked.id2);
+
+                                     WinJS.Utilities.query('[name="'+clicked.id2+'"] a').forEach(function(itema){
+                                        itema.addEventListener("click",
+                                        function(e){
+
+                                            e.returnValue =false;
+                                            e.preventDefault();
+                                            e.stopPropagation();
+
+                                            window.open(this.href,'Guganews');
+                                        });
+                                     });
+
 
         bindMediaImage(clicked.id2,clicked.id3,clicked.id4,
             function(){
@@ -266,8 +271,7 @@ function transitionBetweenContent(clicked,cb) {
                 transitionBetweenContentToggle(clicked.id,clicked.id2,clicked.id3,clicked.id4,cb);
                 
         });
-            loadImageForItem(clicked,clicked.id3);
-        loadVideoForItem(clicked,clicked.id4);
+
 
     }
 

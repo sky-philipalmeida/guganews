@@ -250,7 +250,7 @@ font[color="#6f6f6f"],
    -ms-transition: opacity 500ms linear;
    transition: opacity 500ms linear;
   box-shadow: 
-            inset 55rem 55rem 55rem 55rem rgba(0,0,0,0.50), 
+            inset 55rem 55rem 55rem 55rem rgba(0,0,0,0.75), 
            55rem 55rem 55rem #000;
 }
 
