@@ -32,7 +32,7 @@
 
 // Config starter ...
 // --------------------
-currentItem=-1;
+//currentItem=-1;
 page=0; // index.html
 
 
@@ -102,15 +102,15 @@ WinJS.UI.processAll().then(function () {
                                     //console.log(this);
                                     var index  = invoke.detail.itemIndex;
 
-                                    currentItem=index;
+                                   // currentItem=index;
+                                    var list=document.getElementById("pivotScenario3").winControl._currentItem._contentElement.firstElementChild.winControl;
+                                                // console.log("Ensure visible");
 
                                     // window.location=clicked.link;
                                     // window.open(clicked.link, "_blank", "fullscreen=yes,height=600,width=800,scrollbars=yes,resizable=no");
                                     transitionBetweenContent(
                                         clicked
                                         ,function(){
-                                                 var list=document.getElementById("pivotScenario3").winControl._currentItem._contentElement.firstElementChild.winControl;
-                                                // console.log("Ensure visible");
                                                 
                                                 spinner.stop();
                                                 console.log("spinner out");
@@ -334,17 +334,18 @@ function transitionBetweenContentToggle(id,id2,id3,id4,cb){
                 }).done(function(){
 
                     cb();
-                    
+
                 });
         });
         
         return;
 
     } else {
+        /*
         actout.style.display = "block";
         actin.style.display = "none";
         actout.style.opacity = 1;
-        actin.style.opacity = 0;
+        actin.style.opacity = 0;*/
     }
     } 
 

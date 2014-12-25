@@ -10,13 +10,13 @@ console.log("bvideo loading video");
                         function(invoke){ 
                               //console.log(li.winControl);
                                 //console.log(li.winControl._loadingState);
-                                if(li.winControl._loadingState=='complete'
-                                    ){
+                             //   if(li.winControl._loadingState=='complete'
+                              //      ){
 
                                     li.winControl.onloadingstatechanged=false;
                                     console.log("bvideo2 calling promeisse");
                                       promisein();
-                                }
+                            //    }
                         };
 
      
@@ -49,14 +49,14 @@ function bindMediaImage(id2,id3,id4,promisein) {
                         function(invoke){ 
                               //console.log(li.winControl);
                                 //console.log(li.winControl._loadingState);
-                                if(li.winControl._loadingState=='complete'
-                                    ){
+                               // if(li.winControl._loadingState=='complete'
+                               //     ){
 
                                     li.winControl.onloadingstatechanged=false;
                                     
                                         console.log("bimage2 calling video");
                                         bindMediaVideo(id2,id3,id4,promisein);
-                                }
+                               // }
                         };
 
 
