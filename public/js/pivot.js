@@ -341,11 +341,11 @@ function transitionBetweenContentToggle(id,id2,id3,id4,cb){
         return;
 
     } else {
-        /*
+        
         actout.style.display = "block";
         actin.style.display = "none";
         actout.style.opacity = 1;
-        actin.style.opacity = 0;*/
+        actin.style.opacity = 0;
     }
     } 
 
