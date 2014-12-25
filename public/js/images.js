@@ -199,7 +199,7 @@ function processImagesForResult(contextin,response){
 
 function imageLoadErrorEvent(imgin) {
 
-    //imgin.style.display="none";
+    imgin.src="/images/windows/Square71x71Logo.scale-100.png";
 
 }
 function imageLoadEvent(imgin) {

@@ -100,7 +100,7 @@ function setTheme(){
            , "background-image: linear-gradient(to right,"+currentcolor+",#000);");
 
         addCSSRule(document.styleSheets[0], 
-           "font[color=\"#6f6f6f\"],.bgcolor, .smallListIconTextItem a.smallListIconTextItem-Image"
+           ".mailItemImage,font[color=\"#6f6f6f\"],.bgcolor, .smallListIconTextItem a.smallListIconTextItem-Image"
            , "background-color: "+currentcolor+" !important");
 
         addCSSRule(document.styleSheets[0], 

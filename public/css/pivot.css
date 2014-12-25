@@ -144,7 +144,7 @@ html.win-hoverable .win-pivot button.win-pivot-header:hover
     width: 125px;
     border-bottom: 0px solid #08fa18;
     background-size: cover;
-    background-image:url("/images/windows/Square70x70Logo.scale-180.png");
+    background-image:url("/images/windows/Square71x71Logo.scale-100.png");
     margin-right:  10pt;
 }
 
@@ -250,7 +250,7 @@ font[color="#6f6f6f"],
    -ms-transition: opacity 500ms linear;
    transition: opacity 500ms linear;
   box-shadow: 
-            inset 55rem 55rem 55rem 55rem rgba(0,0,0,0.75), 
+            inset 55rem 55rem 55rem 55rem rgba(0,0,0,0.70), 
            55rem 55rem 55rem #000;
 }
 
