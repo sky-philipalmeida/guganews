@@ -20,7 +20,20 @@ var server = http.createServer(router);
 server.listen(port,ip);
 
 // Install python event-registry SDK
-var sys = require('sys')
-var exec = require('child_process').exec;
-function puts(error, stdout, stderr) { sys.puts(stdout) }
-exec("./event-registry-python/install.sh", puts);
+var util = require('util')
+var spawn = require('child_process').spawn;
+function puts(error, stdout, stderr) { util.log(stdout) }
+const out = spawn("./event-registry-python-install.sh");
+
+var outInstall = "";
+out.stdout.on('data', (data) => {
+  // console.log(`stdout: ${data}`);
+  outInstall+=data;
+});
+out.stderr.on('data', (data) => {
+  console.log(`stderr: ${data}`);
+});
+out.on('close', (code) => {
+  console.log(`child process exited with code ${code}`);
+  console.log(outInstall)
+});
