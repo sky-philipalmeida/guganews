@@ -1,3 +1,5 @@
 #!/usr/bin/bash
 python get-pip.py --user
-~/.local/bin/pip install eventregistry -I --install-option="--prefix=~/"
+cd event-registry-python
+export PYTHONPATH=~/.local/lib/python2.7/site-packages/
+python setup.py install --prefix=~/.local
