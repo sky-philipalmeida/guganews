@@ -115,6 +115,7 @@ function show_map(position) {
     currentCountryData.data = {};
     currentCountryData.data.url = closer.url;
     currentCountryData.data.name = closer.name;
+    currentCountryData.data.lang = closer.lang;
 
     getNews(false, true);
 

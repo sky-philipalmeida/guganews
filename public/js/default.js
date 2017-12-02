@@ -105,6 +105,12 @@ function processResults(topic, result) {
     var sets=[];
     var _pods=[];
     var position = 0;
+    if (typeof result.events == 'undefined') {
+        window["data_" + topic] = {
+            dataSource: new WinJS.Binding.List(sets[(max)]).dataSource
+        };
+        return;
+    }
     console.log(result.events.results);
     data = result.events.results.map(
         function (item) {
@@ -140,8 +146,6 @@ function processResults(topic, result) {
                 monthyear       : ((publishedDate.getMonth() + 1) + "/" +  publishedDate.getFullYear())
             };
            
-            //console.log(out);
-
             _pods.push(out)
             if (i%max==0)
             {

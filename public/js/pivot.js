@@ -106,8 +106,9 @@ function getNews(invoke, uselast, cb) {
 
     var location = uselast ? currentCountryData.data.url : invoke.detail.itemPromise._value.data.url;
     var name = uselast ? currentCountryData.data.name : invoke.detail.itemPromise._value.data.name;
-    var to = uselast ? currentCountryData.data.name : invoke.detail.itemPromise._value.data.lang;
+    var to = uselast ? currentCountryData.data.lang : invoke.detail.itemPromise._value.data.lang;
 
+    
     /*
     h - specifies the top headlines topic
     w - specifies the world topic
