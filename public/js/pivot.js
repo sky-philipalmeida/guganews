@@ -1,158 +1,113 @@
+/*
+_                    _                         _        _
+| |    ___   __ _  __| |   ___ ___  _   _ _ __ | |_ _ __(_) ___  ___
+| |   / _ \ / _` |/ _` |  / __/ _ \| | | | '_ \| __| '__| |/ _ \/ __|
+| |__| (_) | (_| | (_| | | (_| (_) | |_| | | | | |_| |  | |  __/\__ \
+|_____\___/ \__,_|\__,_|  \___\___/ \__,_|_| |_|\__|_|  |_|\___||___/
+*/
 (function () {
-
-
-    /*
-    var data = [];
-    for (var i = 0; i < 100; i++) {
-        data.push({ author: "Adam Smith", titleColor: "rgba(212, 14, 136, 1)", title: "Missed conversation with Michael Brown", previewText: "Michael Brown [1:53 PM]: Thanks for taking the time...", time: "1:55p" });
-        data.push({ author: "Michael Brown", titleColor: "rgba(212, 14, 136, 1)", title: "Need help later", previewText: "I was hoping you could help me with...", time: "1:50p" });
-        data.push({ author: "Thomas Lee", titleColor: "rgba(212, 14, 136, 1)", title: "Lunch with you", previewText: "Any chance you want to do lunch on...", time: "1:20p" });
-        data.push({ author: "Michael Wilson", titleColor: "rgba(212, 14, 136, 1)", title: "QuickStart's and How To's", previewText: "More information on how to use WinJS controls", time: "1:17p" });
-        data.push({ author: "Gary Paul", titleColor: "rgba(212, 14, 136, 1)", title: "Going out saturday", previewText: "Jean and I are leaving...", time: "12:28p" });
-        data.push({ author: "Smith Jones", titleColor: "rgba(212, 14, 136, 1)", title: "Happend every time", previewText: "I always end up going to the ...", time: "7:12a" });
-    }
-    window.All = { dataSource: new WinJS.Binding.List(data).dataSource };
-    */
-
     data = resources['Asia'];
-    window.Asia = { dataSource: new WinJS.Binding.List(data).dataSource };
+    window.Asia = {
+        dataSource: new WinJS.Binding.List(data).dataSource
+    };
 
     data = resources['Europe'];
-    window.Europe = { dataSource: new WinJS.Binding.List(data).dataSource };
+    window.Europe = {
+        dataSource: new WinJS.Binding.List(data).dataSource
+    };
 
     data = resources['North'];
-    // data.push({ author: "Michael Wilson", titleColor: "rgba(212, 14, 136, 1)", title: "QuickStart's and How To's", previewText: "More information on how to use WinJS controls", time: "1:17p" });
-    // data.push({ author: "Gary Paul", titleColor: "rgba(212, 14, 136, 1)", title: "Going out saturday", previewText: "Jean and I are leaving...", time: "12:28p" });
-    // data.push({ author: "Smith Jones", titleColor: "rgba(212, 14, 136, 1)", title: "Happend every time", previewText: "I always end up going to the ...", time: "7:12a" });
-    window.North = { dataSource: new WinJS.Binding.List(data).dataSource };
-    
-
-
+    window.North = {
+        dataSource: new WinJS.Binding.List(data).dataSource
+    };
 })();
 
 // Config starter ...
-// --------------------
-//currentItem=-1;
-page=0; // index.html
-
+var page = 0; // index.html
 
 WinJS.UI.processAll().then(function () {
 
-
-    WinJS.Navigation.addEventListener("beforenavigate", function(e){
+    WinJS.Navigation.addEventListener("beforenavigate", function (e) {
         if (boxopen) {
             e.detail.setPromise(WinJS.Promise.wrap(true));
             // spinn.stop();
         }
     });
 
-   WinJS.Navigation.addEventListener("navigating", function (e) {
-
-    var elem = document.getElementById("contentTarget");
-
-    WinJS.Utilities.empty(elem);
-
-    WinJS.UI.Pages.render(e.detail.location, elem)
-    .then(function () {
-
-        if (e.detail.location=="/list.html"){
-
-            var local = e.detail.state;
-            
-            WinJS.Utilities.setInnerHTML(
-                WinJS.Utilities.query("#appHeaderTitle")[0]
-                , '<b>'+local+'</b>');
-
-
-        }
-
-
-        var enterPage = WinJS.UI.Animation.enterPage(elem.children);
-
-        enterPage.done(
-            function(){
-
-
-                if (e.detail.location=="/index.html"){
-                    page=0;
-                    WinJS.Utilities.query(".listviewpivotitem")
-                    .listen("iteminvoked", 
-                        function(invoke){ 
-
-                            getNews(invoke);
-
-                        }, false);
+    WinJS.Navigation.addEventListener("navigating", function (e) {
+        var elem = document.getElementById("contentTarget");
+        WinJS.Utilities.empty(elem);
+        WinJS.UI.Pages.render(e.detail.location, elem)
+            .then(function () {
+                if (e.detail.location == "/list.html") {
+                    var local = e.detail.state;
+                    WinJS.Utilities.setInnerHTML(WinJS.Utilities.query("#appHeaderTitle")[0], '<b>' + local + '</b>');
                 }
-
-                if (e.detail.location=="/list.html"){
-
-
-                    page=1; // list.html
-                    WinJS.Utilities.query(".listviewpivotitem")
-                    .listen(
-                        "iteminvoked", 
-                        function(invoke){ 
-
-                                spinner.show();
-
-                                    // console.log(invoke.detail.itemPromise._value.data)
-                                    var clicked = invoke.detail.itemPromise._value.data;          
-
-
-                                    //console.log(this);
-                                    var index  = invoke.detail.itemIndex;
-
-                                   // currentItem=index;
-                                    var list=document.getElementById("pivotScenario3").winControl._currentItem._contentElement.firstElementChild.winControl;
-                                                // console.log("Ensure visible");
-
-                                    // window.location=clicked.link;
-                                    // window.open(clicked.link, "_blank", "fullscreen=yes,height=600,width=800,scrollbars=yes,resizable=no");
-                                    transitionBetweenContent(
-                                        clicked
-                                        ,function(){
-                                                
+                WinJS.UI.Animation.enterPage(elem.children).done(
+                    function () {
+                        if (e.detail.location == "/index.html") {
+                            page = 0;
+                            WinJS.Utilities.query(".listviewpivotitem")
+                                .listen("iteminvoked",
+                                    function (invoke) {
+                                        getNews(invoke);
+                                    }, false);
+                        }
+                        /*
+                             _ _   _                  _   _
+                            / | |_| |__     __ _  ___| |_(_) ___  _ __
+                            | | __| '_ \   / _` |/ __| __| |/ _ \| '_ \
+                            | | |_| | | | | (_| | (__| |_| | (_) | | | |
+                            |_|\__|_| |_|  \__,_|\___|\__|_|\___/|_| |_|
+                        */
+                        // News list by country.
+                        if (e.detail.location == "/list.html") {
+                            page = 1; // list.html
+                            WinJS.Utilities.query(".listviewpivotitem")
+                                .listen(
+                                    "iteminvoked",
+                                    function (invoke) {
+                                        spinner.show();
+                                        // console.log(invoke.detail.itemPromise._value.data)
+                                        var clicked = invoke.detail.itemPromise._value.data;
+                                        //console.log(this);
+                                        var index = invoke.detail.itemIndex;
+                                        // currentItem=index;
+                                        var list = document.getElementById("pivotScenario3").winControl._currentItem._contentElement.firstElementChild.winControl;
+                                        // console.log("Ensure visible");
+                                        // window.location=clicked.link;
+                                        // window.open(clicked.link, "_blank", "fullscreen=yes,height=600,width=800,scrollbars=yes,resizable=no");
+                                        transitionBetweenContent(
+                                            clicked,
+                                            function () {
                                                 spinner.stop();
                                                 console.log("spinner out");
-
                                                 list.ensureVisible(index);
-                                                
                                             });
+                                    }, false);
+                        }
+                    });
+            });
+    });
 
-                                    
-
-                                
-
-                                }, false);
-}
-
-});
-
-});
-
-});
-
-WinJS.Utilities.query(".listviewpivotitem")
-.listen(
-    "iteminvoked", 
-    function(invoke){ 
-
-        getNews(invoke);
-
-    }, false
-    ); 
+    WinJS.Utilities.query(".listviewpivotitem")
+        .listen(
+            "iteminvoked",
+            function (invoke) {
+                getNews(invoke);
+            }, false
+        );
 });
 
 
-currentCountryData=0;
-function getNews(invoke,uselast,cb){
+function getNews(invoke, uselast, cb) {
 
     var spinner = spin();
-   // spinner.stop();
 
-    console.log("Getting news!");
-        // console.log(invoke.detail.itemPromise._value.data);
-        // 
+    var location = uselast ? currentCountryData.data.url : invoke.detail.itemPromise._value.data.url;
+    var name = uselast ? currentCountryData.data.name : invoke.detail.itemPromise._value.data.name;
+    var to = uselast ? currentCountryData.data.name : invoke.detail.itemPromise._value.data.lang;
+
     /*
     h - specifies the top headlines topic
     w - specifies the world topic
@@ -165,116 +120,121 @@ function getNews(invoke,uselast,cb){
     s - specifies the sports topic
     m - specifies the health topic
     */
-    var list=["h","w","b","n","t","el","p","e","s","m"];
 
-    var url = uselast? currentCountryData.data.url : invoke.detail.itemPromise._value.data.url;
-    var name  = uselast? currentCountryData.data.name : invoke.detail.itemPromise._value.data.name;
-
-    var ned = url.substr(url.indexOf('=')+1);
-    var hl = ned.substr(0,ned.indexOf('_'));
+    var setup = { 
+        list : { "h":"" // Blank special key search all
+                ,"w": ['world news','international politics','global politics','world crises']
+                ,"b": ['business','company', 'companies','money','stocks', 'shares', 'sell', 'buy']
+                ,"n": ['national','vilage','city','country']
+                ,"t": ['technology','mobile','tech','artificial inteligence','robot','computer software','computer hardware', 'computer games']
+                ,"el": ['election','campaign','candidate','vote']
+                ,"p": ['politic','internation affair','parlament','law','legislation', 'court']
+                ,"e": ['entertainment','movie','music','paint', 'art']
+                ,"s": ['sports','tennis','futebol','hockey','estadium','qualify','qualifiers', 'race', 'game']
+                ,"m": ['health','vacine','doctor','nurse','medicine','hospital','healthcare']},
+        from: 'en',
+        to: to || 'en',
+        business: ['business','companies','money','stocks'],
+        sports: ['sports','tennis','hockey','futebol', 'basket'],
+        endpoint:"/getarticle?keywords=${topiclist}&location=${location}&from=${setup.from}&to=${setup.to}"
+    };
 
     currentCountryData = invoke ? invoke.detail.itemPromise._value : currentCountryData;
-    currentCountryData.data.ned=ned;
-    currentCountryData.data.hl=hl;
+    currentCountryData.data.ned=to;
+    currentCountryData.data.hl=location;
     // Content cache clear
     currentCountryData.content={};
-    var requests = list.map(function(item){
 
-        // console.log(item);
+    var thekeys= Object.keys(setup['list']);
+    var requestCounter = thekeys.length;
+    var topics =thekeys.map(function (area) {
 
-        var head= document.getElementsByTagName('head')[0];
-        var script= document.createElement('script');
-        var error= false;
-
-        var topic = item;
-        script.type= 'text/javascript';
-        script.onerror = function(er){
-            console.log(er);
-            // spinner.stop();
-            if (error) {
-
-                return;
-            }
-            error=true;
-            var contentDialog = document.querySelector(".win-contentdialog").winControl;
-            contentDialog._dom.commands[0].addEventListener(
-                'click'
-                ,function(){
-                    // spinner.stop();
-                    return;
-                });
-            contentDialog.show();
-            return;
-        }
-
-        var totalresults=20;
-        script.src= "http://ajax.googleapis.com/ajax/services/feed/load?context="+topic+"&callback=processResults&num="+totalresults+"&v=1.0&q=https%3A%2F%2Fnews.google.com%2Fnews%2Ffeeds%3Fpz%3D1%26cf%3Dall%26num%3D"+totalresults+"%26ned%3D"+ned+"%26hl%3D"+hl+"%26topic%3D"+topic+"%26output%3Drss";
-        //console.log(script.src);
+        var topiclist= setup['list'][(area)]
         
-        head.appendChild(script);
-        if(item==='h') {
-            script.onload=function(){
-                WinJS.Navigation.navigate("/list.html",name).done(
-                    function(){
-                        // spinner.stop();
-                        if (cb) cb();
+        console.log("RC",requestCounter)
+
+        var cmd = eval("`" + setup.endpoint + "`")
+        console.log(cmd)
+        fetch(cmd)
+            .then(
+                function (response) {
+                    console.log("Response:", response);
+
+                    switch (response.status) {
+                        case 200:
+                            break;
+                        default:
+                            console.log('Looks like there was a problem. Status Code: ' + response.status);
+                            return;
                     }
-                    );
-            };
-        }
 
+                    // Examine the text in the response
+                    response.json().then(function (data) {
+                        console.log("ResponseJSON:", topiclist, location, data);
+                        switch (data.status) {
+                            case 202:
+                                updateBar();
+                                spinner.stop();
+                                console.log('Looks like there was a problem. Status Code: ' + data.status);
+                                break;
+                        }
+                        console.log("RCC",--requestCounter)
+                        processResults(area, data)
+                        if (requestCounter === 0)
+                            WinJS.Navigation.navigate("/list.html", name).done(
+                                function () {
+                                    console.log("Finished loading news");
+                                    if (cb) cb();
+                                });
+                    });
+                }
+            )
+            .catch(function (err) {
+                console.log('Fetch Error :-S', err);
+            });
     });
-/*
-    WinJS.Promise.join(requests).done(
-        function(){
-        //    console.log('Done requesting');
-        //console.log(invoke.detail.itemPromise._value.data);
-
-        }
-    );
-*/  
 }
 
 /****************************************************************
 transitionBetweenContent
 */
-var actout=0;
-var actin=0;
-var loaded={};
+var actout = 0;
+var actin = 0;
+var loaded = {};
 
-function transitionBetweenContent(clicked,cb) {
+function transitionBetweenContent(clicked, cb) {
 
     // Check loaded state
-    if (typeof currentCountryData.content[clicked.id]!=='undefined') {
-
-        transitionBetweenContentToggle(clicked.id,clicked.id2,clicked.id3,clicked.id4,cb);
+    if (typeof currentCountryData.content[clicked.id] !== 'undefined') {
+        console.log('transitionBetweenContent_1',clicked.id, clicked.id2, clicked.id3, clicked.id4, cb);
+        transitionBetweenContentToggle(clicked.id, clicked.id2, clicked.id3, clicked.id4, cb);
 
     } else {
+        console.log('transitionBetweenContent_2',clicked.id, clicked.id2, clicked.id3, clicked.id4, cb);
+        currentCountryData.content[clicked.id] = true;
+        loadImageForItem(clicked, clicked.id3);
+        //loadVideoForItem(clicked, clicked.id4);
+        // console.log(clicked.id2);
 
-        currentCountryData.content[clicked.id]=true;
-        loadImageForItem(clicked,clicked.id3);
-        loadVideoForItem(clicked,clicked.id4);
-       // console.log(clicked.id2);
+        WinJS.Utilities.query('[name="' + clicked.id2 + '"] a').forEach(function (itema) {
+            itema.addEventListener("click",
+                function (e) {
 
-                                     WinJS.Utilities.query('[name="'+clicked.id2+'"] a').forEach(function(itema){
-                                        itema.addEventListener("click",
-                                        function(e){
+                    e.returnValue = false;
+                    e.preventDefault();
+                    e.stopPropagation();
 
-                                            e.returnValue =false;
-                                            e.preventDefault();
-                                            e.stopPropagation();
-
-                                            window.open(this.href,'Guganews');
-                                        });
-                                     });
-
-
-        bindMediaImage(clicked.id2,clicked.id3,clicked.id4,
-            function(){
-
-                transitionBetweenContentToggle(clicked.id,clicked.id2,clicked.id3,clicked.id4,cb);
-                
+                    window.open(this.href, 'Guganews');
+                });
         });
+
+
+        bindMediaImage(clicked.id2, clicked.id3, clicked.id4,
+            function () {
+                console.log('bindMediaImage');
+                transitionBetweenContentToggle(clicked.id, clicked.id2, clicked.id3, clicked.id4, cb);
+
+            });
 
 
     }
@@ -283,12 +243,12 @@ function transitionBetweenContent(clicked,cb) {
 
 }
 
-function transitionBetweenContentToggle(id,id2,id3,id4,cb){
+function transitionBetweenContentToggle(id, id2, id3, id4, cb) {
 
     var incoming;
     var outgoing;
-    var output1=document.querySelectorAll('[name="'+id+'"]')[0];
-    var output2=document.querySelectorAll('[name="'+id2+'"]')[0];
+    var output1 = document.querySelectorAll('[name="' + id + '"]')[0];
+    var output2 = document.querySelectorAll('[name="' + id2 + '"]')[0];
 
 
     // Assign incoming and outgoing
@@ -296,7 +256,7 @@ function transitionBetweenContentToggle(id,id2,id3,id4,cb){
 
         //window[id3] = new WinJS.Binding.List([]);
         //window[id4] = new WinJS.Binding.List([]);
-                                    
+
 
         incoming = output2;
         outgoing = output1;
@@ -307,118 +267,120 @@ function transitionBetweenContentToggle(id,id2,id3,id4,cb){
 
 
 
-    if (actin){
-    if(actin==outgoing){
+    if (actin) {
+        if (actin == outgoing) {
 
-        WinJS.UI.executeTransition(actin,
-        {
-            property: "opacity",
-            delay: 0,
-            duration: 150,
-            timing: "linear",
-            from: 1,
-            to: 0
-        }).done(function(){
+            WinJS.UI.executeTransition(actin, {
+                property: "opacity",
+                delay: 0,
+                duration: 150,
+                timing: "linear",
+                from: 1,
+                to: 0
+            }).done(function () {
 
-            actout.style.display = "block";
-            actin.style.display = "none";
+                actout.style.display = "block";
+                actin.style.display = "none";
 
-            WinJS.UI.executeTransition(actout,
-                {
+                WinJS.UI.executeTransition(actout, {
                     property: "opacity",
                     delay: 0,
                     duration: 250,
                     timing: "linear",
                     from: 0,
                     to: 1
-                }).done(function(){
+                }).done(function () {
 
                     cb();
 
                 });
-        });
-        
-        return;
+            });
 
-    } else {
-        
-        actout.style.display = "block";
-        actin.style.display = "none";
-        actout.style.opacity = 1;
-        actin.style.opacity = 0;
+            return;
+
+        } else {
+
+            actout.style.display = "block";
+            actin.style.display = "none";
+            actout.style.opacity = 1;
+            actin.style.opacity = 0;
+        }
     }
-    } 
 
-                                        
-    actout=outgoing;actin=incoming;
-       
-        //bindMediaVideo(id2,id3,id4);
 
-    WinJS.UI.executeTransition(outgoing,
-    {
+    actout = outgoing;
+    actin = incoming;
+
+    //bindMediaVideo(id2,id3,id4);
+
+    WinJS.UI.executeTransition(outgoing, {
         property: "opacity",
         delay: 0,
         duration: 0,
         timing: "linear",
         from: 1,
         to: 0
-    }).done(function(){
+    }).done(function () {
 
         outgoing.style.display = "none";
         incoming.style.display = "block";
 
-            
+
 
         WinJS.UI.executeTransition(
-                incoming,
-            {
+            incoming, {
                 property: "opacity",
                 delay: 0,
                 duration: 250,
                 timing: "linear",
                 from: 0,
                 to: 1
-            }).done(function(){
+            }).done(function () {
 
-                cb();
+            cb();
 
-            });
+        });
     });
 
 }
 
 // Update engine ******************************
-boxopen=0;
-refreshtimeout=1000*60*30;
-tor=0;
-function updateBar(){
-/* Button action
-    var appBar = document.getElementById("createAppBar").winControl;
-    appBar.getCommandById("cmdAdd").addEventListener("click", 
-    function(){ getNews(false,true);  }, false);
-*/
-    var m=setTimeout(function(){window.location.reload();},5000);
+boxopen = 0;
+refreshtimeout = 1000 * 60 * 30;
+tor = 0;
 
-    if (boxopen) {return;}
-    boxopen=1;
+function updateBar() {
+    /* Button action
+        var appBar = document.getElementById("createAppBar").winControl;
+        appBar.getCommandById("cmdAdd").addEventListener("click", 
+        function(){ getNews(false,true);  }, false);
+    */
+    var m = setTimeout(function () {
+        window.location.reload();
+    }, 5000);
+
+    if (boxopen) {
+        return;
+    }
+    boxopen = 1;
     var cd = document.querySelector("#refresh");
-    
-    if (cd){
+
+    if (cd) {
         var contentDialog = document.querySelector("#refresh").winControl;
-    } else {  
+    } else {
         startupdate();
         return;
     }
-    
-    contentDialog.onafterhide = function(){
+
+    contentDialog.onafterhide = function () {
 
     };
     contentDialog._dom.commands[0].addEventListener(
-        'click'
-        ,function(){
-            
+        'click',
+        function () {
+
             // if (page==0) {
-                window.location.reload();
+            window.location.reload();
             /* }else if (page==1) {
                 WinJS.Navigation.back().done(function(){
                     getNews(false,true,function(){ 
@@ -431,27 +393,27 @@ function updateBar(){
             return;
         });
     contentDialog._dom.commands[1].addEventListener(
-        'click'
-        ,function(){
-                clearTimeout(m);
-                    startupdate();
+        'click',
+        function () {
+            clearTimeout(m);
+            startupdate();
             return;
         });
 
     contentDialog.show();
-        boxopen=1;
+    boxopen = 1;
 
 }
 
-function stopupdate(log){
-    if (log) console.log("updating call:start",tor,refreshtimeout,boxopen);
-    boxopen= 0;
+function stopupdate(log) {
+    if (log) console.log("updating call:start", tor, refreshtimeout, boxopen);
+    boxopen = 0;
     if (tor) clearTimeout(tor);
-    tor=0;
+    tor = 0;
 }
 
-function startupdate(force,log) {
+function startupdate(force, log) {
     stopupdate(log);
-    tor=setTimeout(updateBar, refreshtimeout);
-    if (log) console.log("updating call:stop",tor,refreshtimeout,boxopen);
+    tor = setTimeout(updateBar, refreshtimeout);
+    if (log) console.log("updating call:stop", tor, refreshtimeout, boxopen);
 }

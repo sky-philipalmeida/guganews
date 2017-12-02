@@ -1,138 +1,127 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>Guganews</title>
 
     <!-- WinJS references -->
 
-     <script src="/json-data/feeds-single.js"></script>
+    <script src="/json-data/feeds-single.js"></script>
 
 </head>
+
 <body id="contentTarget">
 
     <label id="progresscontainer">
         <progress id="myProgressRing" class="win-ring win-large"></progress>
     </label>
-    
-	<div class="box">
-	    <div data-win-control="WinJS.UI.ContentDialog" data-win-options="{
+
+    <div class="box">
+        <div data-win-control="WinJS.UI.ContentDialog" data-win-options="{
 	             title: 'Network failure',
 	             primaryCommandText: 'Ok'
 	        }">
-	        Please check your internet connection and try again.
-	        <div style="height: 50px; width: 1px;"></div>
-	    </div>
-	</div>
-	<div class="box">
-	    <div id="refresh" data-win-control="WinJS.UI.ContentDialog" data-win-options="{
+            Please check your internet connection and try again.
+            <div style="height: 50px; width: 1px;"></div>
+        </div>
+    </div>
+    <div class="box">
+        <div id="refresh" data-win-control="WinJS.UI.ContentDialog" data-win-options="{
 	             title: 'Dear user,',
 	             secondaryCommandText: 'I am reading. Please wait...'
 	        }">
-	        <h1>I am about to update!</h1>
-	        <div style="height: 50px; width: 1px;"></div>
-	    </div>
-	</div>
+            <h1>I am about to update!</h1>
+            <div style="height: 50px; width: 1px;"></div>
+        </div>
+    </div>
 
-<!-- App bar -->
-<!-- 
+    <!-- App bar -->
+    <!-- 
     <div id="createAppBar" data-win-control="WinJS.UI.NavBar" data-win-options="{sticky: false, placement: 'top', layout: 'menu'}">
         <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'cmdAdd',label:'Reload',icon:'refresh',section:'primary',tooltip:'Refresh content'}"></button>
         </div>
         -->
-	<div id="progress"></div>
+    <div id="progress"></div>
 
-	<div class="fullScreen">
+    <div class="fullScreen">
 
+        <!-- app header and backbutton-->
+        <div id="appHeader">
+            <button data-win-control="WinJS.UI.BackButton"></button>
+            <h1 id="appHeaderTitle"></h1>
+        </div>
 
-	    <!-- app header and backbutton-->
-	    <div id="appHeader">
-	        <button data-win-control="WinJS.UI.BackButton"></button>
-	           <h1  id="appHeaderTitle"></h1>
-	    </div>
+        <!-- Template for ListView in section 2 -->
 
-	    <!-- Template for ListView in section 2 -->
-	    
-<!--
-/*
-h - specifies the top headlines topic
-w - specifies the world topic
-b - specifies the business topic
-n - specifies the nation topic
-t - specifies the science and technology topic
-el - specifies the elections topic
-p - specifies the politics topic
-e - specifies the entertainment topic
-s - specifies the sports topic
-m - specifies the health topic
-*/
+        <!--
+            /*
+            h - specifies the top headlines topic
+            w - specifies the world topic
+            b - specifies the business topic
+            n - specifies the nation topic
+            t - specifies the science and technology topic
+            el - specifies the elections topic
+            p - specifies the politics topic
+            e - specifies the entertainment topic
+            s - specifies the sports topic
+            m - specifies the health topic
+            */
 	    -->
 
+        <!-- Start PIVOT... -->
+        <div class="mailItemTemplate"  class="box" data-win-control="WinJS.Binding.Template">
 
-				<!-- Start PIVOT... -->
-				<div class="mailItemTemplate" data-win-control="WinJS.Binding.Template">
-					
+            <div>
+                <div id="output">
 
-				<div class="box">
-				    <div id="output">
+                    <div name="" class="morehiddenblock" style="display:none;" data-win-bind="name: id2">
 
-				        <div name="" class="morehiddenblock" style="display:none;" data-win-bind="name: id2">
+                        <div class="date fontcolor bgcolor">
+                            <div class="month" data-win-bind="innerHTML: monthyear">
+                            </div>
+                            <div class="day" data-win-bind="innerHTML: day">
+                            </div>
+                        </div>
 
+                        <div class="title fontcolor2" data-win-bind="innerHTML: title">
+                        </div>
 
-							<div class="date fontcolor bgcolor">
-							<div class="month" data-win-bind="innerHTML: monthyear">
-							</div>
-							<div class="day" data-win-bind="innerHTML: day">
-							</div>
-							</div>
+                        <div class="summary fontcolor2" data-win-bind="innerHTML: content">
+                        </div>
 
-					        <div class="more fontcolor2" data-win-bind="innerHTML: content">
-					        </div>
-                                          
-                                                
-                                                
-                                                
-                                                
-					        <!-- Simple template for the ListView instantiation  -->
-					        <div class="smallListIconTextTemplate" data-win-control="WinJS.Binding.Template">
-					            <div name="" class="smallListIconTextItem" data-win-bind="name: idname2">
-					            	<a target="_blank" href="#" data-win-bind="href: originalContextUrl; style.backgroundImage:bgurl" class="smallListIconTextItem-Image">
-					            	</a>
-					            </div>
-					        </div>
+                        <!-- Simple template for the ListView instantiation  -->
+                        <div class="smallListIconTextTemplate" data-win-control="WinJS.Binding.Template">
+                            <div name="" class="smallListIconTextItem" data-win-bind="name: idname2">
+                                <a target="_blank" href="#" data-win-bind="href: originalContextUrl; style.backgroundImage:bgurl" class="smallListIconTextItem-Image">
+                                </a>
+                            </div>
+                        </div>
 
-					        <!-- The declarative markup necesary for ListView instantiation -->
-					        <!-- Call WinJS.UI.processAll() in your initialization code -->
-					        <div id="listView"
-					        	data-win-bind="name: id3"
-					             class="win-selectionstylefilled"
-					             data-win-control="WinJS.UI.ListView"
-					             data-win-options="{
+                        <!-- The declarative markup necesary for ListView instantiation -->
+                        <!-- Call WinJS.UI.processAll() in your initialization code -->
+                        <div id="listView" data-win-bind="name: id3" class="win-selectionstylefilled" data-win-control="WinJS.UI.ListView" data-win-options="{
 					                    itemDataSource: false,
 					                    itemTemplate: select('.smallListIconTextTemplate'),
 					                    selectionMode: 'none',
 					                    tapBehavior: 'none',
-					                    swipeBehavior: 'none',
+                                        swipeBehavior: 'none',
 					                    layout: { type: WinJS.UI.ListLayout, orientation:'horizontal' }
 					            }">
-					        </div>
-                                                
-                                    
-					        <!-- Simple template for the ListViewVideo instantiation  -->
-					        <div class="smallListIconTextTemplateVideo" data-win-control="WinJS.Binding.Template">
-					            <div class="smallListIconTextItemVideo">
-									<iframe title="YouTube video player" class="youtube-player" type="text/html" src="" style="" data-win-bind="src:video"
-									frameborder="0" allowFullScreen></iframe>
-					            </div>
-					        </div>
+                        </div>
 
-					        <!-- The declarative markup necesary for ListViewVideo instantiation -->
-					        <!-- Call WinJS.UI.processAll() in your initialization code -->
-					        <div id="listViewVideo"
-					        	data-win-bind="name: id4"
-					             class="win-selectionstylefilled"
-					             data-win-control="WinJS.UI.ListView"
-					             data-win-options="{
+
+                        <!-- Simple template for the ListViewVideo instantiation  -->
+                        <div class="smallListIconTextTemplateVideo" data-win-control="WinJS.Binding.Template">
+                            <div class="smallListIconTextItemVideo">
+                                <iframe title="YouTube video player" class="youtube-player" type="text/html" src="" style="" data-win-bind="src:video" frameborder="0"
+                                    allowFullScreen></iframe>
+                            </div>
+                        </div>
+
+                        <!-- The declarative markup necesary for ListViewVideo instantiation -->
+                        <!-- Call WinJS.UI.processAll() in your initialization code -->
+                        <div id="listViewVideo" data-win-bind="name: id4" class="win-selectionstylefilled" data-win-control="WinJS.UI.ListView" data-win-options="{
 					                    itemDataSource: false,
 					                    itemTemplate: select('.smallListIconTextTemplateVideo'),
 					                    selectionMode: 'none',
@@ -140,94 +129,96 @@ m - specifies the health topic
 					                    swipeBehavior: 'none',
 					                    layout: { type: WinJS.UI.ListLayout, orientation:'horizontal' }
 					            }">
-					        </div>    
+                        </div>
 
 
-				        </div>
-				        <div data-win-bind="name: id">
+                    </div>
+                    <div data-win-bind="name: id" onclick="javascript:myalert(event);">
 
-                                                <div class="mailItemContainer"> 
-                                                        <div class="mailImageContainer">
-                                                                <img onerror="imageLoadErrorEvent(this)" alt="Loading" align="absbottom" src="#" class="mailItemImage"data-win-bind="src: img" />
-                                                        </div>
-                                                    <div class="mailItem listPivotItem">
-<!-- 
+                        <div class="mailItemContainer">
+                            <div class="mailImageContainer">
+                                <img onerror="imageLoadErrorEvent(this)" alt="Loading" align="absbottom" src="#" class="mailItemImage" data-win-bind="src: img"
+                                />
+                            </div>
+                            <div class="mailItem listPivotItem">
+                                <!-- 
                                                         <div class="hitTarget win-interactive"></div>
 
                                                         <h2 class="author" data-win-bind="innerHTML: author"></h2>	
                                                         
-                                                        <h5 class="date" data-win-bind="innerHTML: publishedDate"></h5>	 		-->					          
-                                                        <h2 class="title fontcolorselect" data-win-bind="innerHTML: title"></h2><!--
+                                                        <h5 class="date" data-win-bind="innerHTML: publishedDate"></h5>	 		-->
+                                <h2 class="title fontcolorselect" data-win-bind="innerHTML: title"></h2>
+                                <!--
                                                         <h5 class="previewText win-pivot-slide2" data-win-bind="innerHTML: contentSnippet"></h5>-->
-                                                    </div>
-                                                </div>
+                            </div>
+                        </div>
 
-				        </div>
-				    </div>
-				</div>
+                    </div>
+                </div>
+            </div>
 
-				</div>
-
-
-				<div id="pivotScenario3" class="wide" data-win-control="WinJS.UI.Pivot" data-win-options="{ title: '', selectedIndex: 1 }">
+        </div>
 
 
-
-
-				    <div class="listviewpivotitem" data-win-control="WinJS.UI.PivotItem" data-win-options="{ 'header': 'Elections',appBarClosedDisplayMode: 'minimal', managedLV: true }">
-				        <div class="nlist" data-win-control="WinJS.UI.ListView" data-win-options="{ itemDataSource: data_el.dataSource, layout: { type: WinJS.UI.ListLayout }, itemTemplate: select('.mailItemTemplate'), selectionMode: 'none' }"></div>
-				    </div>
-
-				    <div class="listviewpivotitem" data-win-control="WinJS.UI.PivotItem" data-win-options="{ 'header': 'Headlines', managedLV: true }">
-				        <div class="nlist" data-win-control="WinJS.UI.ListView" data-win-options="{ itemDataSource: data_h.dataSource, layout: { type: WinJS.UI.ListLayout }, itemTemplate: select('.mailItemTemplate'), selectionMode: 'none' }"></div>
-				    </div>
-
-				    <div class="listviewpivotitem" data-win-control="WinJS.UI.PivotItem" data-win-options="{ 'header': 'World', managedLV: true }">
-				        <div class="nlist" data-win-control="WinJS.UI.ListView" data-win-options="{ itemDataSource: data_w.dataSource, layout: { type: WinJS.UI.ListLayout }, itemTemplate: select('.mailItemTemplate'), selectionMode: 'none' }"></div>
-				    </div>
-				    
-				    <div class="listviewpivotitem" data-win-control="WinJS.UI.PivotItem" data-win-options="{ 'header': 'Politics',appBarClosedDisplayMode: 'minimal', managedLV: true }">
-				        <div class="nlist" data-win-control="WinJS.UI.ListView" data-win-options="{ itemDataSource: data_p.dataSource, layout: { type: WinJS.UI.ListLayout }, itemTemplate: select('.mailItemTemplate'), selectionMode: 'none' }"></div>
-				    </div>
-
-
-
-				    <div class="listviewpivotitem" data-win-control="WinJS.UI.PivotItem" data-win-options="{ 'header': 'Nation',appBarClosedDisplayMode: 'minimal', managedLV: true }">
-				        <div class="nlist" data-win-control="WinJS.UI.ListView" data-win-options="{ itemDataSource: data_n.dataSource, layout: { type: WinJS.UI.ListLayout }, itemTemplate: select('.mailItemTemplate'), selectionMode: 'none' }"></div>
-				    </div>
-
-				    <div class="listviewpivotitem" data-win-control="WinJS.UI.PivotItem" data-win-options="{ 'header': 'Business', managedLV: true }">
-				        <div class="nlist" data-win-control="WinJS.UI.ListView" data-win-options="{ itemDataSource: data_b.dataSource, layout: { type: WinJS.UI.ListLayout }, itemTemplate: select('.mailItemTemplate'), selectionMode: 'none' }"></div>
-				    </div>
-
-				    <div class="listviewpivotitem" data-win-control="WinJS.UI.PivotItem" data-win-options="{ 'header': 'Entertainment',appBarClosedDisplayMode: 'minimal', managedLV: true }">
-				        <div class="nlist" data-win-control="WinJS.UI.ListView" data-win-options="{ itemDataSource: data_e.dataSource, layout: { type: WinJS.UI.ListLayout }, itemTemplate: select('.mailItemTemplate'), selectionMode: 'none' }"></div>
-				    </div>
-
-
-				    <div class="listviewpivotitem" data-win-control="WinJS.UI.PivotItem" data-win-options="{ 'header': 'Sports',appBarClosedDisplayMode: 'minimal', managedLV: true }">
-				        <div class="nlist" data-win-control="WinJS.UI.ListView" data-win-options="{ itemDataSource: data_s.dataSource, layout: { type: WinJS.UI.ListLayout }, itemTemplate: select('.mailItemTemplate'), selectionMode: 'none' }"></div>
-				    </div>
-
-				    <div class="listviewpivotitem" data-win-control="WinJS.UI.PivotItem" data-win-options="{ 'header': 'Science & Technology',appBarClosedDisplayMode: 'minimal', managedLV: true }">
-				        <div class="nlist" data-win-control="WinJS.UI.ListView" data-win-options="{ itemDataSource: data_t.dataSource, layout: { type: WinJS.UI.ListLayout }, itemTemplate: select('.mailItemTemplate'), selectionMode: 'none' }"></div>
-				    </div>
-
-
-				    <div class="listviewpivotitem" data-win-control="WinJS.UI.PivotItem" data-win-options="{ 'header': 'Health',appBarClosedDisplayMode: 'minimal', managedLV: true }">
-				        <div class="nlist" data-win-control="WinJS.UI.ListView" data-win-options="{ itemDataSource: data_m.dataSource, layout: { type: WinJS.UI.ListLayout }, itemTemplate: select('.mailItemTemplate'), selectionMode: 'none' }"></div>
-				    </div>
+        <div id="pivotScenario3" class="wide" data-win-control="WinJS.UI.Pivot" data-win-options="{ title: '', selectedIndex: 1 }">
 
 
 
 
-				</div>
+            <div class="listviewpivotitem" data-win-control="WinJS.UI.PivotItem" data-win-options="{ 'header': 'Elections',appBarClosedDisplayMode: 'minimal', managedLV: true }">
+                <div class="nlist" data-win-control="WinJS.UI.ListView" data-win-options="{ itemDataSource: data_el.dataSource, layout: { type: WinJS.UI.ListLayout }, itemTemplate: select('.mailItemTemplate'), selectionMode: 'none' }"></div>
+            </div>
+
+            <div class="listviewpivotitem" data-win-control="WinJS.UI.PivotItem" data-win-options="{ 'header': 'Headlines', managedLV: true }">
+                <div class="nlist" data-win-control="WinJS.UI.ListView" data-win-options="{ itemDataSource: data_h.dataSource, layout: { type: WinJS.UI.ListLayout }, itemTemplate: select('.mailItemTemplate'), selectionMode: 'none' }"></div>
+            </div>
+
+            <div class="listviewpivotitem" data-win-control="WinJS.UI.PivotItem" data-win-options="{ 'header': 'World', managedLV: true }">
+                <div class="nlist" data-win-control="WinJS.UI.ListView" data-win-options="{ itemDataSource: data_w.dataSource, layout: { type: WinJS.UI.ListLayout }, itemTemplate: select('.mailItemTemplate'), selectionMode: 'none' }"></div>
+            </div>
+
+            <div class="listviewpivotitem" data-win-control="WinJS.UI.PivotItem" data-win-options="{ 'header': 'Politics',appBarClosedDisplayMode: 'minimal', managedLV: true }">
+                <div class="nlist" data-win-control="WinJS.UI.ListView" data-win-options="{ itemDataSource: data_p.dataSource, layout: { type: WinJS.UI.ListLayout }, itemTemplate: select('.mailItemTemplate'), selectionMode: 'none' }"></div>
+            </div>
 
 
-	        </div>
+
+            <div class="listviewpivotitem" data-win-control="WinJS.UI.PivotItem" data-win-options="{ 'header': 'Nation',appBarClosedDisplayMode: 'minimal', managedLV: true }">
+                <div class="nlist" data-win-control="WinJS.UI.ListView" data-win-options="{ itemDataSource: data_n.dataSource, layout: { type: WinJS.UI.ListLayout }, itemTemplate: select('.mailItemTemplate'), selectionMode: 'none' }"></div>
+            </div>
+
+            <div class="listviewpivotitem" data-win-control="WinJS.UI.PivotItem" data-win-options="{ 'header': 'Business', managedLV: true }">
+                <div class="nlist" data-win-control="WinJS.UI.ListView" data-win-options="{ itemDataSource: data_b.dataSource, layout: { type: WinJS.UI.ListLayout }, itemTemplate: select('.mailItemTemplate'), selectionMode: 'none' }"></div>
+            </div>
+
+            <div class="listviewpivotitem" data-win-control="WinJS.UI.PivotItem" data-win-options="{ 'header': 'Entertainment',appBarClosedDisplayMode: 'minimal', managedLV: true }">
+                <div class="nlist" data-win-control="WinJS.UI.ListView" data-win-options="{ itemDataSource: data_e.dataSource, layout: { type: WinJS.UI.ListLayout }, itemTemplate: select('.mailItemTemplate'), selectionMode: 'none' }"></div>
+            </div>
 
 
-	        <!-- 
+            <div class="listviewpivotitem" data-win-control="WinJS.UI.PivotItem" data-win-options="{ 'header': 'Sports',appBarClosedDisplayMode: 'minimal', managedLV: true }">
+                <div class="nlist" data-win-control="WinJS.UI.ListView" data-win-options="{ itemDataSource: data_s.dataSource, layout: { type: WinJS.UI.ListLayout }, itemTemplate: select('.mailItemTemplate'), selectionMode: 'none' }"></div>
+            </div>
+
+            <div class="listviewpivotitem" data-win-control="WinJS.UI.PivotItem" data-win-options="{ 'header': 'Science & Technology',appBarClosedDisplayMode: 'minimal', managedLV: true }">
+                <div class="nlist" data-win-control="WinJS.UI.ListView" data-win-options="{ itemDataSource: data_t.dataSource, layout: { type: WinJS.UI.ListLayout }, itemTemplate: select('.mailItemTemplate'), selectionMode: 'none' }"></div>
+            </div>
+
+
+            <div class="listviewpivotitem" data-win-control="WinJS.UI.PivotItem" data-win-options="{ 'header': 'Health',appBarClosedDisplayMode: 'minimal', managedLV: true }">
+                <div class="nlist" data-win-control="WinJS.UI.ListView" data-win-options="{ itemDataSource: data_m.dataSource, layout: { type: WinJS.UI.ListLayout }, itemTemplate: select('.mailItemTemplate'), selectionMode: 'none' }"></div>
+            </div>
+
+
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- 
 	        <div id="list" class="section2" data-win-control="WinJS.UI.HubSection" data-win-options="{header: 'ListView', isHeaderStatic: true}">
 	            <div id="listView"
 	                 class="win-selectionstylefilled"
@@ -243,6 +234,9 @@ m - specifies the health topic
 	            </div>
 	        </div>
 			-->
-<div class="powered">Powered by <a href="http://news.google.com">news.google.com</a></div>
+    <div class="powered">Powered by
+        <a href="http://news.google.com">news.google.com</a>
+    </div>
 </body>
+
 </html>

@@ -4,9 +4,10 @@ html, body {
 }
 
 .box  {
-    z-index: 9999999999999999;
+    /*z-index: 9999999999999999;*/
+    width: 100%;
+    float: left;
 }
-
 
 progress{
     z-index: 99999999;
@@ -52,10 +53,6 @@ a:hover {
 }
 .win-contentdialog .win-contentdialog-primarycommand {
     background-color: #61ba7f;
-}
-.morehiddenblock {
-    border-top:1px solid #61ba7f;
-    border-bottom:1px solid #61ba7f;
 }
 
 
@@ -108,7 +105,7 @@ a:hover {
 #appHeader h1 {
     top: 0pt;
     left:50pt;
-    z-index: 999999999999;
+    /*z-index: 999999999999;*/
     float:left;
     font-size: 55pt;
     margin-bottom:5pt;
@@ -199,5 +196,46 @@ a:hover {
     width:100%;
     height: auto;
     float:left;
-    padding-bottom:0pt;
+}
+
+.win-listview .win-item, .win-itemcontainer .win-item {
+    overflow: inherit;
+}
+
+.win-listview > .win-viewport {
+    white-space: inherit;
+}
+
+.win-listview > .win-vertical .win-container {
+    margin: 0px;
+}
+
+.title {
+    font-size: 4vh;
+    padding: 1vw;
+}
+
+.summary {
+    font-size: 3vh;
+    padding: 2vw;
+}
+
+.win-listview > .win-viewport.win-horizontal {
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.win-listview .win-listlayout .win-itemsblock {
+    width: 100%;
+    float: left;
+}
+
+.win-pivot.win-pivot-nosnap .win-pivot-item {
+    width: 100%;
+    z-index: 9999999;
+    float: left;
+}
+
+.win-listview > .win-vertical .win-item {
+    float: left;
 }
