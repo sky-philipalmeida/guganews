@@ -90,10 +90,13 @@
                         <div class="summary fontcolor2" data-win-bind="innerHTML: content">
                         </div>
 
+                        <div class="summary fontcolor1" data-win-bind="innerHTML: author">
+                        </div>
+
                         <!-- Simple template for the ListView instantiation  -->
                         <div class="smallListIconTextTemplate" data-win-control="WinJS.Binding.Template">
                             <div name="" class="smallListIconTextItem" data-win-bind="name: idname2">
-                                <a target="_blank" href="#" data-win-bind="href: originalContextUrl; style.backgroundImage:bgurl" class="smallListIconTextItem-Image">
+                                <a target="_blank" href="#" data-win-bind="href: moreResultUrl; style.backgroundImage:bgurl" class="smallListIconTextItem-Image">
                                 </a>
                             </div>
                         </div>

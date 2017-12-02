@@ -46,7 +46,7 @@ function bindMediaImage(id2,id3,id4,promisein) {
     if (typeof window[id3]!=='undefined'&&window[id3]!==false&&window[id3].length>0){
         var li=document.querySelectorAll('[name="'+id3+'"]')[0];
         //console.log(li.winControl);
-        console.log("bimage1 loading image");
+        //console.log("bimage1 loading image");
         var ct=document.querySelectorAll('[name="'+id2+'"]')[0];
         ct.style.backgroundImage=window[id3].getAt(0).bgurl;  
         li.winControl.itemDataSource=window[id3].dataSource;
@@ -57,13 +57,13 @@ function bindMediaImage(id2,id3,id4,promisein) {
                                // if(li.winControl._loadingState=='complete'
                                //     ){
                                     li.winControl.onloadingstatechanged=false;
-                                    console.log("bimage2 calling video");
+                                    //console.log("bimage2 calling video");
                                     promisein()
                                     //bindMediaVideo(id2,id3,id4,promisein);
                                // }
                         };
     }else{
-        console.log("bimage3 timeout");
+        //console.log("bimage3 timeout");
         setTimeout(function(){ bindMediaImage(id2,id3,id4,promisein) }, 1000);
     }
 }
@@ -88,7 +88,7 @@ function processImagesForResult(item,context){
     item.images.map(
         function(img){
             var nitem={}
-            nitem.moreResultUrl = img;
+            nitem.moreResultUrl = item.url;
             nitem.idname=context+'_'+(++i);
             nitem.idname2=context+'_'+i+'_2';
             nitem.bgurl="url("+img+")";

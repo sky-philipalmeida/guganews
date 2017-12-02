@@ -100,19 +100,19 @@ function processResults(topic, result) {
 
     var id = 0;
     var i = 0;
-    var max = 10;
+    var max = 20;
     // var preimg=[];
     var sets=[];
     var _pods=[];
     var position = 0;
-    if (typeof result.events == 'undefined') {
+    if (typeof result.articles == 'undefined') {
         window["data_" + topic] = {
             dataSource: new WinJS.Binding.List(sets[(max)]).dataSource
         };
         return;
     }
-    console.log(result.events.results);
-    data = result.events.results.map(
+    // console.log(result.events.results);
+    data = result.articles.map(
         function (item) {
             i++
             // console.log(item)
@@ -121,7 +121,7 @@ function processResults(topic, result) {
             item.id3 = topic + "_data_img_" + item.id;
             item.id4 = topic + "_data_mp4_" + item.id;
 
-            let publishedDate = new Date(item.eventDate);
+            let publishedDate = new Date(item.publishedAt);
 
             // preimg[item.id] = new Image();
             // preimg[item.id].src = item.img;
@@ -134,12 +134,13 @@ function processResults(topic, result) {
                 id2             : item.id2,
                 id3             : item.id3,
                 id4             : item.id4,
-                title           : Object.values(item.title)[0],
-                author          : "no author",
-                content         : Object.values(item.summary)[0],
+                title           : item.title,
+                author          : item.author,
+                content         : item.description,
+                url             : item.url,
                 publishedDate   : publishedDate,
-                images          : item.images,
-                img             : ((item.images && typeof item.images[0] !== 'undefined') ? item.images[1] : "images/windows/Square70x70Logo.scale-180.png"),
+                images          : [item.urlToImage],
+                img             : (item.urlToImage ? item.urlToImage : "images/windows/Square70x70Logo.scale-180.png"),
                 year            : publishedDate.getFullYear(),
                 month           : (publishedDate.getMonth() + 1),
                 day             : publishedDate.getDate(),
@@ -150,10 +151,10 @@ function processResults(topic, result) {
             if (i%max==0)
             {
                 position = i;
-                console.log("set"+i)
+                //console.log("set"+i)
                 sets[i] = _pods;
                 _pods=[]
-                console.log(sets[i])
+                //console.log(sets[i])
             }
             return out;
         }
@@ -164,7 +165,7 @@ function processResults(topic, result) {
 
         sets[(position+max)]=_pods 
     }
-    console.log(sets[(max)]);
+    //console.log(sets[(max)]);
     window["data_" + topic] = {
         dataSource: new WinJS.Binding.List(sets[(max)]).dataSource
     };

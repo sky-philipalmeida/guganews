@@ -131,13 +131,13 @@ function getNews(invoke, uselast, cb) {
                 ,"el": ['election','campaign','candidate','vote']
                 ,"p": ['politic','internation affair','parlament','law','legislation', 'court']
                 ,"e": ['entertainment','movie','music','paint', 'art']
-                ,"s": ['sports','tennis','futebol','hockey','estadium','qualify','qualifiers', 'race', 'game']
+                ,"s": ['sports','tennis','soccer','hockey','estadium','qualify','qualifiers', 'race', 'game']
                 ,"m": ['health','vacine','doctor','nurse','medicine','hospital','healthcare']},
         from: 'en',
         to: to || 'en',
         business: ['business','companies','money','stocks'],
         sports: ['sports','tennis','hockey','futebol', 'basket'],
-        endpoint:"/getarticle?keywords=${topiclist}&location=${location}&from=${setup.from}&to=${setup.to}"
+        endpoint:"/getarticle?keywords=${topiclist}&location=${location}&from=${setup.from}&to=${setup.to}&name=${name}"
     };
 
     currentCountryData = invoke ? invoke.detail.itemPromise._value : currentCountryData;

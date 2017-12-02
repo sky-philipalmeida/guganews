@@ -1,14 +1,15 @@
 var Config = {
+  name : "Portugal",
   cachefile : 1,
   cachefilename: 'gugacache.json',
   cachecoding: 'utf8',
   baseurl: "http://www.guganews.com",
   port : 8080,
   host : "0.0.0.0",
-  apikey      : process.env.API_KEY,
+  apikey      : process.env.NAPI,
   apikeylang  : process.env.TRANS_KEY,
-  cachetimeout     :  1000*60*60*24*10,
-  cachetimeoutlong :  1000*60*60*24*10,
+  cachetimeout     :  1000*60*60*12, // 12 hours
+  cachetimeoutlong :  1000*60*60*24*365, // One year
   keywords : {
     from: 'en',
     to: 'en',
@@ -22,7 +23,7 @@ var Config = {
       endpoint:"/getarticle?keywords=${topic}&location=${location}&from=${from}&to=${to}"
   },
   urls: {
-    events: "http://eventregistry.org/json/event",
+    events: "https://newsapi.org/v2/everything",
     location: 'http://eventregistry.org/json/suggestLocations?prefix=${country}&lang=eng',
     translation: 'https://translate.yandex.net/api/v1.5/tr.json/translate'
   }
