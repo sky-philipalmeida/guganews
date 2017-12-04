@@ -57,7 +57,7 @@ function setTheme() {
 
     addCSSRule(document.styleSheets[0],
         "progress", "color: " + currentcolor + " !important");
-
+            
     addCSSRule(document.styleSheets[0],
         ".win-pivot .win-pivot-header-selected.win-pivot-header, .win-pivot-locked.win-pivot .win-pivot-header-selected.win-pivot-header", "background-image: linear-gradient(to right," + currentcolor + ",#000);");
 

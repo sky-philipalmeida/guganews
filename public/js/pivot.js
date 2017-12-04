@@ -41,7 +41,7 @@ WinJS.UI.processAll().then(function () {
             .then(function () {
                 if (e.detail.location == "/list.html") {
                     var local = e.detail.state;
-                    WinJS.Utilities.setInnerHTML(WinJS.Utilities.query("#appHeaderTitle")[0], '<b>' + local + '</b>');
+                    WinJS.Utilities.setInnerHTML(WinJS.Utilities.query("#appHeaderTitle")[0], local );
                 }
                 WinJS.UI.Animation.enterPage(elem.children).done(
                     function () {

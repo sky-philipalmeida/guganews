@@ -3,7 +3,6 @@ var Config = require('./config.js');
 var fs = require('fs');
 var cache = require('memory-cache');
 
-baseurl = Config.baseurl;
 ip = process.env.OPENSHIFT_NODEJS_IP ? process.env.OPENSHIFT_NODEJS_IP : Config.host; 
 port = process.env.OPENSHIFT_NODEJS_PORT ? process.env.OPENSHIFT_NODEJS_PORT : Config.port;
 
