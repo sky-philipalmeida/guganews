@@ -7,6 +7,8 @@
 * newsapi.org
 * translate.yandex.net
 
+![Image of Yaktocat](https://raw.githubusercontent.com/freedomson/guganews/master/gn.png)
+
 ### Install & run
 ```
 export TRANS_KEY=trnsl.1.XXX // Get a key for the translate api here translate.yandex.net.
