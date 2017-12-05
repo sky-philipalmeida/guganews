@@ -3,7 +3,8 @@
 ## This is a simple web client news reader for newsapi.org
 
 We are also using online translation services (yandex) in order to build the news queries.
-For a better experience please use an Android System with the default Chrome web browser.
+
+For a better user experience please use an Android System with the default Chrome web browser.
 
 The main components are:
 * WinJS3
