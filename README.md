@@ -1,3 +1,3 @@
-The OpenShift `nodejs` cartridge documentation can be found at:
+#Guganews
 
-http://openshift.github.io/documentation/oo_cartridge_guide.html#nodejs
+#This is a open source newsapi.org client written in WinJS3 and nodejs 6.
