@@ -100,7 +100,7 @@ function processResults(topic, result) {
 
     var id = 0;
     var i = 0;
-    var max = 20;
+    var max = 50;
     // var preimg=[];
     var sets=[];
     var _pods=[];

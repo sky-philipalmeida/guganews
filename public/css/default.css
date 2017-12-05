@@ -8,12 +8,12 @@ html, body {
     /*z-index: 9999999999999999;*/
 }
 
-progress{
+progress, #myProgressRing{
     z-index: 99999999;
     position:absolute;
     top:50%;
     left:50%;
-    display:none;
+    display:none !important;
 }
 
 .progresscontainer{
@@ -90,9 +90,14 @@ a:hover {
     left: 0px;
     width: 100%;
     float: left;
+    display: absolute;
+    z-index: 0;
+    min-height: 100px;
 }
 
 #appHeader .win-navigation-backbutton {
+    position: absolute;
+    z-index: 999999999;
     margin-right: 5px;
     margin-top: 2pt;
     margin-left: 5px;
@@ -107,10 +112,14 @@ a:hover {
     left:50pt;
     /*z-index: 999999999999;*/
     float:left;
-    font-size: 45pt;
+    font-size: 30pt;
     margin-bottom:5pt;
     float: right;
     margin-right: 5%;
+    -ms-transform: rotate(7deg); /* IE 9 */
+    -webkit-transform: rotate(7deg); /* Chrome, Safari, Opera */
+    transform: rotate(7deg);
+    z-index: 3;
 }
 
 #appHeader h1 a { 
@@ -238,4 +247,13 @@ a:hover {
 
 .win-listview > .win-vertical .win-item {
     display: inline-block;
+}
+
+.adsbygoogle{
+    position: absolute;
+    z-index: 1;
+}
+.win-listview > .win-viewport.win-vertical {
+    overflow-x: scroll;
+    overflow-y: scroll;
 }
