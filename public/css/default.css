@@ -107,10 +107,10 @@ a:hover {
     left:50pt;
     /*z-index: 999999999999;*/
     float:left;
-    font-size: 55pt;
+    font-size: 45pt;
     margin-bottom:5pt;
-    float: left;
-    margin-left: 5%;
+    float: right;
+    margin-right: 5%;
 }
 
 #appHeader h1 a { 
