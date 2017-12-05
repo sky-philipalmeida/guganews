@@ -19,6 +19,8 @@ The main components are:
 export TRANS_KEY=trnsl.1.XXX // Get a key for the translate api here translate.yandex.net.
 export NAPI= XXX // Get a key at translate.yandex.net.
 node server.js
+
+http://localhost:8080
 ```
 ### Live demo
 http://www.guganews.com
