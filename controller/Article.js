@@ -82,6 +82,7 @@ getArticle.prototype.articleprocessor = function(hashin, keywords, location, nam
     // var keywords = (keywords)  ? ',{"keyword": {"$or": ["'+keywords.join('","')+'"]}}' : ""
     var keywords = keywords ? keywords : [name]
     var availableLangs=['ar','en','cn','de','es','fr','he','it','nl','no','pt','ru','sv','ud']
+    var availablecountries=['ar','au','br','ca','cn','de','es','fr','gb','hk','ie','in','is','it','nl','no','pk','ru','sa','sv','us','za']
 
     var setup = {
         url: Config.urls.events,
@@ -95,6 +96,7 @@ getArticle.prototype.articleprocessor = function(hashin, keywords, location, nam
             // "eventsEventImageCount":  Config.newsitems.images
             "q":"("+keywords.join(' OR ')+")",
             "language":(availableLangs.find(l=>l==to))?to:Config.keywords.to,
+            //"country":(availablecountries.find(l=>l==to))?to:'all',
             "sortBy":"publishedAt",
             "from": new Date(Date.now() - 86400000*2).toISOString().slice(0,10), // 2 days ago
             "apiKey":Config.apikey
@@ -119,11 +121,16 @@ getArticle.prototype.translateprocessor = function(hashin, topics, value, locati
 
     if (cached) {
         cache.put(hash, ++cached);
-        console.log("caching",hash,cached,topics,value);
-        cache.put(hashdata, cacheddata.concat(value.text[0]));
+        console.log("caching",cached,value.text);
+        try {
+            cache.put(hashdata, cacheddata.concat(value.text[0]));
+        } catch(e){
+            console.log('failed',hashdata)
+        }
+
     } else {
         cache.put(hash, cached=1);
-        console.log("caching",topics,value);
+        // console.log("caching",topics,value);
         try {
             cache.put(hashdata, [(value.text[0])]);
         } catch(e) {
@@ -133,12 +140,12 @@ getArticle.prototype.translateprocessor = function(hashin, topics, value, locati
         }
         
     }
-
-    if (cached===topics.length){
+    // console.log('topics',cacheddata.length,topics)
+    //if (cacheddata.length===topics.length){
         cacheddata = cache.get(hashdata);
         console.log('All is translated!', topics, cacheddata);
         getArticle.prototype.articleprocessor(hashin, cacheddata, location, name, to, response)
-    }
+    //}
 }
 
 getArticle.prototype.translate = function (hashin, topic, topics, from, to, location, name, response) {
@@ -157,19 +164,20 @@ getArticle.prototype.translate = function (hashin, topic, topics, from, to, loca
             "lang": from+"-"+to
         }
     }
-    console.log(transreq);
+    console.log('transreq',transreq);
     var out = requestOut.get(transreq, 
-    function (error, responsein, body) {
-        try {
-            jbody = JSON.parse(body);
-        } catch(e){
-            console.log("Response error", error, responsein, body);
-            jbody = {}
-        }
-        getArticle.prototype.translateprocessor(hashin, topics, jbody, location, name, to,  response)
-        cache.put(hash, jbody); 
-        return jbody;
-    });
+        function (error, responsein, body) {
+            try {
+                jbody = JSON.parse(body);
+            } catch(e){
+                console.log("Response error", error, responsein, body);
+                jbody = {}
+            }
+            console.log('translateprocessor call')
+            getArticle.prototype.translateprocessor(hashin, topics, jbody, location, name, to,  response)
+            cache.put(hash, jbody); 
+            return jbody;
+        });
 }
 
 

@@ -21,7 +21,6 @@ var Config = {
   },
   urls: {
     events: "https://newsapi.org/v2/everything",
-    location: 'http://eventregistry.org/json/suggestLocations?prefix=${country}&lang=eng',
     translation: 'https://translate.yandex.net/api/v1.5/tr.json/translate'
   }
 }

@@ -37,16 +37,17 @@ function bindMediaVideo(id2,id3,id4,promisein) {
             setTimeout(function(){ bindMediaVideo(id2,id3,id4) }, 1000);
         } else {
             console.log("bvideo4 promise finel");
-                promisein();
+            promisein();
         }
     }
 }
 
 function bindMediaImage(id2,id3,id4,promisein) {
+
     if (typeof window[id3]!=='undefined'&&window[id3]!==false&&window[id3].length>0){
         var li=document.querySelectorAll('[name="'+id3+'"]')[0];
-        //console.log(li.winControl);
-        //console.log("bimage1 loading image");
+        console.log(li.winControl);
+        console.log("bimage1 loading image");
         var ct=document.querySelectorAll('[name="'+id2+'"]')[0];
         ct.style.backgroundImage=window[id3].getAt(0).bgurl;  
         li.winControl.itemDataSource=window[id3].dataSource;
@@ -63,8 +64,15 @@ function bindMediaImage(id2,id3,id4,promisein) {
                                // }
                         };
     }else{
-        //console.log("bimage3 timeout");
-        setTimeout(function(){ bindMediaImage(id2,id3,id4,promisein) }, 1000);
+        if(window[id3]!==false){
+            console.log("bimage3 timeout",window[id3]._binding);
+            setTimeout(function(){ bindMediaImage(id2,id3,id4,promisein) }, 1000);
+        } else {
+            console.log("bimage3 promise finel");
+            console.log("bimage3 timeout",window[id3]._binding);
+            promisein();
+        }
+
     }
 }
 
@@ -72,6 +80,7 @@ function bindMediaImage(id2,id3,id4,promisein) {
 function loadImageForItem(item,context){
     window[context] = new WinJS.Binding.List([]);
     context +='__'+item.id2;
+    console.log(item,context)
     processImagesForResult(item,context)
 }
 

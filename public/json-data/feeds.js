@@ -1,21 +1,22 @@
+
 var resources = {   
 "Asia":
     [
-        {"gps":"35°18'S 149°07'E","url":"http://news.google.com/news?ned=au","name":"Australia"},
-        {"gps":"28°37'N 77°13'E","url":"http://news.google.com/news?ned=in","name":"India"},
+        {"gps":"35°18'S 149°07'E","url":"http://news.google.com/news?ned=au","name":"Australia","lang":"au"},
+        {"gps":"28°37'N 77°13'E","url":"http://news.google.com/news?ned=in","name":"India","lang":"in"},
         {"gps":"32°04'N 34°47'E","url":"http://news.google.com/news?ned=en_il","name":"Israel"},        
         {"gps":"6°08'N 102°15'E","url":"http://news.google.com/news?ned=en_my","name":"Malaysia"},
         {"gps":"41°17'S 174°47'E","url":"http://news.google.com/news?ned=nz","name":"New Zealand"},
         {"gps":"33°43'N 73°04'E","url":"http://news.google.com/news?ned=en_pk","name":"Pakistan"},
         {"gps":"14°35'N 120°58'E","url":"http://news.google.com/news?ned=en_ph","name":"Philippines"},
         {"gps":"1°17'N 103°50'E","url":"http://news.google.com/news?ned=en_sg","name":"Singapore"},
-        {"gps":"25°15'N 55°18'E","url":"http://news.google.com/news?ned=ar_me","name":"Arab world"},
-        {"gps":"24°28'N 54°22'E","url":"http://news.google.com/news?ned=ar_ae","name":"UAE"},
+        {"gps":"25°15'N 55°18'E","url":"http://news.google.com/news?ned=ar_me","name":"Arab world","lang":"ar"},
+        {"gps":"24°28'N 54°22'E","url":"http://news.google.com/news?ned=ar_ae","name":"UAE","lang":"ar"},
         {"gps":"33°53'N 35°31'E","url":"http://news.google.com/news?ned=ar_lb","name":"Lebanon"},
         {"gps":"24°38'N 46°43'E","url":"http://news.google.com/news?ned=ar_sa","name":"KSA"},
         {"gps":"39°54'N 116°24'E","url":"http://news.google.com/news?ned=cn","name":"China","lang":"cn"},
         {"gps":"22°17'N 114°10'E","url":"http://news.google.com/news?ned=hk","name":"Hong Kong","lang":"en"},
-        {"gps":"35°18'S 149°07'E","url":"http://news.google.com/news?ned=hi_in","name":"India"},
+        {"gps":"35°18'S 149°07'E","url":"http://news.google.com/news?ned=hi_in","name":"India","lang":"in"},
         {"gps":"32°04'N 34°47'E","url":"http://news.google.com/news?ned=iw_il","name":"Israel"},
         {"gps":"35°41'N 139°42'E","url":"http://news.google.com/news?ned=jp","name":"Japan"},
         {"gps":"35°11'N 129°05'E","url":"http://news.google.com/news?ned=kr","name":"Korea"},
@@ -39,7 +40,7 @@ var resources = {
         {"gps":"34°02'N 6°50'W","url":"http://news.google.com/news?ned=fr_ma","name":"Moroc"},
         {"gps":"22°34'S 17°05'E","url":"http://news.google.com/news?ned=en_na","name":"Namibia"},
         {"gps":"52°05'N 4°19'E","url":"http://news.google.com/news?ned=nl_nl","name":"Nederland"},
-        {"gps":"6°27'N 3°24'E","url":"http://news.google.com/news?ned=en_ng","name":"Nigeria"},
+        {"gps":"6°27'N 3°24'E","url":"http://news.google.com/news?ned=en_ng","name":"Nigeria","lang":"fr"},
         {"gps":"59°57'N 10°45'E","url":"http://news.google.com/news?ned=no_no","name":"Norge"},
         {"gps":"48°13'N 16°22'E","url":"http://news.google.com/news?ned=de_at","name":"Österreich"},
         {"gps":"52°14'N 21°01'E","url":"http://news.google.com/news?ned=pl_pl","name":"Polska"},
@@ -57,13 +58,13 @@ var resources = {
         {"gps":"30°02'N 31°14'E","url":"http://news.google.com/news?ned=ar_eg","name":"Egypt"},
         {"gps":"37°58'N 23°43'E","url":"http://news.google.com/news?ned=el_gr","name":"Greece"},
         {"gps":"55°45'N 37°37'E","url":"http://news.google.com/news?ned=ru_ru","name":"Russia","lang":"ru"},
-        {"gps":"44°49'N 20°28'E","url":"http://news.google.com/news?ned=sr_rs","name":"Serbia"},
-        {"gps":"50°27'N 30°31'E","url":"http://news.google.com/news?ned=ru_ua","name":"Ukraine"}
+        {"gps":"44°49'N 20°28'E","url":"http://news.google.com/news?ned=sr_rs","name":"Serbia","lang":"ru"},
+        {"gps":"50°27'N 30°31'E","url":"http://news.google.com/news?ned=ru_ua","name":"Ukraine","lang":"ru"}
     ],
 "North":
     [
         {"gps":"34°36'S 58°23'W","url":"http://news.google.com/news?ned=es_ar","name":"Argentina","lang":"es"},
-        {"gps":"22°55'S 43°12'W","url":"http://news.google.com/news?ned=pt-BR_br","name":"Brasil","lang":"pt"},
+        {"gps":"22°55'S 43°12'W","url":"http://news.google.com/news?ned=pt-BR_br","name":"Brasil","lang":"br"},
         {"gps":"43°42'N 79°24'W","url":"http://news.google.com/news?ned=ca","name":"Canada English","lang":"en"},
         {"gps":"46°49'N 71°13'W","url":"http://news.google.com/news?ned=fr_ca","name":"Canada Français","lang":"fr"},
         {"gps":"33°27'S 70°40'W","url":"http://news.google.com/news?ned=es_cl","name":"Chile","lang":"es"},

@@ -67,16 +67,12 @@ WinJS.UI.processAll().then(function () {
                                 .listen(
                                     "iteminvoked",
                                     function (invoke) {
+
                                         spinner.show();
-                                        // console.log(invoke.detail.itemPromise._value.data)
+                                        
                                         var clicked = invoke.detail.itemPromise._value.data;
-                                        //console.log(this);
                                         var index = invoke.detail.itemIndex;
-                                        // currentItem=index;
                                         var list = document.getElementById("pivotScenario3").winControl._currentItem._contentElement.firstElementChild.winControl;
-                                        // console.log("Ensure visible");
-                                        // window.location=clicked.link;
-                                        // window.open(clicked.link, "_blank", "fullscreen=yes,height=600,width=800,scrollbars=yes,resizable=no");
                                         transitionBetweenContent(
                                             clicked,
                                             function () {
@@ -215,7 +211,7 @@ function transitionBetweenContent(clicked, cb) {
         currentCountryData.content[clicked.id] = true;
         loadImageForItem(clicked, clicked.id3);
         //loadVideoForItem(clicked, clicked.id4);
-        // console.log(clicked.id2);
+        console.log('transitionBetweenContent_2',clicked.id2);
 
         WinJS.Utilities.query('[name="' + clicked.id2 + '"] a').forEach(function (itema) {
             itema.addEventListener("click",
@@ -229,14 +225,14 @@ function transitionBetweenContent(clicked, cb) {
                 });
         });
 
-
+        console.log('bindMediaImage request');
         bindMediaImage(clicked.id2, clicked.id3, clicked.id4,
             function () {
                 console.log('bindMediaImage');
                 transitionBetweenContentToggle(clicked.id, clicked.id2, clicked.id3, clicked.id4, cb);
 
             });
-
+         console.log('bindMediaImage request done');
 
     }
 

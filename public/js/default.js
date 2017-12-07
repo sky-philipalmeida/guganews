@@ -139,8 +139,8 @@ function processResults(topic, result) {
                 content         : item.description,
                 url             : item.url,
                 publishedDate   : publishedDate,
-                images          : [item.urlToImage],
-                img             : (item.urlToImage ? item.urlToImage : "images/windows/Square70x70Logo.scale-180.png"),
+                images          : [(item.urlToImage ? item.urlToImage : "images/windows/Square71x71Logo.scale-100.png")],
+                img             : (item.urlToImage ? item.urlToImage : "images/windows/Square71x71Logo.scale-100.png"),
                 year            : publishedDate.getFullYear(),
                 month           : (publishedDate.getMonth() + 1),
                 day             : publishedDate.getDate(),
@@ -202,7 +202,7 @@ WinJS.UI.Pages.define("/index.html", {
 WinJS.Navigation.navigate("/index.html");
 
 function myalert(e) {
-    e.preventDefault(); // <-- prevent the default action
+   // e.preventDefault(); // <-- prevent the default action
 
     
 

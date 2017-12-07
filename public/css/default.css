@@ -181,8 +181,8 @@ a:hover {
 {
     margin: 5px;
     margin-right:10px;
-    width:400px !important;
-    height:400px !important;
+    width:325px !important;
+    height:325px !important;
     background-size:100% auto; 
     background-repeat: no-repeat;
     background-position: center center;
@@ -246,7 +246,7 @@ a:hover {
 }
 
 .win-listview > .win-vertical .win-item {
-    display: inline-block;
+    display: block;
 }
 
 .adsbygoogle{
@@ -256,4 +256,8 @@ a:hover {
 .win-listview > .win-viewport.win-vertical {
     overflow-x: scroll;
     overflow-y: scroll;
+}
+
+.win-listview .win-horizontal .win-listlayout .win-container {
+    height: auto;
 }
